@@ -449,7 +449,23 @@ DPS 측정기
 <div class="spacer"></div>
   </div>
 
-
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const container = document.getElementById('iframe-container');
+      const newIframe = document.createElement('iframe');
+      newIframe.id = 'gear-sheet';
+      newIframe.src = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&headers=false';
+      newIframe.width = '100%';
+      newIframe.height = '800';
+      newIframe.frameBorder = '0';
+      newIframe.style.border = 'none';
+      newIframe.style.backgroundColor = 'black';
+      container.innerHTML = '';
+      container.appendChild(newIframe);
+    }, 800); // 0.8초 후 재삽입 (렌더링 초기화용)
+  });
+</script>
 
 </body>
 </html>
