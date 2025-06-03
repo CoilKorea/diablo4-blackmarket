@@ -3,55 +3,53 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>디아블로4 블랙마켓 가격표</title>
+  <title>디아블로4 블랙마켓</title>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
     Kakao.init('db314ae6d456308e311d513c5f54188d');
   </script>
   <style>
-    body { font-family: sans-serif; background: #111; color: #eee; padding: 20px; }
-    #content-container { background: #222; padding: 20px; border-radius: 10px; }
-    button { margin: 10px 0; padding: 10px 20px; background: orange; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; }
+    body { font-family: sans-serif; background: #111; color: #eee; margin: 0; }
+    nav { background: #222; padding: 10px; display: flex; gap: 15px; justify-content: center; }
+    nav button { background: orange; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+    .tab { display: none; padding: 20px; }
+    .tab.active { display: block; }
   </style>
 </head>
 <body>
-  <h1>디아블로4 블랙마켓 가격표</h1>
-  <button id="kakao-link-btn">카카오톡으로 공유하기</button>
+  <h1 style="text-align: center;">디아블로4 블랙마켓</h1>
+  <nav>
+    <button onclick="showTab('notice')">공지사항</button>
+    <button onclick="showTab('price')">가격표</button>
+    <button onclick="showTab('items')">개별장비</button>
+    <button onclick="showTab('fullbuild')">풀빌드세팅</button>
+  </nav>
 
-  <div id="content-container">
-    <!-- 외부 HTML 본문 불러오기 -->
+  <div id="notice" class="tab active">
+    <h2>📢 공지사항</h2>
+    <p>여기에 공지 내용을 넣어주세요.</p>
+  </div>
+
+  <div id="price" class="tab">
+    <h2>💰 가격표</h2>
+    <p>가격표 본문이 여기에 들어갑니다.</p>
+  </div>
+
+  <div id="items" class="tab">
+    <h2>🧤 개별장비</h2>
+    <p>개별 장비 설명 및 이미지</p>
+  </div>
+
+  <div id="fullbuild" class="tab">
+    <h2>⚙️ 풀빌드 세팅</h2>
+    <p>풀빌드 세팅 가이드 또는 가격 구성</p>
   </div>
 
   <script>
-    document.getElementById('kakao-link-btn').onclick = function () {
-      Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '디아블로4 블랙마켓 가격표',
-          description: '실시간 업데이트 되는 디아블로4 아이템 시세표입니다.',
-          imageUrl: 'https://i.imgur.com/wOKif4w.jpeg',
-          link: {
-            mobileWebUrl: 'https://diabloiv.netlify.app/',
-            webUrl: 'https://diabloiv.netlify.app/'
-          }
-        },
-        buttons: [
-          {
-            title: '가격표 보러가기',
-            link: {
-              mobileWebUrl: 'https://diabloiv.netlify.app/',
-              webUrl: 'https://diabloiv.netlify.app/'
-            }
-          }
-        ]
-      });
-    };
-
-    fetch('content.html')
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('content-container').innerHTML = html;
-      });
+    function showTab(id) {
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
   </script>
 </body>
 </html>
