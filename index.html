@@ -343,7 +343,7 @@
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       buttons.forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`btn-${id}`).classList.add('active');
+      document.getElementById(btn-${id}).classList.add('active');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -357,7 +357,7 @@
       const scrollY = window.scrollY;
       const overlay = document.getElementById('overlay');
       const opacity = Math.min(scrollY / 300, 0.6);
-      overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+      overlay.style.background = rgba(0, 0, 0, ${opacity});
     });
   </script>
 </body>
