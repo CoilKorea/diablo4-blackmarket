@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,12 +46,13 @@
     nav button {
       background: orange;
       border: none;
-      padding: 10px 20px;
+      padding: 15px 30px;
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
       color: #000;
       font-family: 'DoHyeon', sans-serif;
+      font-size: 18px;
     }
     .tab {
       display: none;
@@ -86,12 +86,12 @@
 
   <div id="notice" class="tab active">
     <h2>📢 공지사항</h2>
-    <p>도그08남</p>
+    <p></p>
   </div>
 
   <div id="price" class="tab">
     <h2>💰 가격표</h2>
-    <p><p>&#128176; <strong>금화</strong></p><p><b>
+   <p>&#128176; <strong>금화</strong></p><p><b>
 </b> • 500억 = 2,000원
  • 990억 = 4,000원</p><p>
 &nbsp; &nbsp; &nbsp; ※ 계정 당 최대 999억 보유 가능.&nbsp;</p><div>
@@ -158,124 +158,16 @@
     <p>풀빌드 세팅 가이드 또는 가격 구성</p>
   </div>
 
+  <div id="season8" class="tab">
+    <h2>📘 시즌8 가이드</h2>
+    <img src="다운로드.png" alt="시즌8 가이드 표" style="width:100%; max-width:1200px; height:auto; display:block; margin:auto;">
+  </div>
+
   <script>
     function showTab(id) {
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
   </script>
-<div id="season8" class="tab">
-
-<h2>📘 시즌8 가이드</h2>
-<p><strong>벨리알 재료: <br><span style="color:skyblue배신자의 껍데기 2개</strong><br>처치 후 다른 보스의 보상을 받을 수 있습니다.</p>
-
-<table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse: collapse; font-size: 14px; color: white; text-align: center;">
-  <thead style="background: #222;">
-    <tr>
-      <th>우버보스</th>
-      <th>듀리엘<br><span style="color:skyblue;">고통의 파편</span></th>
-      <th>안다리엘<br><span style="color:skyblue;">바늘꽂이 인형</span></th>
-      <th>우리바르<br><span style="color:red;">심판관의 가면</span></th>
-      <th>바르샨<br><span style="color:red;">악의 심장</span></th>
-      <th>그리구아르<br><span style="color:red;">살아있는 강철</span></th>
-      <th>군주지르<br><span style="color:red;">극상의 피</span></th>
-      <th>얼음야수<br><span style="color:red;">정제된 공포</span></th>
-      <th>지옥불 군세<br><span style="color:red;">군세 나침반</span></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>혼령사</td>
-      <td>케펠레케의 막대<br>세파존텍<br><span style="color:red;">태양새의 목가리개</span></td>
-      <td colspan="2">※ 우리바르는 다른 보스의 드랍 테이블을 공유합니다</td>
-      <td>태양바램 전쟁용 의식<br>지팡이<br>죽은 신의 발광<br>꿈틀거리는 달의 반지<br>정오 사냥의 반지</td>
-      <td>충의의 어깨걸이<br>대악마의 수호<br>평화주의자의 인장<br>한밤 중의 태양의 반지</td>
-      <td>우세낙파<br>첫숨결의 가락지<br>적황색 갑각</td>
-      <td>에바카와의 조화<br>대지 경멸<br>상처 포식자</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>야만용사</td>
-      <td>위대한 조리츠의<br> 엄니 투구</td>
-      <td colspan="2"><span style="color:red;">파괴의 군대의 숙적</span><br>※ 우리바르는 다른 보스의 드랍 테이블을 공유합니다</td>
-      <td>심홍색의 전장<br>만보<br>고르의 파멸적인 손보호구<br>붉은 열광의 반지</td>
-      <td>하로가스의 분노<br>전투 무아지경<br>이중 강타<br>부서지지 않는 사슬</td>
-      <td>라말라니의 역작<br>아리앗의 자세<br><br>과잉 살상<br>못생긴 놈 투구<br><span style="color:red;">파괴의 군대의 숙적</td>
-      <td>산의 분노의 어깨걸이<br>선조의 맹세<br>지옥망치<br>걸신들린 자의 반지</td>
-      <td>세 번째 칼날</td>
-    </tr>
-  
-<tr>
-  <td>원소</td>
-  <td>화염흉터<br>푸른 장미</td>
-  <td colspan="2"><span style="color:red;">살얼음의 우박<br>※ 우리바르는 다른 보스의 드랍 테이블을 공유합니다</td>
-  <td>끝없는 분노의 지팡이<br>에수의가보<br>에수의가보/무한의 의복<br><span style="color:red;">탈 라샤의 오색찬란한 고리</span></td>
-  <td>힘의 소집<br>정신의 장비셋</td>
-  <td>오묘의 혹매<br>에사드의 기운<br>조각난 불꽃의 씨드에 구속</td>
-  <td>폭풍물결의 정기<br>계몽자의 폭풍의 관</td>
-  <td>만인지성</td>
-</tr>
-<tr>
-  <td>강령</td>
-  <td>검은 갑<br>빛의 달의 무관부채</td>
-  <td colspan="2">※ 우바바는 다른 보스의 드랍 테이블을 공유합니다</td>
-  <td>피 말리는 비명/죽음예언자의 펜던트<br>신성공포의 영혼</td>
-  <td>어머니의 들끓음<br>불멸의 정화 장화<br>전쟁의 검</td>
-  <td>지혜의 물방울<br>전쟁의 정수<br>피의 고문관의 소리</td>
-  <td>바르카의 기억/피파편/슬픔의 파편<br>정화된 정제피</td>
-  <td>죽음소리</td>
-</tr>
-<tr>
-  <td>드루</td>
-  <td>폭풍의 표효<br>고의돌</td>
-  <td colspan="2"><span style="color:orange;">기후레인 생득권</span><br>※ 우바바는 다른 보스의 드랍 테이블을 공유합니다</td>
-  <td>미친 늑대의 함성<br>천상의 기도/마나의 균형자<br>아이리더의 거점의 눈치</td>
-  <td>죽음을 모르는 늑대혼 소환술<br>흑표범의 분노<br>대지 파괴자</td>
-  <td>늑대 왕의 전투지침<br>야생성과 광명<br>몰입된 새벽의 관</td>
-  <td>고통봉쇄의 두르개<br>가죽의 탈피</td>
-  <td>바릴리스크</td>
-</tr>
-<tr>
-  <td>도적</td>
-  <td>이름 없는 자의 리센서<br>견달의 가죽옷</td>
-  <td colspan="2"><span style="color:red;">핏빛 장미의 띠</span><br>※ 우바바는 다른 보스의 드랍 테이블을 공유합니다</td>
-  <td>규탄/어둠 속의 보복자<br>사냥산보<br>음부복복의 승자의 기도</td>
-  <td>하락의 맹/그림자의 검/검의 대검조<br>검은 거미의 의망</td>
-  <td>바람<br>아수낫의 장화</td>
-  <td>그림자석류</td>
-  <td>그림자석류</td>
-</tr>
-<tr>
-  <td>공용</td>
-  <td>푸른 서식/살/살해/향락/영혼의 찬탈/악의 의지<br>영혼 누적/대자연의 경로/마법 명문을 극복 부서진 인장</td>
-  <td colspan="2">※ 우바바는 다른 보스의 드랍 테이블을 공유합니다</td>
-  <td>서러블북/어머니의 피의 축복/기원의 공물</td>
-  <td>철의 경감/도적살<br>고통의 파편/악의 핵심/거인의 공물</td>
-  <td>서초군/포탈/연결/혼돈의 씨앗</td>
-  <td>바람의 맹세/타락의 맹세/<br>망령화의 고리</td>
-  <td>쿠시오의 황권/피의 반응<br>고혼의 영혼/라카의 재치<br>비폭교의 파편</td>
-</tr>
-<tr>
-  <td><strong>우버</strong></td>
-  <td colspan="8">폐결자(야만, 원소, 강령, 도적, 드루), 한마타(야만, 강령), 안바리온–라이타리타(형혼, 드루)<br>
-    황폐 관문, 안다리엘의 두개골, 리타엘의 검능, 피 얼음 혼의 반지, 셀리르의 눈 심장</td>
-</tr>
-<tr>
-  <td><strong>시즌6가 우버</strong></td>
-  <td colspan="8">빛삭 생성(야만, 드루, 혼령), 정복 네세레엘(혼령, 성), 영벌의 복귀, 거짓된 죽음의 수의</td>
-</tr>
-<tr>
-  <td><strong>시즌8 변경점</strong></td>
-  <td colspan="8">
-    ※ 시즌8에서는 보스별 드랍테이블에 중복된 획득이 있습니다<br>
-    ※ 기존 보스 소환 재료는 보상 상자 기준 삭제 되었으며 파티 클리어시 33%~100%까지 추가 고유 아이템 드랍 확률이 증가합니다<br>
-    <strong>(미니) 벨리알을 처치하면 <u>배신자의 견딜개와 다른 보스의 키 재료</u>를 드랍합니다.</strong>
-  </td>
-</tr>
-
-  </tbody>
-</table>
-
-</div>
 </body>
 </html>
