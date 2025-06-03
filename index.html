@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<title>디아블로4 블랙마켓</title>
-<link rel="icon" type="image/png" href="diablo4_blackmarket_favicon.png">
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
+  <meta charset="utf-8"/>
+  <title>디아블로4 블랙마켓</title>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
     Kakao.init('db314ae6d456308e311d513c5f54188d');
   </script>
-<style>
+  <style>
     @font-face {
       font-family: 'Kenris';
       src: url('Kenris.ttf') format('truetype');
@@ -18,131 +16,186 @@
       font-family: 'DoHyeon';
       src: url('DoHyeon.ttf') format('truetype');
     }
-    body {
-      font-family: sans-serif;
-      background-color: #111;
-      color: #eee;
+    html, body {
       margin: 0;
       padding: 0;
+      font-family: 'DoHyeon', sans-serif;
+      background-color: #111;
+      color: #eee;
     }
     header {
+      position: relative;
+      height: 100vh;
+      background: url('https://i.imgur.com/bwyltCl.jpeg') center/cover no-repeat;
+      overflow: hidden;
+    }
+    #overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.5s;
+      z-index: 1;
+    }
+    #main-title {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
       text-align: center;
-      padding: 20px 0 10px;
-    }
-    header h1 {
       font-family: 'Kenris', sans-serif;
-      font-size: 36px;
-      margin: 0 0 15px;
+      font-size: 42px;
+      color: #fff;
+      text-shadow: 2px 2px 2px #000;
+      opacity: 0;
+      z-index: 2;
+      transition: opacity 1s ease-in-out;}
+    #order-button {
+      position: absolute;
+      bottom: 160px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 14px 28px;
+      background-color: #FFD700;
+      color: #111;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
-    header img {
-      max-width: 450px;
-      height: auto;
+    #order-button i {
+      font-size: 20px;
+    }
+    #order-button:hover {
+      background-color: #ffc800;
     }
     nav {
-      background: #222;
+      background: #111;
       display: flex;
       justify-content: center;
       gap: 10px;
-      padding: 10px;
+      padding: 20px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     nav button {
-      background: orange;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 5px;
+      background: #222;
+      border: 1px solid #444;
+      padding: 12px 24px;
+      border-radius: 12px;
       font-weight: bold;
       cursor: pointer;
-      color: #000;
+      color: #fff;
       font-family: 'DoHyeon', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
+      text-shadow: 0 0 3px #000;
+      transition: all 0.3s ease;
+    }
+    nav button:hover {
+      background-color: #333;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    nav button.active {
+      background: linear-gradient(145deg, #3a3a3a, #1c1c1c);
+      box-shadow: inset 0 0 5px #000;
+      border: 1px solid #888;
     }
     .tab {
       display: none;
-      padding: 30px;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
     .tab.active {
       display: block;
     }
     .tab h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-family: 'DoHyeon', sans-serif;
     }
     .tab p {
-      font-size: 15px;
+      font-size: 16px;
+      line-height: 1.6;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-<header>
-<h1>디아블로4 블랙마켓</h1>
-<img alt="디아블로4 블랙마켓" src="https://i.imgur.com/bwyltCl.jpeg"/>
-</header>
-<nav>
-<button onclick="showTab('notice')">공지사항</button>
-<button onclick="showTab('price')">가격표</button>
-<button onclick="showTab('items')">개별장비</button>
-<button onclick="showTab('fullbuild')">풀빌드세팅</button>
-<button onclick="showTab('season8')">시즌8가이드</button>
-</nav>
-<div class="tab active" id="notice">
-<h2>📢 공지사항</h2>
-<p>📌 <b>최신 시세 </b>업데이트 주기적으로 이루어집니다.</p>
-<p>✔ 대행작업은 전부 수작업입니다.</p>
-<p>✔ 유저들 간 아이템 거래(💸가능), 빌드 세팅, 아이디어 공유 자유롭게. 방장이 파는 품목만 ❌</p>
-<p>✔ 골드, 재료 등 자체적으로도 생산합니다. 그것들은 당연히! 종종 특가로 쏩니다.</p>
-<p>✔ 현재는 시즌 말이라 직접 게임도 같이 하고 나눔도 드리고 있습니다.</p>
-</div>
-<div class="tab" id="price">
-<h2>💰 가격표</h2>
-<p>💰 <strong>금화</strong></p>
-<p> • 500억 = 2,000원   • 990억 = 4,000원</p>
-<p>※ 계정 당 최대 999억 보유 가능.</p>
-<p>🌀 <strong>옵두사이트</strong></p>
-<p> • 100,000개 = 2,500원   • 200,000개 = 4,500원   • 400,000개 = 7,000원</p>
-<p>※ 플스(PS)유저 꼭 말씀해주세요. / 대량 구매 시 여러 번 나눠서 전달 됩니다. 꼭 다 드리니 기다려주세요.</p>
-<p>🐍 <strong>벨리알 보스재료</strong></p>
-<p> • 100묶음 = 3,000원   • 150묶음 = 4,000원   • 200묶음 = 5,000원   • 300묶음 = 6,000원</p>
-<p>※ 시즌 말이라 자정 이후에는 50묶음, 100묶음만 가능할 수도 있습니다.</p>
-<p>※ 이번 시즌은 다른 재료 구매할 메리트가 없습니다.</p>
-<p>⚡️ <strong>벼락불 파밍 대행</strong></p>
-<p> - 환영의 재 10만 이상: • 10개 = 15,000원</p>
-<p> - 환영의 재 10만 미만: • 4개 = 22,000원 • 10개 = 최대~ 40,000원</p>
-<p>※ 이번 시즌 6분에 한번씩 벼락불 얻는 부캐런 대행해드려요.</p>
-<p>※ 환영의 재 보유량으로 견적 계산 후 가격 안내드려요.</p>
-<p>🌟 <strong>미지의 수정</strong>: 잠시 공급 중단</p>
-<p>🔥 <strong>잊힌 영혼 대행</strong>: 1,000개 = 6,000원 (👑벨리알 파밍 - 나오는 템 전부 킵)</p>
-<p>💍 <strong>룬</strong>: 10개 미만 • 1,000원 • 10~20개 = 2,000원</p>
-<p>※ 빌드 굴러가는데 필요한 룬 1~2개는 서비스로 드립니다.</p>
-<p>☘️ <strong>신화 고유 룬 세트</strong> • 1세트 = 1,000원 • 16세트 = 2,500원 • 50세트 = 3,500원</p>
-<p>💎 <strong>웅장한 보석</strong> • 7종 x 10개 = 2,500원</p>
-<p>💀 <strong>시즌 하드코어</strong> • 골드 100억 = 15,000원 • 껍데기 99개 = 4,000원</p>
-<p>⚔️ <strong>장비</strong></p>
-<p>- 다른 방 보다 정말 싸게 판매하고 있습니다.</p>
-<p>- 1~2어픽 가성비 장비는 항상 재고 갖춰놓고 싸게 드립니다.</p>
-<p>- 3어픽 지능%/ 내면 / 영구결빙 3어픽 급 아니면 찾으시는 모든 템 구해드려요.</p>
-<p>※ diablo.trade / 중국 업자들 판매채널에서 빠르게 구해옵니다.</p>
-<p>🔧 <strong>서비스 대행</strong> • 레벨업 / 문양작 / 도전과제 / 명망작 등</p>
-<p>• 풀빌드 세팅은 제가 맡을 수 있는 시간 여유 내에서 하루 한 분만 정성껏 해드립니다.</p>
-<p>🔧 <strong>디아4 관련 모든 문의</strong>: 헬퍼/매크로/기타 프로그램</p>
-<p>🔗 1:1 카톡: <a href="https://open.kakao.com/o/sELckyxh">https://open.kakao.com/o/sELckyxh</a></p>
-</div>
-<div class="tab" id="items">
-<h2>🧤 개별장비</h2>
-<p>개별 장비 설명 및 이미지</p>
-</div>
-<div class="tab" id="fullbuild">
-<h2>⚙️ 풀빌드 세팅</h2>
-<p>풀빌드 세팅 가이드 또는 가격 구성</p>
-</div>
-<div class="tab" id="season8">
-<h2>📘 시즌8 가이드</h2>
-<img alt="시즌8 가이드" src="Season8boss.png" style="max-width: 1200px; width: 100%; display: block; margin: auto;"/>
-</div>
-<script>
+  <header>
+    <div id="overlay"></div>
+    <a href="https://open.kakao.com/o/gitfLJ8g" target="_blank">
+      <button id="order-button"><i class="fas fa-shopping-cart"></i> 카카오톡으로 주문하기</button>
+    </a>
+    <div id="main-title">디아블로4 블랙마켓</div>
+  </header>
+
+  <nav>
+    <button id="btn-notice" onclick="showTab('notice')">공지사항</button>
+    <button id="btn-price" onclick="showTab('price')">가격표</button>
+    <button id="btn-items" onclick="showTab('items')">개별장비</button>
+    <button id="btn-fullbuild" onclick="showTab('fullbuild')">풀빌드세팅</button>
+    <button id="btn-season8" onclick="showTab('season8')">시즌8가이드</button>
+  </nav>
+
+  <div class="tab active" id="notice">
+    <h2>📢 공지사항</h2>
+    <p>📌 <b>최신 시세 </b>업데이트 주기적으로 이루어집니다.<br>
+    ✔ 대행작업은 전부 수작업입니다.<br>
+    ✔ 유저들 간 아이템 거래(💸가능), 빌드 세팅, 아이디어 공유 자유롭게. 방장이 파는 품목만 ❌<br>
+    ✔ 골드, 재료 등 자체적으로도 생산합니다. 그것들은 당연히! 종종 특가로 쏩니다.<br>
+    ✔ 현재는 시즌 말이라 직접 게임도 같이 하고 나눔도 드리고 있습니다.</p>
+  </div>
+
+  <div class="tab" id="price">
+    <h2>💰 가격표</h2>
+    <p>여기에 가격표 내용을 넣어주세요.</p>
+  </div>
+
+  <div class="tab" id="items">
+    <h2>🧤 개별장비</h2>
+    <p>개별 장비 설명 및 이미지</p>
+  </div>
+
+  <div class="tab" id="fullbuild">
+    <h2>⚙️ 풀빌드 세팅</h2>
+    <p>풀빌드 세팅 가이드 또는 가격 구성</p>
+  </div>
+
+  <div class="tab" id="season8">
+    <h2>📘 시즌8 가이드</h2>
+    <img src="Season8boss.png" alt="시즌8 가이드" style="max-width: 100vw; height: auto; display: block; margin: auto;">
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll("nav button");
     function showTab(id) {
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${id}`).classList.add('active');
     }
-</script>
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('main-title').style.opacity = 1;
+        document.getElementById('order-button').style.opacity = 1;
+      }, 1000);
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const overlay = document.getElementById('overlay');
+      const opacity = Math.min(scrollY / 300, 0.6);
+      overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+    });
+  </script>
 </body>
 </html>
