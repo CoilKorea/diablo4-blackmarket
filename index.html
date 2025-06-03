@@ -122,6 +122,24 @@
       font-size: 16px;
       line-height: 1.6;
     }
+    .tab img.enlargeable {
+      max-width: 100vw;
+      height: auto;
+      display: block;
+      margin: auto;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .tab img.enlargeable:hover {
+      opacity: 0.8;
+    }
+    .tab .tooltip {
+      position: relative;
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 6px;
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
@@ -168,7 +186,10 @@
 
   <div class="tab" id="season8">
     <h2>📘 시즌8 가이드</h2>
-    <img src="Season8boss.png" alt="시즌8 가이드" style="max-width: 100vw; height: auto; display: block; margin: auto;">
+    <a href="Season8boss.png" target="_blank">
+      <img src="Season8boss.png" alt="시즌8 가이드" class="enlargeable">
+    </a>
+    <div class="tooltip">클릭하면 확대가능</div>
   </div>
 
   <script>
