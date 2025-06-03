@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,26 +45,18 @@
       z-index: 1;
     }
 
-    #main-title {
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
-      text-align: center;
-      font-family: 'Kenris', sans-serif;
-      font-size: 2.5rem;
-      color: #fff;
-      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
-                   -1px  1px 0 #000, 1px  1px 0 #000;
-      opacity: 0;
+    .hero-wrapper {
+      position: relative;
       z-index: 2;
-      transition: opacity 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      height: 100%;
+      padding-bottom: 47.8%;
     }
 
     #order-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       padding: 1rem 2rem;
       background-color: #FFD700;
       color: #111;
@@ -75,10 +68,10 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      z-index: 2;
       opacity: 0;
       transition: opacity 1s ease-in-out;
       text-align: center;
+      margin-bottom: 1.2rem;
     }
 
     #order-button i {
@@ -87,6 +80,16 @@
 
     #order-button:hover {
       background-color: #ffc800;
+    }
+
+    #korean-title {
+      font-family: 'Kenris', sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     nav {
@@ -174,11 +177,6 @@
     }
 
     @media (max-width: 768px) {
-      #main-title {
-        font-size: 1.5rem;
-        bottom: 20px;
-      }
-
       #order-button {
         font-size: 0.9rem;
         padding: 12px 20px;
@@ -198,6 +196,10 @@
       pre {
         font-size: 0.875rem;
       }
+
+      #korean-title {
+        font-size: 1.4rem;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -205,10 +207,12 @@
 <body>
   <header>
     <div id="overlay"></div>
-    <a href="https://open.kakao.com/o/gitfLJ8g" target="_blank">
-      <button id="order-button"><i class="fas fa-shopping-cart"></i> 카카오톡으로 주문하기</button>
-    </a>
-    <div id="main-title">디아블로4 블랙마켓</div>
+    <div class="hero-wrapper">
+      <a href="https://open.kakao.com/o/gitfLJ8g" target="_blank">
+        <button id="order-button"><i class="fas fa-shopping-cart"></i> 카카오톡으로 주문하기</button>
+      </a>
+      <div id="korean-title">디아블로4 블랙마켓</div>
+    </div>
   </header>
 
   <nav>
@@ -330,11 +334,11 @@
   </div>
 
   <div class="tab" id="season8">
-    <h2>📘 시즌8 가이드</h2>
+    <h2>📘 시즌8 보스 드랍 테이블</h2>
     <a href="Season8boss.png" target="_blank">
       <img src="Season8boss.png" alt="시즌8 가이드" class="enlargeable">
     </a>
-    <div class="tooltip">클릭하면 확대가능</div>
+    <div class="tooltip">클릭하면 새 창에서 열림</div>
   </div>
 
   <script>
@@ -343,13 +347,13 @@
       document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       buttons.forEach(btn => btn.classList.remove('active'));
-      document.getElementById(btn-${id}).classList.add('active');
+      document.getElementById(`btn-${id}`).classList.add('active');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        document.getElementById('main-title').style.opacity = 1;
         document.getElementById('order-button').style.opacity = 1;
+        document.getElementById('korean-title').style.opacity = 1;
       }, 1000);
     });
 
@@ -357,7 +361,7 @@
       const scrollY = window.scrollY;
       const overlay = document.getElementById('overlay');
       const opacity = Math.min(scrollY / 300, 0.6);
-      overlay.style.background = rgba(0, 0, 0, ${opacity});
+      overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
     });
   </script>
 </body>
