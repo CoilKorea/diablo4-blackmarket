@@ -9,15 +9,73 @@
     Kakao.init('db314ae6d456308e311d513c5f54188d');
   </script>
   <style>
-    body { font-family: sans-serif; background: #111; color: #eee; margin: 0; }
-    nav { background: #222; padding: 10px; display: flex; gap: 15px; justify-content: center; }
-    nav button { background: orange; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; }
-    .tab { display: none; padding: 20px; }
-    .tab.active { display: block; }
+    @font-face {
+      font-family: 'Kenris';
+      src: url('Kenris.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'DoHyeon';
+      src: url('DoHyeon.ttf') format('truetype');
+    }
+    body {
+      font-family: 'DoHyeon', sans-serif;
+      background-color: #111;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    header h1 {
+      font-family: 'Kenris', sans-serif;
+      font-size: 36px;
+      margin: 0 0 15px;
+    }
+    header img {
+      max-width: 300px;
+      height: auto;
+    }
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+    nav button {
+      background: orange;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+      font-family: 'DoHyeon', sans-serif;
+    }
+    .tab {
+      display: none;
+      padding: 30px;
+    }
+    .tab.active {
+      display: block;
+    }
+    .tab h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .tab p {
+      font-size: 15px;
+    }
   </style>
 </head>
 <body>
-  <h1 style="text-align: center;">디아블로4 블랙마켓</h1>
+  <header>
+    <h1>디아블로4 블랙마켓</h1>
+    <img src="https://i.imgur.com/bwyltCl.jpeg" alt="디아블로4 블랙마켓">
+  </header>
+
   <nav>
     <button onclick="showTab('notice')">공지사항</button>
     <button onclick="showTab('price')">가격표</button>
