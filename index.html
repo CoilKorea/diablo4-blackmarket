@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -405,17 +406,16 @@ DPS 측정기
 </p>
 
 <!-- 장비목록, 개별장비, 기어, 장비 목록, gear -->
-<div id="iframe-container">
-  <iframe 
-    id="gear-sheet"
-    src="https://docs.google.com/spreadsheets/…"
-    width="100%" 
-    height="800px" 
-    frameborder="0" 
-    style="border: none; background-color: black;">
-  </iframe>
-</div>
+<div style="position: relative; width: 100%; max-width: 1000px; margin: auto; border: none; overflow: hidden; background-color: #111;">
+   <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&amp;headers=false"
+      width="100%" 
+      height="800px" 
+      frameborder="0" 
+      style="border: none; background-color: black;">
+    </iframe>
 
+</div>
 </div>
 
 
@@ -436,7 +436,7 @@ DPS 측정기
 
     <h2>💡 재료 파밍 팁</h2>
     <a href="oath.png" target="_blank">
-  <img src="oath.png" alt="재료 파밍 팁" class="enlargeable" />
+  <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/oath.png?raw=true" alt="재료 파밍 팁" class="enlargeable" />
 </a>
     <p></p>이번시즌은 미지의 수정, 잊힌 영혼의 수급이 많이 부족합니다. 벨리알을 잡고 나온 환영의 재를  NPC에게 교환하면 가장 빠른 방법으로 재료를 강화 재료를 모을 수 있습니다.
 <p>
@@ -449,23 +449,28 @@ DPS 측정기
 <div class="spacer"></div>
   </div>
 
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      const container = document.getElementById('iframe-container');
-      const newIframe = document.createElement('iframe');
-      newIframe.id = 'gear-sheet';
-      newIframe.src = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&headers=false';
-      newIframe.width = '100%';
-      newIframe.height = '800';
-      newIframe.frameBorder = '0';
-      newIframe.style.border = 'none';
-      newIframe.style.backgroundColor = 'black';
-      container.innerHTML = '';
-      container.appendChild(newIframe);
-    }, 800); // 0.8초 후 재삽입 (렌더링 초기화용)
-  });
-</script>
+  <script>
+    const buttons = document.querySelectorAll("nav button");
+    function showTab(id) {
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${id}`).classList.add('active');
+    }
 
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('order-button').style.opacity = 1;
+        document.getElementById('korean-title').style.opacity = 1;
+      }, 1000);
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const overlay = document.getElementById('overlay');
+      const opacity = Math.min(scrollY / 300, 0.6);
+      overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+    });
+  </script>
 </body>
 </html>
