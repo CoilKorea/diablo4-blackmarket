@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>디아블로4 블랙마켓 가격표</title>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('db314ae6d456308e311d513c5f54188d');
+  </script>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #eee; padding: 20px; }
+    #content-container { background: #222; padding: 20px; border-radius: 10px; }
+    button { margin: 10px 0; padding: 10px 20px; background: orange; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>디아블로4 블랙마켓 가격표</h1>
+  <button id="kakao-link-btn">카카오톡으로 공유하기</button>
+
+  <div id="content-container">
+    <!-- 외부 HTML 본문 불러오기 -->
+  </div>
+
+  <script>
+    document.getElementById('kakao-link-btn').onclick = function () {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '디아블로4 블랙마켓 가격표',
+          description: '실시간 업데이트 되는 디아블로4 아이템 시세표입니다.',
+          imageUrl: 'https://i.imgur.com/wOKif4w.jpeg',
+          link: {
+            mobileWebUrl: 'https://diabloiv.netlify.app/',
+            webUrl: 'https://diabloiv.netlify.app/'
+          }
+        },
+        buttons: [
+          {
+            title: '가격표 보러가기',
+            link: {
+              mobileWebUrl: 'https://diabloiv.netlify.app/',
+              webUrl: 'https://diabloiv.netlify.app/'
+            }
+          }
+        ]
+      });
+    };
+
+    fetch('content.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('content-container').innerHTML = html;
+      });
+  </script>
+</body>
+</html>
