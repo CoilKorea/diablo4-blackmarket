@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>디아블로4 블랙마켓</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
     Kakao.init('db314ae6d456308e311d513c5f54188d');
@@ -13,19 +14,27 @@
       font-family: 'Kenris';
       src: url('Kenris.ttf') format('truetype');
     }
-    html, body {
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
       margin: 0;
       padding: 0;
       font-family: sans-serif;
       background-color: #111;
       color: #eee;
+      line-height: 1.6;
     }
+
     header {
       position: relative;
       height: 100vh;
       background: url('https://i.imgur.com/bwyltCl.jpeg') center/cover no-repeat;
       overflow: hidden;
     }
+
     #overlay {
       position: absolute;
       width: 100%;
@@ -34,13 +43,14 @@
       transition: background 0.5s;
       z-index: 1;
     }
+
     #main-title {
       position: absolute;
       bottom: 40px;
       width: 100%;
       text-align: center;
       font-family: 'Kenris', sans-serif;
-      font-size: 42px;
+      font-size: 2.5rem;
       color: #fff;
       text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
                    -1px  1px 0 #000, 1px  1px 0 #000;
@@ -48,32 +58,37 @@
       z-index: 2;
       transition: opacity 1s ease-in-out;
     }
+
     #order-button {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 14px 28px;
+      padding: 1rem 2rem;
       background-color: #FFD700;
       color: #111;
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: bold;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.5rem;
       z-index: 2;
       opacity: 0;
       transition: opacity 1s ease-in-out;
+      text-align: center;
     }
+
     #order-button i {
-      font-size: 20px;
+      font-size: 1.2rem;
     }
+
     #order-button:hover {
       background-color: #ffc800;
     }
+
     nav {
       background: #111;
       display: flex;
@@ -83,7 +98,9 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      flex-wrap: wrap;
     }
+
     nav button {
       background: #222;
       border: 1px solid #444;
@@ -92,36 +109,43 @@
       font-weight: bold;
       cursor: pointer;
       color: #fff;
-      font-size: 16px;
+      font-size: 1rem;
       text-shadow: 0 0 3px #000;
       transition: all 0.3s ease;
     }
+
     nav button:hover {
       background-color: #333;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
+
     nav button.active {
       background: linear-gradient(145deg, #3a3a3a, #1c1c1c);
       box-shadow: inset 0 0 5px #000;
       border: 1px solid #888;
     }
+
     .tab {
       display: none;
       padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
     }
+
     .tab.active {
       display: block;
     }
+
     .tab h2 {
-      font-size: 24px;
+      font-size: 1.5rem;
       margin-bottom: 15px;
     }
+
     .tab p {
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 1.6;
     }
+
     .tab img.enlargeable {
       max-width: 100vw;
       height: auto;
@@ -130,15 +154,50 @@
       cursor: pointer;
       transition: opacity 0.3s;
     }
+
     .tab img.enlargeable:hover {
       opacity: 0.8;
     }
+
     .tab .tooltip {
-      position: relative;
       text-align: center;
       color: #ccc;
-      font-size: 14px;
+      font-size: 0.9rem;
       margin-top: 6px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      line-height: 1.9;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      #main-title {
+        font-size: 1.5rem;
+        bottom: 20px;
+      }
+
+      #order-button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      nav button {
+        font-size: 0.875rem;
+        padding: 10px 16px;
+      }
+
+      .tab {
+        padding: 20px 15px;
+      }
+
+      pre {
+        font-size: 0.875rem;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
@@ -171,8 +230,7 @@
 
   <div class="tab" id="price">
     <h2>💰 가격표</h2>
-    <pre style="white-space: pre-wrap; line-height: 1.9; font-size: 16px; font-family: inherit;">
-💰 금화
+    <pre>💰 금화
 
  • 500억 = 2,000원  
  • 990억 = 4,000원  
@@ -258,8 +316,7 @@
 ⚒️ 서비스 대행  
 
    • 레벨업 / 문양작 / 도전과제 / 명망작 등  
-   • 풀빌드 세팅은 제가 맡을 수 있는 시간 여유 내에서 하루 한 분만 정성껏 해드립니다.
-    </pre>
+   • 풀빌드 세팅은 제가 맡을 수 있는 시간 여유 내에서 하루 한 분만 정성껏 해드립니다.</pre>
   </div>
 
   <div class="tab" id="items">
