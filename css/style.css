@@ -1,12 +1,20 @@
+
+@font-face {
+  font-family: 'Kenris';
+  src: url('../assets/Kenris.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background-color: #111;
   color: #f1f1f1;
   margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Kenris', 'Noto Sans KR', sans-serif;
 }
 
 header {
-  background: url('assets/banner.png') no-repeat center center;
+  background: url('../assets/banner.png') no-repeat center center;
   background-size: cover;
   position: relative;
   height: 300px;
@@ -32,8 +40,8 @@ header {
 }
 
 #order-button {
-  background-color: #2e2e2e;
-  color: white;
+  background-color: #f1c40f;
+  color: #000;
   border: none;
   padding: 10px 18px;
   border-radius: 8px;
@@ -41,10 +49,11 @@ header {
   cursor: pointer;
   transition: background 0.3s, transform 0.2s;
   opacity: 0;
+  font-family: 'Kenris', sans-serif;
 }
 
 #order-button:hover {
-  background-color: #444;
+  background-color: #d4ac0d;
   transform: scale(1.05);
 }
 
@@ -54,6 +63,7 @@ header {
   margin-top: 12px;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  font-family: 'Kenris', sans-serif;
 }
 
 nav {
