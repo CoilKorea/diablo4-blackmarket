@@ -1,4 +1,3 @@
-
 const buttons = document.querySelectorAll("nav button");
 
 function showTab(id) {
@@ -17,13 +16,14 @@ buttons.forEach(button => {
   });
 });
 
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     const btn = document.getElementById('order-button');
     const title = document.getElementById('korean-title');
     if (btn) btn.style.opacity = 1;
     if (title) title.style.opacity = 1;
   }, 1000);
+  showTab("notice"); // 기본 활성화 탭
 });
 
 window.addEventListener('scroll', () => {
