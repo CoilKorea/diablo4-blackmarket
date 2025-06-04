@@ -1,17 +1,486 @@
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const overlay = document.getElementById('overlay');
-  if (overlay) {
-    const opacity = Math.min(scrollY / 300, 0.6);
-    overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
-  }
-});
+Kakao.init('db314ae6d456308e311d513c5f54188d');
+  </script>
+  <style>
+    @font-face {
+      font-family: 'Kenris';
+      src: url('Kenris.ttf') format('truetype');
+    }
 
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const btn = document.getElementById('order-button');
-    const title = document.getElementById('korean-title');
-    if (btn) btn.style.opacity = 1;
-    if (title) title.style.opacity = 1;
-  }, 1000);
-});
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:visited, a:focus, a:hover {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      background: url('https://i.imgur.com/bwyltCl.jpeg') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    #overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.5s;
+      z-index: 1;
+    }
+
+    .hero-wrapper {
+      position: absolute;
+      top: 83%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #order-button {
+      padding: 1rem 2rem;
+      background-color: #FFD700 !important;
+      color: #111 !important;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    #order-button i {
+      font-size: 1.2rem;
+    }
+
+    #order-button:hover {
+      background-color: #ffc800 !important;
+    }
+
+    #korean-title {
+      font-family: 'Kenris', sans-serif;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      white-space: nowrap;
+    }
+
+    nav {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: #222;
+      border: 1px solid #444;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1rem;
+      text-shadow: 0 0 3px #000;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #333;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+   nav button.active {
+  background: linear-gradient(145deg, #ff9800, #f57c00);
+  color: #fff;
+  border: 2px solid #ffa726;
+  box-shadow: 0 0 15px #ffa726, 0 0 5px #ffb74d inset;
+  transform: scale(1.05);
+}
+
+    .tab {
+      display: none;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .tab.active {
+      display: block;
+    }
+
+    .tab h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .tab p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .tab img.enlargeable {
+      max-width: 100vw;
+      height: auto;
+      display: block;
+      margin: auto;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .tab img.enlargeable:hover {
+      opacity: 0.8;
+    }
+
+    .tab .tooltip {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      line-height: 1.9;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    @media (max-width: 768px) {
+      #order-button {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      nav button {
+        font-size: 0.875rem;
+        padding: 10px 16px;
+      }
+
+      .tab {
+        padding: 20px 15px;
+      }
+
+      pre {
+        font-size: 0.875rem;
+      }
+
+      #korean-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <header>
+    <div id="overlay"></div>
+    <div class="hero-wrapper">
+      <a href="https://open.kakao.com/o/sELckyxh" target="_blank">
+        <button id="order-button"><i class="fas fa-shopping-cart"></i> 카카오톡으로 바로 주문하기</button>
+      </a>
+      <div id="korean-title">디아블로4 블랙마켓</div>
+    </div>
+  </header>
+
+  <nav>
+    <button id="btn-notice" onclick="showTab('notice')">공지사항</button>
+    <button id="btn-price" onclick="showTab('price')">가격표</button>
+    <button id="btn-items" onclick="showTab('items')">개별장비</button>
+    <button id="btn-fullbuild" onclick="showTab('fullbuild')">빌드세팅</button>
+    <button id="btn-season8" onclick="showTab('season8')">시즌가이드</button>
+  </nav>
+
+  <div class="tab active" id="notice">
+    
+<div style="text-align:center; margin: 30px auto 10px;">
+  <a href="https://open.kakao.com/o/gitfLJ8g" target="_blank"
+     style="display:inline-block; background:#333; color:white; padding:10px 20px; border-radius:8px;
+            font-size:0.95rem; font-weight:bold; text-decoration:none; box-shadow:0 0 5px rgba(255,255,255,0.1);">
+    🔗 본방 입장하기
+  </a>
+</div>
+
+<h2>📢 공지사항</h2>￣￣￣￣￣￣￣￣￣￣￣￣￣
+    <p>📌 <b>최신 시세 </b>업데이트 주기적으로 이루어집니다.<br><br>
+    ✔ 대행작업은 전부 수작업입니다.<br><br>
+    ✔ 유저들 간 아이템 거래(💸가능), 빌드 세팅, 아이디어 공유 자유롭게. 방장이 파는 품목만 ❌<br><br>
+    ✔ 골드, 재료 등 자체적으로도 생산합니다. 그것들은 당연히! 종종 특가로 쏩니다.<br><br>
+    ✔ 현재는 시즌 말이라 직접 게임도 같이 하고 나눔도 드리고 있습니다.</p><br>
+    <h2>🛠️ 유용한 프로그램</h2>￣￣￣￣￣￣￣￣￣￣￣￣￣
+  <p>• <a href="https://blog.naver.com/numseal/223200933869" target="_blank" style="text-decoration: underline; color: inherit;">
+ 헬퍼프로그램
+</a> &#128072;
+	<p>
+      • <a href="https://d4armory.io/DpsMeter" target="_blank" style="text-decoration: underline; color: inherit;">
+DPS 측정기
+</a> &#128072;<br><br>
+
+	<h2>🌐 유용한 사이트</h2>
+￣￣￣￣￣￣￣￣￣￣￣￣￣<br>
+<!-- 티어 빌드 리스트 및 가이드 -->
+    • 티어 빌드 리스트 및 가이드
+<p>
+  <a href="https://mobalytics.gg/diablo-4" target="_blank" style="display: inline-block;">
+    <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/mobalytics.png?raw=true" alt="Mobalytics 썸네일" style="width:100px; border-radius:10px;">
+  </a>
+</p>
+    • 비공식 리더보드 / 월드보스 타이머
+<p>
+  <a href="https://helltides.com/" target="_blank" style="display: inline-block;">
+    <img src="https://helltides.com/apple-touch-icon.png" alt="Helltides 썸네일" style="width:100px; border-radius:10px;">
+
+<p>• 외국 거래소 사이트  
+<p>
+  <a href="https://diablo.trade/" target="_blank" style="display: inline-block;">
+ <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/diablo.trade.png?raw=true" style="width:100px; border-radius:10px;">
+     <p>• 거래소 이용 방법   <p>
+       
+       <a href="https://youtu.be/6ULW9I4UXjY?si=l4p-THlS_39Wbhi3" target="_blank">
+  <img src="https://img.youtube.com/vi/6ULW9I4UXjY/hqdefault.jpg" alt="유튜브 썸네일" style="width:100%; max-width:480px; border-radius:10px;">
+  </a>
+</p>
+
+  </a>
+</p>
+</a>
+
+    </p>
+  </div>
+
+  <div class="tab" id="price">
+    <h2>💰 가격표</h2>
+    <pre>💰 금화
+ <!-- 가격표 -->
+ • 500억 = 2,000원  
+ • 990억 = 4,000원  
+
+      ※ 계정 당 최대 999억 보유 가능.  
+
+
+🌀 옵두사이트
+
+ • 100,000개 = 2,500원  
+ • 200,000개 = 4,500원  
+ • 400,000개 = 7,000원  
+
+      ※ 플스(PS)유저 꼭 말씀해주세요. / 대량 구매 시 여러 번 나눠서 전달 됩니다. 꼭 다 드리니 기다려주세요.  
+
+
+🐍 벨리알 보스재료
+
+ • 100묶음 = 3,000원  
+ • 150묶음 = 4,000원  
+ • 200묶음 = 5,000원  
+ • 300묶음 = 6,000원  
+
+      ※ 시즌 말이라 자정 이후에는 50묶음, 100묶음만 가능할 수도 있습니다.  
+      ※ 이번 시즌은 다른 재료 구매할 메리트가 없습니다.  
+
+
+⚡️ 벼락불 파밍 대행
+
+ - 환영의 재 10만 이상:  
+   • 10개 = 15,000원  
+
+ - 환영의 재 10만 미만:  
+
+   • 4개 = 22,000원  
+   • 10개 = 최대~ 40,000원  
+
+      ※ 이번 시즌 6분에 한번씩 벼락불 얻는 부캐런 대행해드려요.  
+      ※ 환영의 재 보유량으로 견적 계산 후 가격 안내드려요.  
+
+
+🌟 미지의 수정: 잠시 공급 중단  
+
+
+🔥 잊힌 영혼 대행: 1,000개 = 6,000원 (👑벨리알 파밍 - 나오는 템 전부 킵)  
+
+
+💍 룬: 10개 미만  
+
+   • 1,000원  
+   • 10~20개 = 2,000원  
+
+      ※ 빌드 굴러가는데 필요한 룬 1~2개는 서비스로 드립니다.  
+
+
+☘️ 신화 고유 룬 세트  
+
+   • 1세트 = 1,000원 (6개/6개/6개)  
+   • 16세트 = 2,500원 (100개/100개/100개)  
+   • 50세트 = 3,500원 (300개/300개/300개)  
+
+
+💎 웅장한 보석  
+
+   • 7종 x 10개 = 2,500원  
+
+
+💀 시즌 하드코어  
+
+   • 골드 100억 = 15,000원  
+   • 껍데기 99개 = 4,000원  
+
+
+⚔️ 장비  
+
+   - 다른 방 보다 정말 싸게 판매하고 있습니다.  
+   - 1~2어픽 가성비 장비는 항상 재고 갖춰놓고 싸게 드립니다.  
+   - 3어픽 지능%/ 내면 / 영구결빙 3어픽 급 아니면 찾으시는 모든 템 구해드려요.  
+
+      ※ diablo.trade / 중국 업자들 판매채널에서 빠르게 구해옵니다.  
+
+
+⚒️ 서비스 대행  
+
+   • 레벨업 / 문양작 / 도전과제 / 명망작 등  
+   • 풀빌드 세팅은 제가 맡을 수 있는 시간 여유 내에서 하루 한 분만 정성껏 해드립니다.</pre>
+  </div>
+
+  <div class="tab" id="items">
+     <h2>🧤 개별장비</h2>
+<p>
+  장비 목록은 아래 구글 스프레드시트를 통해 실시간으로 관리됩니다.<br><br>
+  현재 양이 너무 많아서 정리가 제대로 돼있지 않습니다.<br><br>
+  다소 조잡하지만 추후 가다듬어서 보기 좋게 업로드할 예정입니다.<br><br>
+  원하는 아이템의 넘버링을 알려주세요.<br><br>
+  <span style="color: #ee9353; font-weight: bold; font-size: 1.1rem;">
+    이 가격은 판매가가 아닌 공급원가(위안으로 표시)입니다.<br>
+  </span><br>
+  <span style="color: #ee9353; font-weight: bold; font-size: 1.1rem;">
+    여기에 4천원 정도의 마진이 붙은 것이 판매 가격입니다. 착각하지 않도록 빠른 시일 내에 수정할게요.<br>
+  </span><br>
+  그럼에도 한국의 시세보다 싼 편일 것입니다. 가격 참고해주세요.<br><br>PC로 보시는 것이 좋습니다. 사진이 이상하게 보일 경우 페이지를 한번 새로고침 해주세요.<br><br>그래도 안될 경우 아래의 버튼을 누르면 됩니다.<br><br> <a href="https://docs.google.com/spreadsheets/d/1fQVChUgSK-or1dJSUHD5owBQ9N-40bpdRzgEIXKiBsQ/edit?gid=605606907#gid=605606907" target="_blank">
+  <button style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    📄 구글 시트로 장비 전체 보기
+  </button>
+</a>
+
+</p>
+
+<!-- 장비목록, 개별장비, 기어, 장비 목록, gear -->
+<div style="position: relative; width: 100%; max-width: 1000px; margin: auto; border: none; overflow: hidden; background-color: #111;">
+   <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&amp;headers=false"
+      width="100%" 
+      height="800px" 
+      frameborder="0" 
+      style="border: none; background-color: black;">
+    </iframe>
+
+</div>
+</div>
+
+
+  <div class="tab" id="fullbuild">
+    <h2>⚙️ 빌드 세팅</h2>
+    <p>상세 내용 준비 중<br><br>모든 빌드 세팅 가능합니다.<br><br></p>
+  </div>
+
+<div class="tab" id="season8">
+  <div class="tooltip">사진 클릭 시 새 창에서 열기</div>
+
+  <h2>🗓️ 시즌일정</h2>
+  • 벨리알의 귀환(Belial's Return) 2025년 4월 30일 ~ 2025년 7월 2일(63일)<br>
+  • 호라드림의 죄(Sins of the Horadrim) 2025년 7월 2일 ~ 2025년 9월 ?일<br><br>
+
+  <h2>📘 신화 고유 조합표</h2>
+  <p>보석상인에게 가서 제작하려는 아이템을 우클릭해도 필요한 룬을 확인할 수 있습니다.</p>
+  <a href="runes.png" target="_blank">
+    <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/assets/runes.png?raw=true" alt="시즌 가이드" class="guide-img">
+  </a>
+
+  <h2>📘 보스 드랍 테이블</h2>
+  <a href="Season8boss.png" target="_blank">
+    <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/Season8boss.png?raw=true" alt="시즌 가이드" class="guide-img">
+  </a>
+
+  <h2>💡 재료 파밍 팁</h2>
+  <a href="oath.png" target="_blank">
+    <img src="https://github.com/CoilKorea/diablo4-blackmarket/blob/main/oath.png?raw=true" alt="재료 파밍 팁" class="guide-img">
+  </a>
+
+  <p>이번시즌은 미지의 수정, 잊힌 영혼의 수급이 많이 부족합니다. 벨리알을 잡고 나온 환영의 재를 NPC에게 교환하면 가장 빠른 방법으로 재료를 강화 재료를 모을 수 있습니다.</p>
+
+  <a href="https://www.youtube.com/watch?v=PunChRemp-k" target="_blank">
+    <img src="https://img.youtube.com/vi/PunChRemp-k/hqdefault.jpg" alt="유튜브 썸네일" class="youtube-thumb">
+  </a>
+
+  <div class="spacer"></div>
+</div>
+
+<style>
+  .guide-img {
+    max-width: 700px;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .youtube-thumb {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 30px;
+  }
+</style>
+
+  <script>
+    const buttons = document.querySelectorAll("nav button");
+    function showTab(id) {
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.getElementById(`btn-${id}`).classList.add('active');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('order-button').style.opacity = 1;
+        document.getElementById('korean-title').style.opacity = 1;
+      }, 1000);
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const overlay = document.getElementById('overlay');
+      const opacity = Math.min(scrollY / 300, 0.6);
+      overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+    });
