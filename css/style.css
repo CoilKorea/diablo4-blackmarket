@@ -1,69 +1,63 @@
-/* 기본 글꼴 및 레이아웃 */
 body {
   background-color: #111;
-  color: #fff;
+  color: white;
   font-family: 'Kenris', sans-serif;
   margin: 0;
-  padding: 20px;
-  line-height: 1.6;
+  padding: 0;
 }
 
-/* 제목 스타일 */
 h2 {
-  font-size: 1.5rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-/* 밑줄 */
-hr, .underline {
+button {
+  background-color: #f6c40f;
+  color: black;
+  font-weight: bold;
   border: none;
-  border-top: 1px solid #666;
-  margin: 10px 0 20px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background-color: #ffcc33;
 }
 
-/* 공지사항 리스트 스타일 */
-.notice-list {
-  list-style-type: none;
-  padding-left: 0;
-  margin-left: 0;
+.tab {
+  padding: 8px 16px;
+  background-color: #222;
+  color: white;
+  border-radius: 8px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
-.notice-list li::before {
-  content: '✔';
-  margin-right: 8px;
-  color: #80ff80;
-}
-
-/* 유용한 프로그램 리스트 스타일 */
-.program-list {
-  list-style-position: inside;
-  padding-left: 0;
-  margin: 0;
+.tab.active {
+  background-color: orange;
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 0 6px orange;
 }
 
-.program-list li {
-  margin-bottom: 12px;
-  font-size: 1rem;
-  line-height: 1.5;
+.youtube-thumb {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
-.program-list li a {
-  text-decoration: none;
-  color: inherit;
-  border-bottom: 1px solid #888;
-  padding-bottom: 2px;
-}
-
-/* 유용한 사이트 아이콘+텍스트 줄 정렬 */
 .site-list {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .site-list img {
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  margin-right: 8px;
   border-radius: 4px;
 }
 .site-list a {
@@ -72,53 +66,15 @@ hr, .underline {
   font-size: 1rem;
 }
 
-/* 유튜브 썸네일 */
-.youtube-thumb {
-  width: 100%;
-  max-width: 480px;
-  border-radius: 10px;
-  margin-top: 10px;
+.program-list {
+  list-style-position: inside;
+  padding-left: 0;
+  margin: 0;
 }
-
-/* 버튼 */
-button {
-  background-color: #f6c40f;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-weight: bold;
-  color: black;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.program-list li {
+  margin-bottom: 10px;
 }
-button:hover {
-  background-color: #ffcc33;
-}
-
-/* 탭 버튼 강조 효과 */
-.tab {
-  padding: 6px 16px;
-  border-radius: 8px;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
-  margin: 4px;
-  transition: all 0.3s ease;
-}
-.tab.active {
-  background-color: orange;
-  color: #000;
-  font-weight: bold;
-  box-shadow: 0 0 6px orange;
-}
-
-/* 반응형 iframe */
-#iframe-container {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-  border: none;
-  overflow: hidden;
-  background-color: #111;
+.program-list li a {
+  text-decoration: underline;
+  color: inherit;
 }
