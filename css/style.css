@@ -53,6 +53,11 @@ header {
   align-items: center;
 }
 
+.program-list {
+  padding-left: 0;
+  margin-left: 0;
+}
+
 #order-button {
   padding: 1rem 2rem;
   background-color: #FFD700 !important;
