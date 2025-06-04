@@ -1,3 +1,4 @@
+
 window.addEventListener('DOMContentLoaded', () => {
   const includes = [
     ['include-header', 'sections/header.html'],
