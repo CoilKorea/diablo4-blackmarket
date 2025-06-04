@@ -56,3 +56,14 @@ setTimeout(() => {
     container.appendChild(refreshed);
   }
 }, 800);
+
+function reloadGearSheetIframe() {
+  const iframe = document.getElementById('gear-sheet');
+  if (iframe) {
+    const currentSrc = iframe.src;
+    iframe.src = ''; // 먼저 비움 → 완전한 언로드
+    setTimeout(() => {
+      iframe.src = currentSrc; // 원래 주소로 다시 설정
+    }, 50); // 약간의 지연이 필요
+  }
+}
