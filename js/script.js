@@ -1,40 +1,36 @@
+
+const buttons = document.querySelectorAll("nav button");
+
 function showTab(id) {
   // 탭 본문 처리
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-  const tab = document.getElementById('include-' + id);
-  if (tab) tab.classList.add('active');
+  document.getElementById('include-' + id).classList.add('active');
 
-  // 버튼 강조 동기화
-  const buttons = document.querySelectorAll("nav button");
+  // 버튼 강조 처리
   buttons.forEach(btn => btn.classList.remove('active'));
   const activeBtn = document.getElementById('btn-' + id);
   if (activeBtn) activeBtn.classList.add('active');
 }
 
-// 초기 바인딩 및 강조
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll("nav button");
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const tabId = button.id.replace('btn-', '');
-      showTab(tabId);
-    });
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const tabId = button.id.replace('btn-', '');
+    showTab(tabId);
   });
+});
 
-  // 첫 탭 자동 활성화
-  showTab("notice");
-
-  // 초기 등장 애니메이션
+// 초기 강조 (첫 번째 탭)
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     const btn = document.getElementById('order-button');
     const title = document.getElementById('korean-title');
     if (btn) btn.style.opacity = 1;
     if (title) title.style.opacity = 1;
   }, 1000);
+  showTab("notice");
 });
 
-// 스크롤 반투명 효과
+// 스크롤 오버레이 효과
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   const overlay = document.getElementById('overlay');
@@ -43,3 +39,20 @@ window.addEventListener('scroll', () => {
     overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
   }
 });
+
+
+setTimeout(() => {
+  const container = document.getElementById('iframe-container');
+  if (container) {
+    const refreshed = document.createElement('iframe');
+    refreshed.id = 'gear-sheet';
+    refreshed.src = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&headers=false';
+    refreshed.width = '100%';
+    refreshed.height = '800';
+    refreshed.frameBorder = '0';
+    refreshed.style.border = 'none';
+    refreshed.style.backgroundColor = 'black';
+    container.innerHTML = '';
+    container.appendChild(refreshed);
+  }
+}, 800);
