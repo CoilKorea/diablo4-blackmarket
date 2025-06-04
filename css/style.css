@@ -58,18 +58,24 @@ header {
   margin-left: 0;
 }
 
+/* ✅ 수정된 버튼 스타일 */
 #order-button {
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.25rem;
   background-color: #FFD700 !important;
   color: #111 !important;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);  /* ✅ 반응형 폰트 크기 */
   font-weight: bold;
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;                     /* ✅ inline-flex로 크기 자연스럽게 */
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;                     /* ✅ 줄바꿈 방지 */
+  width: auto;                             
+  max-width: 95vw;                         /* ✅ 작은 화면에서 너비 제한 */
+  box-sizing: border-box;
   opacity: 0;
   transition: opacity 1s ease-in-out;
   text-align: center;
@@ -194,11 +200,12 @@ pre {
 }
 
 @media (max-width: 768px) {
+  /* ✅ 모바일에서 줄바꿈 방지 유지 */
   #order-button {
-    font-size: 0.9rem;
-    padding: 12px 20px;
-    flex-direction: column;
-    gap: 4px;
+    font-size: clamp(0.85rem, 4vw, 1rem);
+    padding: 0.75rem 1.1rem;
+    flex-direction: row;       /* ✅ column 대신 row 유지 (줄바꿈 방지 목적) */
+    gap: 0.5rem;
   }
 
   nav button {
