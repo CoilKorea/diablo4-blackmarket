@@ -268,3 +268,69 @@ pre {
   color: orange;
   background: rgba(0, 0, 0, 0.8);
 }
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.login-box {
+  background: #1c1c1c;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 16px rgba(255, 165, 0, 0.2);
+  max-width: 360px;
+  width: 100%;
+}
+
+.login-box h2 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #2a2a2a;
+  color: #fff;
+  outline: none;
+}
+
+.login-box input::placeholder {
+  color: #bbb;
+}
+
+.login-box button {
+  width: 100%;
+  background-color: orange;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-box button:hover {
+  background-color: #ff9900;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+</style>

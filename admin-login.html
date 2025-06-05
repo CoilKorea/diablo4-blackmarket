@@ -13,13 +13,15 @@
   </style>
 </head>
 <body>
-  <div class="login-box">
-    <h2>🔐 관리자 로그인</h2>
-    <input type="text" id="userid" placeholder="아이디" />
-    <input type="password" id="password" placeholder="비밀번호" />
-    <button onclick="login()">로그인</button>
+  <div class="login-container">
+  <form class="login-box" onsubmit="login(); return false;">
+    <h2><i class="fa-solid fa-lock"></i> 관리자 로그인</h2>
+    <input type="text" id="userid" placeholder="아이디" required />
+    <input type="password" id="password" placeholder="비밀번호" required />
+    <button type="submit">🔐 로그인</button>
     <div id="error" class="error"></div>
-  </div>
+  </form>
+</div>
 
   <script>
     const admins = [
