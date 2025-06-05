@@ -2,30 +2,42 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>🔐 관리자 로그인</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- 스타일 정의 -->
+  <title>관리자 로그인</title>
   <style>
+    @font-face {
+      font-family: 'Kenris';
+      src: url('../assets/Kenris.ttf') format('truetype');
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: #111;
-      margin: 0;
+      color: #eee;
       font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
 
     .login-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       padding: 1rem;
+      width: 100%;
     }
 
     .login-box {
       background: #1c1c1c;
       padding: 2rem;
       border-radius: 16px;
-      box-shadow: 0 0 16px rgba(255, 165, 0, 0.2);
+      box-shadow: 0 0 24px rgba(255, 165, 0, 0.25);
       max-width: 360px;
       width: 100%;
     }
@@ -64,6 +76,12 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
+
+      /* 아이콘과 텍스트 가운데 정렬 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .login-box button:hover {
@@ -77,21 +95,20 @@
       margin-top: 0.5rem;
     }
   </style>
-
 </head>
 <body>
-
   <div class="login-container">
-    <form class="login-box" onsubmit="login(); return false;">
-      <h2><i class="fa-solid fa-lock"></i> 관리자 로그인</h2>
-      <input type="text" id="userid" placeholder="아이디" required />
-      <input type="password" id="password" placeholder="비밀번호" required />
-      <button type="submit">🔐 로그인</button>
+    <div class="login-box">
+      <h2>🔐 관리자 로그인</h2>
+      <input type="text" id="userid" placeholder="아이디" />
+      <input type="password" id="password" placeholder="비밀번호" />
+      <button onclick="login()">
+        🔐 <span>로그인</span>
+      </button>
       <div id="error" class="error"></div>
-    </form>
+    </div>
   </div>
 
-  <!-- 관리자 인증 스크립트 -->
   <script>
     const admins = [
       { id: "nickneigh", password: "1231" },
@@ -99,9 +116,10 @@
     ];
 
     function login() {
-      const id = document.getElementById("userid").value.trim();
-      const pw = document.getElementById("password").value.trim();
+      const id = document.getElementById("userid").value;
+      const pw = document.getElementById("password").value;
       const valid = admins.find(admin => admin.id === id && admin.password === pw);
+
       if (valid) {
         localStorage.setItem("isAdmin", "true");
         location.href = "admin.html";
@@ -110,9 +128,5 @@
       }
     }
   </script>
-
-  <!-- 아이콘용 Font Awesome 로딩 -->
-  <script src="https://kit.fontawesome.com/6b924b5e04.js" crossorigin="anonymous"></script>
-
 </body>
 </html>
