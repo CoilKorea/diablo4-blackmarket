@@ -4,130 +4,139 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>관리자 페이지</title>
-  
-  <!-- Toast UI Editor -->
   <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-
-  <!-- Google Translate -->
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
   <style>
     body {
-      margin: 0;
-      background: #0d0d0d;
-      color: #f0f0f0;
+      background-color: #111;
+      color: #eee;
       font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
     header {
-      background: #1a1a1a;
-      padding: 1rem 2rem;
+      background: #000;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(255,165,0,0.2);
+      border-bottom: 2px solid orange;
     }
-
-    header h1 {
-      font-size: 1.5rem;
-      color: orange;
+    h2 {
+      color: #ffc107;
+      margin-top: 2rem;
+      padding-left: 1rem;
     }
-
-    #google_translate_element {
-      background: #333;
-      padding: 0.3rem 0.8rem;
-      border-radius: 8px;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
+    .section {
+      background: #1c1c1c;
+      margin: 1rem auto;
       padding: 1rem;
-      background: #1a1a1a;
-      border-radius: 12px;
-      box-shadow: 0 0 24px rgba(255,165,0,0.15);
+      border-radius: 10px;
+      box-shadow: 0 0 16px rgba(255, 165, 0, 0.2);
+      max-width: 960px;
     }
-
     button.save-btn {
       margin-top: 1rem;
-      background: orange;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 6px;
+      background-color: orange;
+      color: black;
       font-weight: bold;
-      font-size: 1rem;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: background 0.2s;
     }
-
     button.save-btn:hover {
-      background: #ffaa00;
+      background-color: #ff9900;
     }
-
-    .toastui-editor-defaultUI {
-      border-radius: 8px;
-      overflow: hidden;
+    #google_translate_element {
+      font-size: 0.9rem;
+    }
+    .btn-wrap {
+      display: flex;
+      justify-content: flex-end;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🔧 관리자 페이지 - 실시간 수정</h1>
+    <div>🛠️ 관리자 페이지 - 실시간 수정</div>
     <div id="google_translate_element"></div>
   </header>
 
-  <main>
+  <!-- 가격표 섹션 -->
+  <div class="section">
     <h2>💰 가격표 수정</h2>
-    <div id="editor"></div>
-    <button class="save-btn" onclick="savePrice()">💾 저장</button>
-  </main>
+    <div id="editor-price"></div>
+    <div class="btn-wrap">
+      <button class="save-btn" onclick="saveContent('price')">💾 저장</button>
+    </div>
+  </div>
 
+  <!-- 개별장비 섹션 -->
+  <div class="section">
+    <h2>📃 개별장비 수정</h2>
+    <div id="editor-items"></div>
+    <div class="btn-wrap">
+      <button class="save-btn" onclick="saveContent('items')">💾 저장</button>
+    </div>
+  </div>
+
+  <!-- Toast UI Editor & Translate -->
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script>
+    const editors = {
+      price: new toastui.Editor({
+        el: document.querySelector('#editor-price'),
+        height: '400px',
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+      }),
+      items: new toastui.Editor({
+        el: document.querySelector('#editor-items'),
+        height: '400px',
+        initialEditType: 'wysiwyg',
+        previewStyle: 'vertical',
+      }),
+    };
+
+    async function loadContent(key) {
+      const res = await fetch(`sections/${key}.html`);
+      const text = await res.text();
+      editors[key].setHTML(text);
+    }
+
+    async function saveContent(key) {
+      const content = editors[key].getHTML();
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filename: `sections/${key}.html`,
+          content,
+        })
+      });
+
+      if (res.ok) {
+        alert(`${key === "price" ? "가격표" : "개별장비"} 저장 완료`);
+      } else {
+        alert("❌ 저장 실패");
+      }
+    }
+
+    // 초기 로딩
+    loadContent('price');
+    loadContent('items');
+
+    // 구글 번역 초기화
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'ko',
         includedLanguages: 'ko,zh-CN',
-        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
-    }
-
-    const defaultPrice = `
-    💰 금화
-    • 500억 = 2,000원
-    • 990억 = 4,000원
-    `;
-
-    const saved = localStorage.getItem("priceText") || defaultPrice;
-
-    const editor = new toastui.Editor({
-      el: document.querySelector('#editor'),
-      height: '500px',
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical'
-    });
-    editor.setHTML(saved);
-
-    function savePrice() {
-      const htmlContent = editor.getHTML();
-
-      fetch('/api/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          filename: 'sections/price.html',
-          content: htmlContent
-        })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          localStorage.setItem("priceText", htmlContent);
-          alert("✅ 저장 완료");
-        } else {
-          alert("❌ 저장 실패: " + data.error);
-        }
-      });
     }
   </script>
 </body>
