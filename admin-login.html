@@ -107,6 +107,11 @@
       </button>
       <div id="error" class="error"></div>
     </div>
+    <div style="text-align: center; margin-top: 20px;">
+  <button onclick="goBack()" style="padding: 10px 20px; background-color: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    🔙 메인으로 돌아가기
+  </button>
+</div>
   </div>
 
   <script>
@@ -127,6 +132,9 @@
         document.getElementById("error").textContent = "❌ 로그인 정보가 틀렸습니다.";
       }
     }
+    function goBack() {
+    window.location.href = "/";
+  }
   </script>
 </body>
 </html>
