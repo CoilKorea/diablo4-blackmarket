@@ -8,9 +8,24 @@ const { exec } = require('child_process');
 const app = express();
 const PORT = 3000;
 
-// 정적 파일 서빙
+// ✅ 정적 파일 서빙
 app.use(express.static('public'));
 app.use(bodyParser.json({ limit: '2mb' }));
+
+// ✅ admin.html 직접 서빙
+app.get('/admin.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+// ✅ price.html 서빙
+app.get('/price.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sections', 'price.html'));
+});
+
+// ✅ items.html 서빙
+app.get('/items.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sections', 'items.html'));
+});
 
 // ✅ POST /api/save
 app.post('/api/save', (req, res) => {
