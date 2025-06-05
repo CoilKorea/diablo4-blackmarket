@@ -1,33 +1,40 @@
+
 <h2>🧤 개별장비</h2>
 <p>
   장비 목록은 아래 구글 스프레드시트를 통해 실시간으로 관리됩니다.<br><br>
-  현재 양이 너무 많아서 정리가 제대로 돼있지 않습니다.<br><br>
-  다소 조잡하지만 추후 가다듬어서 보기 좋게 업로드할 예정입니다.<br><br>
-  원하는 아이템의 넘버링을 알려주세요.<br><br>
-  <span style="color: #ee9353; font-weight: bold; font-size: 1.1rem;">
-    이 가격은 판매가가 아닌 공급원가(위안으로 표시)입니다.<br>
-  </span><br>
-  <span style="color: #ee9353; font-weight: bold; font-size: 1.1rem;">
-    여기에 4천원 정도의 마진이 붙은 것이 판매 가격입니다. 착각하지 않도록 빠른 시일 내에 수정할게요.<br>
-  </span><br>
-  그럼에도 한국의 시세보다 싼 편일 것입니다. 가격 참고해주세요.<br><br>
-  PC로 보시는 것이 좋습니다. 사진이 이상하게 보일 경우 페이지를 한번 새로고침 해주세요.<br><br>
-  그래도 안될 경우 아래의 버튼을 누르면 됩니다.<br><br>
-  <a href="https://docs.google.com/spreadsheets/d/1fQVChUgSK-or1dJSUHD5owBQ9N-40bpdRzgEIXKiBsQ/edit?gid=605606907#gid=605606907" target="_blank">
-    <button style="padding: 10px 20px; background-color: #222; color: white; border: none; border-radius: 6px; cursor: pointer;">
-      📄 구글 시트로 장비 전체 보기
-    </button>
-  </a>
+  <span style="color: #ee9353; font-weight: bold;">관리자는 아래 주소를 수정할 수 있습니다.</span>
 </p>
 
-<!-- 장비목록, 개별장비, 기어, 장비 목록, gear -->
+<div id="gear-admin" style="display:none; margin-bottom:1rem;">
+  <input type="text" id="gear-url" placeholder="구글 시트 주소 입력" style="width:100%; padding:0.5rem;"><br>
+  <button onclick="saveGearURL()" style="margin-top:0.5rem; padding:10px 20px;">💾 저장</button>
+</div>
+
 <div id="iframe-container" style="position: relative; width: 100%; max-width: 1000px; margin: auto; border: none; overflow: hidden; background-color: #111;">
   <iframe 
     id="gear-sheet"
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTCGqWo90YzIsKiu7DE_Gr2xbYTrAcXxYLRVgZl4caDBnJlmirBr4z0QNTEta1fCcROEVOV-0dsQh-h/pubhtml?widget=true&amp;headers=false"
+    src=""
     width="100%" 
     height="800px" 
     frameborder="0" 
     style="border: none; background-color: black;">
   </iframe>
 </div>
+
+<script>
+  function saveGearURL() {
+    const url = document.getElementById("gear-url").value;
+    localStorage.setItem("gearIframe", url);
+    document.getElementById("gear-sheet").src = url;
+    alert("개별장비 시트가 저장되었습니다.");
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const saved = localStorage.getItem("gearIframe");
+    if (saved) document.getElementById("gear-sheet").src = saved;
+    if (localStorage.getItem("isAdmin") === "true") {
+      document.getElementById("gear-admin").style.display = "block";
+      if (saved) document.getElementById("gear-url").value = saved;
+    }
+  });
+</script>
