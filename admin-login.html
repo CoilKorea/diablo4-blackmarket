@@ -78,27 +78,35 @@
   </div>
 
   <script>
-    const admins = [
-      { id: "nickneigh", password: "1231" },
-      { id: "tofu", password: "1231" }
-    ];
+  const admins = [
+    { id: "nickneigh", password: "1231" },
+    { id: "tofu", password: "1231" }
+  ];
 
-    function login() {
-      const id = document.getElementById("userid").value;
-      const pw = document.getElementById("password").value;
-      const valid = admins.find(admin => admin.id === id && admin.password === pw);
+  function login() {
+    const id = document.getElementById("userid").value;
+    const pw = document.getElementById("password").value;
+    const valid = admins.find(admin => admin.id === id && admin.password === pw);
 
-      if (valid) {
-        localStorage.setItem("isAdmin", "true");
-        location.href = "admin.html";
-      } else {
-        document.getElementById("error").textContent = "❌ 로그인 정보가 틀렸습니다.";
-      }
+    if (valid) {
+      localStorage.setItem("isAdmin", "true");
+      location.href = "admin.html";
+    } else {
+      document.getElementById("error").textContent = "❌ 로그인 정보가 틀렸습니다.";
     }
+  }
 
-    function goBack() {
-      window.location.href = "/";
+  function goBack() {
+    window.location.href = "/";
+  }
+
+  // ✅ Enter 키로 로그인 실행
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      login();
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
