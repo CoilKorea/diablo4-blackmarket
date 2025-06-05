@@ -250,29 +250,20 @@ pre {
   cursor: pointer;
 }
 
-#admin-login-link {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 0.85rem;
-  color: #888;
-  text-decoration: none;
-  z-index: 999;
-}
-
 #admin-login-button {
-  position: fixed;
-  top: 12px;
-  right: 16px;
-  font-size: 0.8rem;
-  color: #888;
-  text-decoration: none;
-  background: rgba(0,0,0,0.4);
-  padding: 4px 8px;
+  position: fixed;        /* 전체 브라우저 기준 고정 */
+  top: 8px;               /* 브라우저 맨 위에서 8px 내려오기 */
+  right: 12px;            /* 우측 끝에서 12px 띄우기 */
+  font-size: 0.75rem;     /* 작고 조용하게 */
+  color: #aaa;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
   border-radius: 6px;
+  text-decoration: none;
   z-index: 9999;
+  transition: all 0.2s ease-in-out;
 }
 #admin-login-button:hover {
   color: orange;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
