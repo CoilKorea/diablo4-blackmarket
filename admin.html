@@ -2,157 +2,133 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>관리자 페이지</title>
+  
+  <!-- Toast UI Editor -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+  <!-- Google Translate -->
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <style>
     body {
-      background-color: #111;
-      color: #eee;
-      font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
+    header {
+      background: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(255,165,0,0.2);
     }
 
-    .editor-container {
-      max-width: 1000px;
-      margin: auto;
-      margin-bottom: 3rem;
+    header h1 {
+      font-size: 1.5rem;
+      color: orange;
     }
 
-    textarea {
-      width: 100%;
-      height: 300px;
-      background-color: #222;
-      color: #fff;
-      font-family: monospace;
-      font-size: 1rem;
-      border: 1px solid #444;
-      padding: 1rem;
-      box-sizing: border-box;
+    #google_translate_element {
+      background: #333;
+      padding: 0.3rem 0.8rem;
       border-radius: 8px;
-      resize: vertical;
     }
 
-    button {
-      background-color: orange;
-      color: #111;
-      font-weight: bold;
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(255,165,0,0.15);
+    }
+
+    button.save-btn {
+      margin-top: 1rem;
+      background: orange;
       border: none;
       padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #ff9900;
-    }
-
-    .back-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(255, 165, 0, 0.7);
-      color: #000;
-      padding: 6px 12px;
       border-radius: 6px;
-      font-size: 0.9rem;
-      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #333;
-      color: #fff;
-      padding: 12px 20px;
+    button.save-btn:hover {
+      background: #ffaa00;
+    }
+
+    .toastui-editor-defaultUI {
       border-radius: 8px;
-      font-size: 0.9rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease;
-      z-index: 1000;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
+      overflow: hidden;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🔧 관리자 페이지 - 실시간 수정</h1>
+    <div id="google_translate_element"></div>
+  </header>
 
-<a class="back-button" href="/">← 메인으로</a>
-<h1>🔧 관리자 페이지 - 실시간 수정</h1>
+  <main>
+    <h2>💰 가격표 수정</h2>
+    <div id="editor"></div>
+    <button class="save-btn" onclick="savePrice()">💾 저장</button>
+  </main>
 
-<div class="editor-container">
-  <h2>💰 가격표 수정</h2>
-  <textarea id="priceEditor" placeholder="price.html 내용이 여기에 표시됩니다..."></textarea>
-  <button onclick="saveContent('priceEditor', 'sections/price.html')">💾 저장</button>
-</div>
-
-<div class="editor-container">
-  <h2>🧾 개별장비 수정</h2>
-  <textarea id="itemsEditor" placeholder="items.html 내용이 여기에 표시됩니다..."></textarea>
-  <button onclick="saveContent('itemsEditor', 'sections/items.html')">💾 저장</button>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<script>
-  async function fetchContent(filename, targetId) {
-    try {
-      const res = await fetch(filename);
-      const text = await res.text();
-      document.getElementById(targetId).value = text;
-    } catch (e) {
-      showToast('❌ 불러오기 실패: ' + filename);
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ko',
+        includedLanguages: 'ko,zh-CN',
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+      }, 'google_translate_element');
     }
-  }
 
-  function saveContent(targetId, filename) {
-    const content = document.getElementById(targetId).value;
+    const defaultPrice = `
+    💰 금화
+    • 500억 = 2,000원
+    • 990억 = 4,000원
+    `;
 
-    fetch('http://localhost:3000/api/save', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ filename, content })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        showToast(`✅ 저장 완료: ${filename}`);
-      } else {
-        showToast(`⚠ 저장 실패: ${filename}`);
-      }
-    })
-    .catch(() => {
-      showToast('❌ 서버 오류 발생');
+    const saved = localStorage.getItem("priceText") || defaultPrice;
+
+    const editor = new toastui.Editor({
+      el: document.querySelector('#editor'),
+      height: '500px',
+      initialEditType: 'wysiwyg',
+      previewStyle: 'vertical'
     });
-  }
+    editor.setHTML(saved);
 
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
-  }
+    function savePrice() {
+      const htmlContent = editor.getHTML();
 
-  // 🔄 초기 데이터 불러오기
-  fetchContent('sections/price.html', 'priceEditor');
-  fetchContent('sections/items.html', 'itemsEditor');
-</script>
-
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filename: 'sections/price.html',
+          content: htmlContent
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          localStorage.setItem("priceText", htmlContent);
+          alert("✅ 저장 완료");
+        } else {
+          alert("❌ 저장 실패: " + data.error);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
