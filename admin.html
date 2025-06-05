@@ -1,29 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>관리자 페이지</title>
+  <meta charset="UTF-8">
+  <title>한글 관리자 페이지</title>
   <style>
-    body { font-family: sans-serif; background: #111; color: #eee; padding: 2rem; }
-    .logout { float: right; background: #f66; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    h2 {
+      margin-top: 2rem;
+    }
+    textarea {
+      width: 100%;
+      background: #1c1c1c;
+      color: #eee;
+      border: 1px solid #444;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: monospace;
+    }
+    button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      background: orange;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff9900;
+    }
+    .logout {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #ff5555;
+    }
   </style>
 </head>
 <body>
   <button class="logout" onclick="logout()">로그아웃</button>
   <h1>🎮 관리자 페이지입니다</h1>
-  <p>여기서 아이템 등록, 가격 설정 등을 관리할 수 있습니다.</p>
+  <p>여기에서 아이템 등록, 가격 설정 등을 관리할 수 있습니다.</p>
+
+  <h2>💼 가격표 수정</h2>
+  <textarea id="price-editor" rows="15"></textarea>
+  <button onclick="savePrice()">📀 저장</button>
+
+  <h2>📜 개별장비 수정</h2>
+  <textarea id="items-editor" rows="15"></textarea>
+  <button onclick="saveItems()">📀 저장</button>
 
   <script>
-    if (localStorage.getItem("isAdmin") !== "true") {
-      alert("관리자 전용 페이지입니다.");
-      location.href = "admin-login.html";
+    async function loadContent(filename, targetId) {
+      const res = await fetch(filename);
+      const text = await res.text();
+      document.getElementById(targetId).value = text;
+    }
+
+    async function saveContent(filename, content) {
+      const res = await fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename, content })
+      });
+
+      const result = await res.json();
+      alert(result.message);
+    }
+
+    function savePrice() {
+      const content = document.getElementById('price-editor').value;
+      saveContent('sections/price.html', content);
+    }
+
+    function saveItems() {
+      const content = document.getElementById('items-editor').value;
+      saveContent('sections/items.html', content);
     }
 
     function logout() {
-      localStorage.removeItem("isAdmin");
-      location.href = "admin-login.html";
+      localStorage.removeItem('isAdmin');
+      window.location.href = 'index.html';
     }
+
+    window.onload = () => {
+      if (localStorage.getItem('isAdmin') !== 'true') {
+        alert('접근 권한이 없습니다.');
+        window.location.href = 'index.html';
+        return;
+      }
+      loadContent('sections/price.html', 'price-editor');
+      loadContent('sections/items.html', 'items-editor');
+    };
   </script>
 </body>
 </html>
