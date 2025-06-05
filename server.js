@@ -45,16 +45,3 @@ app.post('/api/save', (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ 서버 실행 중: http://localhost:${PORT}`);
 });
-
-// ✅ GET /sections/price.html 또는 items.html 파일을 불러오기
-app.get('/sections/:filename', (req, res) => {
-  const allowedFiles = ['price.html', 'items.html'];
-  const requestedFile = req.params.filename;
-
-  if (!allowedFiles.includes(requestedFile)) {
-    return res.status(403).send('접근 불가한 파일입니다.');
-  }
-
-  const filePath = path.join(__dirname, 'sections', requestedFile);
-  res.sendFile(filePath);
-});
