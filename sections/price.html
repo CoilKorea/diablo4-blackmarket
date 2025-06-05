@@ -1,42 +1,26 @@
-<div class="tab" id="price">
-  <h2>💰 가격표</h2>
-  <div id="price-admin-controls" style="display:none; margin-bottom: 1rem;">
-    <textarea id="price-editor" rows="12" style="width: 100%;"></textarea>
-    <button onclick="savePrice()">💾 저장</button>
-  </div>
-  <pre id="price-display" style="white-space: pre-wrap;"></pre>
-</div>
-
-<script>
-  const defaultPrice = `
-💰 금화
-• 500억 = 2,000원
-• 990억 = 4,000원
-
-※ 계정 당 최대 999억 보유 가능.
-
-🎯 옵두사이트
-• 100,000개 = 2,500원
-• 200,000개 = 4,500원
-• 400,000개 = 7,000원
-
-※ 플스(PS)유저 꼭 말씀해주세요. / 대량 구매 시 여러 번 나눠서 전달 됩니다. 꼭 다 드리니 기다려주세요.
-`;
-
-  function loadPrice() {
-    const saved = localStorage.getItem("priceText") || defaultPrice;
-    document.getElementById("price-display").textContent = saved;
-    if (localStorage.getItem("isAdmin") === "true") {
-      document.getElementById("price-admin-controls").style.display = "block";
-      document.getElementById("price-editor").value = saved;
-    }
-  }
-
-  function savePrice() {
-    const newText = document.getElementById("price-editor").value;
-    localStorage.setItem("priceText", newText);
-    document.getElementById("price-display").textContent = newText;
-  }
-
-  loadPrice();
-</script>
+<div>&#128176; 금화</div><div>
+</div><div> • 500억 = 2,000원</div><div> • 990억 = 3,000원</div><div>
+</div><div>&nbsp; &nbsp; &nbsp; ※ 계정 당 최대 999억 보유 가능.&nbsp;</div><div>
+</div><div>&#127744; 옵두사이트</div><div>
+</div><div> • 100,000개 = 2,000원</div><div> • 200,000개 = 3,500원</div><div> • 400,000개 = 6,000원</div><div>&nbsp;• 700,000개 = 9,000원&nbsp; &nbsp;</div><div>
+</div><div>&nbsp; &nbsp; &nbsp; ※ 플스(PS)유저 꼭 말씀해주세요. / 대량 구매 시 여러 번 나눠서 전달 됩니다. 꼭 다 드리니 기다려주세요.</div><div>
+</div><div>&#128013; 벨리알 보스재료</div><div>
+</div><div> • 100묶음(9900개, 창고2칸) = 3,000원</div><div> • 150묶음(14850개, 창고3칸) = 4,000원</div><div> • 200묶음(19800개, 창고4칸) = 5,000원</div><div>
+</div><div>⚡️ 벼락불 파밍 대행</div><div>
+</div><div> - 환영의 재 10만 이상:</div><div>&nbsp; &nbsp;• 10개 = 15,000원</div><div>
+</div><div> - 환영의 재 10만 미만:&nbsp;</div><div>
+</div><div>&nbsp; &nbsp;• 4개 = 22,000원</div><div>
+</div><div>&nbsp; &nbsp;• 10개 = 최대~ 40,000원</div><div>
+</div><div>&nbsp; &nbsp; &nbsp; ※ 8시즌 한정 6분에 한번씩 벼락불 얻는 부캐런 대행해드려요.</div><div>&nbsp; &nbsp; &nbsp; ※ 환영의 재 보유량으로 견적 계산 후 가격 안내드려요.</div><div>
+</div><div>&#127775; 미지의 수정: 잠시 공급 중단</div><div>
+</div><div>&#128293; 잊힌 영혼 대행: 1,000개 = 6,000원(&#128081;벨리알 파밍 - 나오는 템 전부 킵)</div><div>
+</div><div>&#128141; 룬(섞어서 가능)</div><div>
+</div><div>&nbsp; &nbsp;• 10개 미만 = 1,000원</div><div>&nbsp; &nbsp;• 10~30개 = 2,000원</div><div>
+</div><div>&nbsp; &nbsp; &nbsp; ※ 빌드 굴러가는데 필요한 룬 1~2개는 서비스로 드립니다.</div><div>
+</div><div>☘️ 신화 고유 룬 세트(세트로만)</div><div>
+</div><div>&nbsp; &nbsp;• 1세트 = 1,000원 (6개/6개/6개)</div><div>&nbsp; &nbsp;• 16세트 = 2,500원 (100개/100개/100개)</div><div>&nbsp; &nbsp;• 50세트 = 4,000원 (300개/300개/300개)</div><div>
+</div><div>&nbsp; &nbsp; &nbsp; ※ 샤코, 별반, 수의, 영벌 등</div><div>
+</div><div>&#128142; 웅장한 보석</div><div>
+</div><div>&nbsp; &nbsp;• 7종 x 10개 = 2,500원</div><div>
+</div><div>&#128128; 시즌 하드코어&nbsp;</div><div>
+</div><div>&nbsp; &nbsp;• 골드 100억 = 15,000원</div><div>&nbsp; &nbsp;• 껍데기 99개 = 4,000원</div>
