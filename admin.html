@@ -1,102 +1,158 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>한글 관리자 페이지</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>관리자 페이지</title>
   <style>
     body {
-      background: #111;
-      color: #fff;
+      background-color: #111;
+      color: #eee;
       font-family: sans-serif;
+      margin: 0;
       padding: 2rem;
     }
-    h2 {
-      margin-top: 2rem;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
     }
+
+    .editor-container {
+      max-width: 1000px;
+      margin: auto;
+      margin-bottom: 3rem;
+    }
+
     textarea {
       width: 100%;
-      background: #1c1c1c;
-      color: #eee;
+      height: 300px;
+      background-color: #222;
+      color: #fff;
+      font-family: monospace;
+      font-size: 1rem;
       border: 1px solid #444;
       padding: 1rem;
+      box-sizing: border-box;
       border-radius: 8px;
-      font-family: monospace;
+      resize: vertical;
     }
+
     button {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
+      background-color: orange;
+      color: #111;
       font-weight: bold;
-      background: orange;
       border: none;
-      border-radius: 6px;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
       cursor: pointer;
+      transition: background-color 0.2s ease;
     }
+
     button:hover {
-      background: #ff9900;
+      background-color: #ff9900;
     }
-    .logout {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #ff5555;
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 165, 0, 0.7);
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #333;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <button class="logout" onclick="logout()">로그아웃</button>
-  <h1>🎮 관리자 페이지입니다</h1>
-  <p>여기에서 아이템 등록, 가격 설정 등을 관리할 수 있습니다.</p>
 
-  <h2>💼 가격표 수정</h2>
-  <textarea id="price-editor" rows="15"></textarea>
-  <button onclick="savePrice()">📀 저장</button>
+<a class="back-button" href="/">← 메인으로</a>
+<h1>🔧 관리자 페이지 - 실시간 수정</h1>
 
-  <h2>📜 개별장비 수정</h2>
-  <textarea id="items-editor" rows="15"></textarea>
-  <button onclick="saveItems()">📀 저장</button>
+<div class="editor-container">
+  <h2>💰 가격표 수정</h2>
+  <textarea id="priceEditor" placeholder="price.html 내용이 여기에 표시됩니다..."></textarea>
+  <button onclick="saveContent('priceEditor', 'sections/price.html')">💾 저장</button>
+</div>
 
-  <script>
-    async function loadContent(filename, targetId) {
+<div class="editor-container">
+  <h2>🧾 개별장비 수정</h2>
+  <textarea id="itemsEditor" placeholder="items.html 내용이 여기에 표시됩니다..."></textarea>
+  <button onclick="saveContent('itemsEditor', 'sections/items.html')">💾 저장</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  async function fetchContent(filename, targetId) {
+    try {
       const res = await fetch(filename);
       const text = await res.text();
       document.getElementById(targetId).value = text;
+    } catch (e) {
+      showToast('❌ 불러오기 실패: ' + filename);
     }
+  }
 
-    async function saveContent(filename, content) {
-      const res = await fetch('/api/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename, content })
-      });
+  function saveContent(targetId, filename) {
+    const content = document.getElementById(targetId).value;
 
-      const result = await res.json();
-      alert(result.message);
-    }
-
-    function savePrice() {
-      const content = document.getElementById('price-editor').value;
-      saveContent('sections/price.html', content);
-    }
-
-    function saveItems() {
-      const content = document.getElementById('items-editor').value;
-      saveContent('sections/items.html', content);
-    }
-
-    function logout() {
-      localStorage.removeItem('isAdmin');
-      window.location.href = 'index.html';
-    }
-
-    window.onload = () => {
-      if (localStorage.getItem('isAdmin') !== 'true') {
-        alert('접근 권한이 없습니다.');
-        window.location.href = 'index.html';
-        return;
+    fetch('http://localhost:3000/api/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ filename, content })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        showToast(`✅ 저장 완료: ${filename}`);
+      } else {
+        showToast(`⚠ 저장 실패: ${filename}`);
       }
-      loadContent('sections/price.html', 'price-editor');
-      loadContent('sections/items.html', 'items-editor');
-    };
-  </script>
+    })
+    .catch(() => {
+      showToast('❌ 서버 오류 발생');
+    });
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  // 🔄 초기 데이터 불러오기
+  fetchContent('sections/price.html', 'priceEditor');
+  fetchContent('sections/items.html', 'itemsEditor');
+</script>
+
 </body>
 </html>
