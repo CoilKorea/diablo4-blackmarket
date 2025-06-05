@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>관리자 페이지</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #eee; padding: 2rem; }
+    .logout { float: right; background: #f66; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <button class="logout" onclick="logout()">로그아웃</button>
+  <h1>🎮 관리자 페이지입니다</h1>
+  <p>여기서 아이템 등록, 가격 설정 등을 관리할 수 있습니다.</p>
+
+  <script>
+    if (localStorage.getItem("isAdmin") !== "true") {
+      alert("관리자 전용 페이지입니다.");
+      location.href = "admin-login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("isAdmin");
+      location.href = "admin-login.html";
+    }
+  </script>
+</body>
+</html>
