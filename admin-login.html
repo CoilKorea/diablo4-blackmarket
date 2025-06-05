@@ -108,18 +108,19 @@
       <div id="error" class="error"></div>
     </div>
  <!-- 로그인 버튼 아래쪽에 바로 위치 -->
-<div style="text-align: center; margin-top: 15px;">
-  <button onclick="goBack()" style="
-    padding: 8px 18px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-  ">
-    🔙 메인으로 돌아가기
-  </button>
+<div class="login-container" style="display: flex; flex-direction: column; align-items: center;">
+  <div class="login-box" style="background: #1e1e1e; padding: 20px 30px; border-radius: 10px;">
+    <h2 style="color: white; text-align: center;">관리자 로그인</h2>
+    <input type="text" placeholder="아이디" style="width: 200px; margin: 10px 0; padding: 10px;">
+    <input type="password" placeholder="비밀번호" style="width: 200px; margin: 10px 0; padding: 10px;">
+    <button style="width: 100%; background: orange; color: black; padding: 10px; border: none; border-radius: 5px;">로그인</button>
+    
+    <!-- ✅ 여기서 메인으로 돌아가기 버튼 -->
+    <button onclick="goBack()" style="margin-top: 20px; background-color: #444; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">
+      🔙 메인으로 돌아가기
+    </button>
+  </div>
+</div>
 </div>
   </div>
 
