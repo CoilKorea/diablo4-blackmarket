@@ -251,14 +251,15 @@ pre {
 }
 
 #admin-login-button {
-  position: fixed;        /* 전체 브라우저 기준 고정 */
-  top: 8px;               /* 브라우저 맨 위에서 8px 내려오기 */
-  right: 12px;            /* 우측 끝에서 12px 띄우기 */
-  font-size: 0.75rem;     /* 작고 조용하게 */
+  position: fixed;
+  top: 12px;
+  right: 0px; /* ← 진짜로 가장 오른쪽 */
+  transform: translateX(-12px); /* 아이콘/텍스트를 살짝 안쪽으로 밀어줌 */
+  font-size: 0.75rem;
   color: #aaa;
   background: rgba(0, 0, 0, 0.3);
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: 6px 0 0 6px;
   text-decoration: none;
   z-index: 9999;
   transition: all 0.2s ease-in-out;
