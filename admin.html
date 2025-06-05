@@ -67,7 +67,6 @@
       z-index: 999;
     }
 
-    /* ✅ Toast UI: 코드블럭 배경 제거 */
     .toastui-editor-contents pre {
       background: none !important;
     }
@@ -75,31 +74,31 @@
 </head>
 <body>
   <div id="google_translate_element"></div>
-
   <button class="back-btn" onclick="location.href='/'">← 메인으로</button>
 
   <div class="editor-wrapper">
     <h2>💰 가격표 수정</h2>
     <div id="editor-price"></div>
-    <button class="save-btn" onclick="saveContent('sections/price.html', priceEditor)">💾 저장</button>
+    <button class="save-btn" onclick="saveContent('sections/price.html', priceEditor)">📂 저장</button>
   </div>
 
   <div class="editor-wrapper">
     <h2>📄 개별장비 수정</h2>
     <div id="editor-items"></div>
-    <button class="save-btn" onclick="saveContent('sections/items.html', itemsEditor)">💾 저장</button>
+    <button class="save-btn" onclick="saveContent('sections/items.html', itemsEditor)">📂 저장</button>
   </div>
 
   <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
   <script>
     const { Editor } = toastui;
+
     const priceEditor = new Editor({
       el: document.querySelector('#editor-price'),
       height: '400px',
       initialEditType: 'wysiwyg',
       previewStyle: 'vertical',
       usageStatistics: false,
-      hideModeSwitch: true,
+      hideModeSwitch: true
     });
 
     const itemsEditor = new Editor({
@@ -108,13 +107,12 @@
       initialEditType: 'wysiwyg',
       previewStyle: 'vertical',
       usageStatistics: false,
-      hideModeSwitch: true,
+      hideModeSwitch: true
     });
 
     async function saveContent(filename, editorInstance) {
       const html = editorInstance.getHTML();
-
-      const res = await fetch('/api/save', {
+      const res = await fetch('https://diablo4-blackmarket.onrender.com/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ filename, content: html })
@@ -140,14 +138,14 @@
         }
       };
 
-      await loadEditor("sections/price.html", priceEditor);
-      await loadEditor("sections/items.html", itemsEditor);
+      await loadEditor('sections/price.html', priceEditor);
+      await loadEditor('sections/items.html', itemsEditor);
     }
 
     loadInitialContent();
   </script>
 
-  <!-- ✅ 구글 번역 -->
+  <!-- ✅ 구공 번역 -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
