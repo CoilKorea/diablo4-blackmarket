@@ -1,28 +1,97 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>관리자 로그인</title>
+  <title>🔐 관리자 로그인</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 스타일 정의 -->
   <style>
-    body { background: #111; color: #eee; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
-    .login-box { background: #1e1e1e; padding: 2rem; border-radius: 8px; width: 300px; }
-    input, button { width: 100%; padding: 0.75rem; margin: 0.5rem 0; border-radius: 6px; border: none; font-size: 1rem; }
-    button { background: orange; font-weight: bold; cursor: pointer; }
-    .error { color: red; margin-top: 0.5rem; }
+    body {
+      background: #111;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .login-box {
+      background: #1c1c1c;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 16px rgba(255, 165, 0, 0.2);
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .login-box h2 {
+      color: #fff;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #2a2a2a;
+      color: #fff;
+      outline: none;
+    }
+
+    .login-box input::placeholder {
+      color: #bbb;
+    }
+
+    .login-box button {
+      width: 100%;
+      background-color: orange;
+      border: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #ff9900;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
   </style>
+
 </head>
 <body>
-  <div class="login-container">
-  <form class="login-box" onsubmit="login(); return false;">
-    <h2><i class="fa-solid fa-lock"></i> 관리자 로그인</h2>
-    <input type="text" id="userid" placeholder="아이디" required />
-    <input type="password" id="password" placeholder="비밀번호" required />
-    <button type="submit">🔐 로그인</button>
-    <div id="error" class="error"></div>
-  </form>
-</div>
 
+  <div class="login-container">
+    <form class="login-box" onsubmit="login(); return false;">
+      <h2><i class="fa-solid fa-lock"></i> 관리자 로그인</h2>
+      <input type="text" id="userid" placeholder="아이디" required />
+      <input type="password" id="password" placeholder="비밀번호" required />
+      <button type="submit">🔐 로그인</button>
+      <div id="error" class="error"></div>
+    </form>
+  </div>
+
+  <!-- 관리자 인증 스크립트 -->
   <script>
     const admins = [
       { id: "nickneigh", password: "1231" },
@@ -30,8 +99,8 @@
     ];
 
     function login() {
-      const id = document.getElementById("userid").value;
-      const pw = document.getElementById("password").value;
+      const id = document.getElementById("userid").value.trim();
+      const pw = document.getElementById("password").value.trim();
       const valid = admins.find(admin => admin.id === id && admin.password === pw);
       if (valid) {
         localStorage.setItem("isAdmin", "true");
@@ -41,5 +110,9 @@
       }
     }
   </script>
+
+  <!-- 아이콘용 Font Awesome 로딩 -->
+  <script src="https://kit.fontawesome.com/6b924b5e04.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
