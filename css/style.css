@@ -259,21 +259,20 @@ pre {
   text-decoration: none;
   z-index: 999;
 }
-#admin-login-link:hover {
-  color: orange;
-}
 
 #admin-login-button {
   position: fixed;
-  top: 10px;
+  top: 12px;
   right: 16px;
   font-size: 0.8rem;
   color: #888;
   text-decoration: none;
-  opacity: 0.5;
+  background: rgba(0,0,0,0.4);
+  padding: 4px 8px;
+  border-radius: 6px;
   z-index: 9999;
 }
 #admin-login-button:hover {
-  opacity: 1;
   color: orange;
+  background: rgba(0,0,0,0.8);
 }
