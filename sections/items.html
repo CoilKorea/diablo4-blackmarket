@@ -1,40 +1,27 @@
-
-<h2>🧤 개별장비</h2>
-<p>
-  장비 목록은 아래 구글 스프레드시트를 통해 실시간으로 관리됩니다.<br><br>
-  <span style="color: #ee9353; font-weight: bold;">관리자는 아래 주소를 수정할 수 있습니다.</span>
-</p>
-
-<div id="gear-admin" style="display:none; margin-bottom:1rem;">
-  <input type="text" id="gear-url" placeholder="구글 시트 주소 입력" style="width:100%; padding:0.5rem;"><br>
-  <button onclick="saveGearURL()" style="margin-top:0.5rem; padding:10px 20px;">💾 저장</button>
-</div>
-
-<div id="iframe-container" style="position: relative; width: 100%; max-width: 1000px; margin: auto; border: none; overflow: hidden; background-color: #111;">
-  <iframe 
-    id="gear-sheet"
-    src=""
-    width="100%" 
-    height="800px" 
-    frameborder="0" 
-    style="border: none; background-color: black;">
-  </iframe>
+<div class="tab" id="items">
+  <h2>🖐 개별장비</h2>
+  <p>장비 목록은 아래 구글 스프레드시트를 통해 실시간으로 관리됩니다.</p>
+  <p style="color: orange;">관리자는 아래 주소를 수정할 수 있습니다.</p>
+  <div id="gear-admin" style="display:none; margin-bottom: 1rem;">
+    <input id="gear-url" placeholder="구글 시트 주소 입력" style="width: 80%; padding: 0.5rem;" />
+    <button onclick="saveGearURL()">💾 저장</button>
+  </div>
+  <iframe id="gear-sheet" src="" width="100%" height="600" style="border:none;"></iframe>
 </div>
 
 <script>
-  function saveGearURL() {
-    const url = document.getElementById("gear-url").value;
-    localStorage.setItem("gearIframe", url);
+  function loadGearURL() {
+    const url = localStorage.getItem("gearURL") || "https://docs.google.com/spreadsheets/d/e/2PACX-DEFAULT/pubhtml?widget=true&headers=false";
     document.getElementById("gear-sheet").src = url;
-    alert("개별장비 시트가 저장되었습니다.");
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const saved = localStorage.getItem("gearIframe");
-    if (saved) document.getElementById("gear-sheet").src = saved;
     if (localStorage.getItem("isAdmin") === "true") {
       document.getElementById("gear-admin").style.display = "block";
-      if (saved) document.getElementById("gear-url").value = saved;
+      document.getElementById("gear-url").value = url;
     }
-  });
+  }
+  function saveGearURL() {
+    const newUrl = document.getElementById("gear-url").value;
+    localStorage.setItem("gearURL", newUrl);
+    document.getElementById("gear-sheet").src = newUrl;
+  }
+  loadGearURL();
 </script>
