@@ -140,7 +140,7 @@ header {
 }
 
 nav {
-  background: #111;
+  background: #202124;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -152,29 +152,36 @@ nav {
 }
 
 nav button {
-  background: #222;
-  border: 1px solid #444;
+  background: transparent;
+  border: none;
   padding: 12px 24px;
-  border-radius: 12px;
+  border-radius: 0;
   font-weight: bold;
   cursor: pointer;
   color: #fff;
   font-size: 1rem;
-  text-shadow: 0 0 3px #000;
-  transition: all 0.3s ease;
+  text-shadow: none;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-nav button:hover {
-  background-color: #333;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+nav button::after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 6px;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
 }
 
-nav button.active {
-  background: linear-gradient(145deg, #ff9800, #f57c00);
-  color: #fff;
-  border: 2px solid #ffa726;
-  box-shadow: 0 0 15px #ffa726, 0 0 5px #ffb74d inset;
-  transform: scale(1.05);
+nav button:hover::after {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+nav button.active::after {
+  background-color: #fff;
 }
 
 .tab {
