@@ -58,12 +58,11 @@ window.addEventListener('scroll', function () {
 
   if (!nav || !header) return;
 
-  const headerBottom = header.offsetTop + header.offsetHeight;
   const scrollY = window.scrollY || window.pageYOffset;
 
-  if (scrollY >= headerBottom) {
+  // ✅ 최초에만 nav가 header 아래에 있어야 함
+  // ✅ 스크롤 한 번이라도 내리면 고정 유지
+  if (scrollY > 100) {
     nav.classList.add('fixed');
-  } else {
-    nav.classList.remove('fixed');
   }
 });
