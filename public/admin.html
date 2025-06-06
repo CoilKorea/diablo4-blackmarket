@@ -89,61 +89,63 @@
   </div>
 
   <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-  <script>
-    const { Editor } = toastui;
+<script>
+  const { Editor } = toastui;
 
-    const priceEditor = new Editor({
-      el: document.querySelector('#editor-price'),
-      height: '400px',
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: false,
-      hideModeSwitch: true
+  const priceEditor = new Editor({
+    el: document.querySelector('#editor-price'),
+    height: '400px',
+    initialEditType: 'wysiwyg',
+    previewStyle: 'vertical',
+    usageStatistics: false,
+    hideModeSwitch: true
+  });
+
+  const itemsEditor = new Editor({
+    el: document.querySelector('#editor-items'),
+    height: '400px',
+    initialEditType: 'wysiwyg',
+    previewStyle: 'vertical',
+    usageStatistics: false,
+    hideModeSwitch: true
+  });
+
+  async function saveContent(filename, editorInstance) {
+    const html = editorInstance.getHTML();
+    const res = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, content: html })
     });
 
-    const itemsEditor = new Editor({
-      el: document.querySelector('#editor-items'),
-      height: '400px',
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: false,
-      hideModeSwitch: true
-    });
+    const result = await res.json();
+    if (result.success) {
+      alert("✅ 저장 완료");
+      await loadEditor(filename, editorInstance);  // ✅ 저장 후 다시 불러오기
+    } else {
+      alert("❌ 저장 실패");
+      console.error(result.error);
+    }
+  }
 
-    async function saveContent(filename, editorInstance) {
-      const html = editorInstance.getHTML();
-      const res = await fetch('https://diablo4-blackmarket.onrender.com/api/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename, content: html })
-      });
-
-      const result = await res.json();
-      if (result.success) {
-        alert("✅ 저장 완료");
-      } else {
-        alert("❌ 저장 실패");
-        console.error(result.error);
+  async function loadInitialContent() {
+    const loadEditor = async (filename, editorInstance) => {
+      try {
+        const res = await fetch(filename);
+        const html = await res.text();
+        editorInstance.setHTML(html);
+      } catch (e) {
+        console.error(`${filename} 로딩 실패`, e);
       }
-    }
+    };
 
-    async function loadInitialContent() {
-      const loadEditor = async (filename, editorInstance) => {
-        try {
-          const res = await fetch(filename);
-          const html = await res.text();
-          editorInstance.setHTML(html);
-        } catch (e) {
-          console.error(`${filename} 로딩 실패`, e);
-        }
-      };
+    await loadEditor('sections/price.html', priceEditor);
+    await loadEditor('sections/items.html', itemsEditor);
+  }
 
-      await loadEditor('sections/price.html', priceEditor);
-      await loadEditor('sections/items.html', itemsEditor);
-    }
+  loadInitialContent();
+</script>
 
-    loadInitialContent();
-  </script>
 
   <!-- ✅ 구공 번역 -->
   <script type="text/javascript">
