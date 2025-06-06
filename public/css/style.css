@@ -1,24 +1,20 @@
 @font-face {
-  font-family: 'GmarketSansTTFBold';
-  src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
+  font-family: 'Kenris';
+  src: url('../assets/Kenris.ttf') format('truetype');
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'Pretendard Variable', sans-serif;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
   font-size: 16px;
-}
-
-body {
-  font-family: 'GmarketSansTTFBold', sans-serif;
-  background: none; /* 배너 외곽 검정 제거 */
 }
 
 a {
@@ -34,7 +30,7 @@ a:visited, a:focus, a:hover {
 header {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100dvh;
   background: url('https://i.imgur.com/bwyltCl.jpeg') no-repeat center center;
   background-size: cover;
   margin: 0;
@@ -160,7 +156,6 @@ nav button.active {
   transform: scale(1.05);
 }
 
-/* ✅ 수정: 가로폭 제한 제거 */
 .tab {
   display: none;
   padding: 40px 20px;
