@@ -1,6 +1,5 @@
-from pathlib import Path
 
-html_template = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -8,51 +7,58 @@ html_template = '''<!DOCTYPE html>
   <title>💰 디아블로4 블랙마켓 가격표</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <style>
-    body {{
+    body {
       margin: 0;
       font-family: 'Pretendard Variable', sans-serif;
       color: #f4f4f4;
       padding: 0rem;
-    }}
-    .menu-container {{
+    }
+
+    .menu-container {
       max-width: 800px;
       margin: auto;
       background: #2a2a2a;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }}
-    .menu-section {{
+    }
+
+    .menu-section {
       margin-bottom: 2rem;
-    }}
-    .section-title {{
+    }
+
+    .section-title {
       font-size: 1.5rem;
       font-weight: 900;
       margin-bottom: 1rem;
       border-bottom: 2px solid #444;
       padding-bottom: 0.5rem;
       color: #eeee00;
-    }}
-    .menu-item {{
+    }
+
+    .menu-item {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       padding: 0.75rem 0;
       border-bottom: 1px dashed #444;
-    }}
-    .item-label {{
+    }
+
+    .item-label {
       font-weight: 600;
       color: #fff;
-    }}
-    .item-desc {{
+    }
+
+    .item-desc {
       font-size: 0.9rem;
       color: #aaa;
       margin-top: 0.25rem;
-    }}
-    .item-price {{
+    }
+
+    .item-price {
       color: #ffc400;
       font-weight: 700;
-    }}
+    }
   </style>
 </head>
 <body>
@@ -60,72 +66,26 @@ html_template = '''<!DOCTYPE html>
 
     <div class="menu-section">
       <div class="section-title">금화</div>
-      <div class="menu-item"><div><div class="item-label">${{label-1}}</div></div><div class="item-price">${{price-1}}</div></div>
-      <div class="menu-item"><div><div class="item-label">${{label-2}}</div></div><div class="item-price">${{price-2}}</div></div>
-      <div class="item-desc">${{desc-1}}</div>
+      <div class="menu-item"><div class="item-label">${label-1}</div><div class="item-price">${price-1}</div></div>
+      <div class="menu-item"><div class="item-label">${label-2}</div><div class="item-price">${price-2}</div></div>
+      <div class="item-desc">※ 계정 당 최대 999억 보유 가능</div>
     </div>
 
     <div class="menu-section">
       <div class="section-title">옵두사이트</div>
-      <div class="menu-item"><div class="item-label">${{label-3}}</div><div class="item-price">${{price-3}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-4}}</div><div class="item-price">${{price-4}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-5}}</div><div class="item-price">${{price-5}}</div></div>
-      <div class="item-desc">${{desc-2}}</div>
+      <div class="menu-item"><div class="item-label">${label-3}</div><div class="item-price">${price-3}</div></div>
+      <div class="menu-item"><div class="item-label">${label-4}</div><div class="item-price">${price-4}</div></div>
+      <div class="menu-item"><div class="item-label">${label-5}</div><div class="item-price">${price-5}</div></div>
+      <div class="item-desc">※ 플스(PS) 유저 꼭 말씀해주세요. 대량 구매 시 나눠서 전달됩니다.</div>
     </div>
 
     <div class="menu-section">
       <div class="section-title">배신자의 껍데기</div>
-      <div class="menu-item"><div class="item-label">${{label-6}}</div><div class="item-price">${{price-6}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-7}}</div><div class="item-price">${{price-7}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-8}}</div><div class="item-price">${{price-8}}</div></div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">벼락불 파밍 대행</div>
-      <div class="menu-item"><div class="item-label">${{label-9}}</div><div class="item-price">${{price-9}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-10}}</div><div class="item-price">${{price-10}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-11}}</div><div class="item-price">${{price-11}}</div></div>
-      <div class="item-desc">${{desc-3}}</div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">잊힌 영혼</div>
-      <div class="menu-item"><div class="item-label">${{label-12}}</div><div class="item-price">${{price-12}}</div></div>
-      <div class="item-desc">${{desc-4}}</div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">룬</div>
-      <div class="menu-item"><div class="item-label">${{label-13}}</div><div class="item-price">${{price-13}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-14}}</div><div class="item-price">${{price-14}}</div></div>
-      <div class="item-desc">${{desc-5}}</div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">신화 고유 룬 세트</div>
-      <div class="menu-item"><div class="item-label">${{label-15}}</div><div class="item-price">${{price-15}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-16}}</div><div class="item-price">${{price-16}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-17}}</div><div class="item-price">${{price-17}}</div></div>
-      <div class="item-desc">${{desc-6}}</div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">웅장한 보석</div>
-      <div class="menu-item"><div class="item-label">${{label-18}}</div><div class="item-price">${{price-18}}</div></div>
-    </div>
-
-    <div class="menu-section">
-      <div class="section-title">시즌 하드코어</div>
-      <div class="menu-item"><div class="item-label">${{label-19}}</div><div class="item-price">${{price-19}}</div></div>
-      <div class="menu-item"><div class="item-label">${{label-20}}</div><div class="item-price">${{price-20}}</div></div>
-      <div class="item-desc">${{desc-7}}</div>
+      <div class="menu-item"><div class="item-label">${label-6}</div><div class="item-price">${price-6}</div></div>
+      <div class="menu-item"><div class="item-label">${label-7}</div><div class="item-price">${price-7}</div></div>
+      <div class="menu-item"><div class="item-label">${label-8}</div><div class="item-price">${price-8}</div></div>
     </div>
 
   </div>
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/price.html")
-path.write_text(html_template, encoding="utf-8")
-path.name
