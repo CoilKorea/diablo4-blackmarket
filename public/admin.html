@@ -36,16 +36,16 @@
     fetch('/data/price-values.json')
       .then(res => res.json())
       .then(data => {
-        for (const [key, val] of Object.entries(data)) {
-          addRow(key, val);
+        for (const [label, price] of Object.entries(data)) {
+          addRow(label, price);
         }
       });
 
     function addRow(label = '', price = '') {
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td><input type="text" value="\${label}" /></td>
-        <td><input type="text" value="\${price}" /></td>
+        <td><input type="text" value="${label}" /></td>
+        <td><input type="text" value="${price}" /></td>
       `;
       tableBody.appendChild(row);
     }
