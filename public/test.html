@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>GmarketSans 적용 전후 비교</title>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      padding: 40px;
+      font-size: 24px;
+      line-height: 1.6;
+    }
+
+    .box {
+      margin-bottom: 50px;
+      padding: 20px;
+      background: #1d1d1d;
+      border-radius: 12px;
+    }
+
+    .label {
+      font-size: 18px;
+      color: #ffcc00;
+      margin-bottom: 12px;
+    }
+
+    @font-face {
+      font-family: 'GmarketSansBold';
+      src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .gmarket {
+      font-family: 'GmarketSansBold', sans-serif;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="label">🚫 시스템 기본 글꼴 (미적용)</div>
+    <p>
+      ABC 가나다라 1234<br />
+      디아블로4 블랙마켓 폰트 적용 테스트입니다.
+    </p>
+  </div>
+
+  <div class="box gmarket">
+    <div class="label">✅ GmarketSansBold 적용된 폰트</div>
+    <p>
+      ABC 가나다라 1234<br />
+      디아블로4 블랙마켓 폰트 적용 테스트입니다.
+    </p>
+  </div>
+</body>
+</html>
