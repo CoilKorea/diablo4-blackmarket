@@ -22,12 +22,13 @@ html, body {
 /* ✅ 배너 영역은 전체 너비 사용, .wrapper 사용 금지 */
 header {
   width: 100%;
-  height: 100vh;
+  height: 100dvh; /* ✅ 동적 뷰포트 높이 사용 */
   margin: 0;
   padding: 0;
   background: url('https://i.imgur.com/bwyltCl.jpeg') center/cover no-repeat;
   overflow: hidden;
 }
+
 
 .wrapper {
   max-width: 860px;
