@@ -52,11 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 스크롤 시 오버레이 어둡게
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const overlay = document.getElementById('overlay');
-  if (overlay) {
-    const opacity = Math.min(scrollY / 300, 0.6);
-    overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+window.addEventListener('scroll', function () {
+  const nav = document.querySelector('nav');
+  const header = document.querySelector('header');
+
+  if (!nav || !header) return;
+
+  const headerBottom = header.offsetTop + header.offsetHeight;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  if (scrollY >= headerBottom) {
+    nav.classList.add('fixed');
+  } else {
+    nav.classList.remove('fixed');
   }
 });
