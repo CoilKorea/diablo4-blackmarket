@@ -31,7 +31,7 @@
 </head>
 <body>
   <a href="admin-login.html" id="admin-login-button">🔒관리자로 로그인</a>
-  
+
   <div id="include-header"></div>
   <div id="include-nav"></div>
   <div id="include-notice" class="tab active"></div>
@@ -40,29 +40,32 @@
   <div id="include-fullbuild" class="tab"></div>
   <div id="include-season8" class="tab"></div>
 
-  <!-- ✅ 스크롤 방향에 따라 sticky 적용 -->
- <script>
-  let lastScrollY = window.scrollY;
-  const nav = document.querySelector("nav");
+  <!-- ✅ nav 스크롤 고정 스크립트 -->
+  <script>
+    let lastScrollY = window.scrollY;
 
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
+    window.addEventListener("load", () => {
+      const nav = document.querySelector("nav");
 
-    if (!nav) return;
+      if (!nav) return;
 
-    if (currentScrollY > lastScrollY) {
-      // 스크롤 내릴 때: 고정
-      nav.style.position = "fixed";
-      nav.style.top = "0";
-      nav.style.width = "100%";
-    } else {
-      // 스크롤 올릴 때: 일반 위치로
-      nav.style.position = "relative";
-    }
+      window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
 
-    lastScrollY = currentScrollY;
-  });
-</script>
+        if (currentScrollY > lastScrollY) {
+          // 아래로 스크롤 시 고정
+          nav.style.position = "fixed";
+          nav.style.top = "0";
+          nav.style.width = "100%";
+          nav.style.zIndex = "999";
+        } else {
+          // 위로 스크롤 시 고정 해제
+          nav.style.position = "relative";
+        }
 
+        lastScrollY = currentScrollY;
+      });
+    });
+  </script>
 </body>
 </html>
