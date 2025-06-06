@@ -1,134 +1,131 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
   <title>💰 디아블로4 블랙마켓 가격표</title>
-
-  <!-- Pretendard 폰트 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-
-  <!-- Kenris 폰트 -->
   <style>
-    @font-face {
-      font-family: 'Kenris';
-      src: url('/assets/Kenris.ttf') format('truetype');
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: transparent; /* 사이트 배경 보존 */
-      font-family: 'Pretendard Variable', sans-serif;
-      color: #fefefe;
-    }
-
     body {
-      padding: 40px;
+      margin: 0;
+      font-family: 'Pretendard Variable', sans-serif;
+      color: #f4f4f4;
+      padding: 2rem;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #FFD700;
-      text-shadow: 1px 1px 3px #000;
+    .menu-container {
+      max-width: 800px;
+      margin: auto;
+      background: #2a2a2a;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .category {
-      background: #111;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-left: 8px solid #FFD700;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    .menu-section {
+      margin-bottom: 2rem;
     }
 
-    .category h2 {
-      font-size: 1.8rem;
-      color: #FFD700;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #FFD700;
-      padding-bottom: 5px;
-      font-family: 'Kenris', sans-serif;
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5rem;
+      color: #ffc400;
     }
 
-    .item {
+    .menu-item {
       display: flex;
       justify-content: space-between;
-      margin: 10px 0;
-      font-size: 1.2rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed #444;
     }
 
-    .note {
+    .item-label {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .item-desc {
       font-size: 0.9rem;
       color: #aaa;
-      margin-top: 10px;
+      margin-top: 0.25rem;
+    }
+
+    .item-price {
+      color: #ffc400;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
-  <h1>💰 디아블로 4 블랙마켓 가격표</h1>
+  <div class="menu-container">
 
-  <div class="category">
-    <h2>💰 금화</h2>
-    <div class="item"><span>500억</span><span>2,000원</span></div>
-    <div class="item"><span>990억</span><span>3,000원</span></div>
-    <div class="note">※ 계정 당 최대 999억 보유 가능</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">💰 금화</div>
+      <div class="menu-item"><div><div class="item-label">500억</div></div><div class="item-price">2,000원</div></div>
+      <div class="menu-item"><div><div class="item-label">990억</div></div><div class="item-price">3,000원</div></div>
+      <div class="item-desc">※ 계정 당 최대 999억 보유 가능</div>
+    </div>
 
-  <div class="category">
-    <h2>🌀 옵두사이트</h2>
-    <div class="item"><span>100,000개</span><span>2,000원</span></div>
-    <div class="item"><span>200,000개</span><span>3,500원</span></div>
-    <div class="item"><span>400,000개</span><span>6,000원</span></div>
-    <div class="item"><span>700,000개</span><span>9,000원</span></div>
-    <div class="note">※ 플스(PS) 유저 꼭 말씀해주세요. 대량 구매 시 나눠서 전달됩니다.</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">🌀 옵두사이트</div>
+      <div class="menu-item"><div class="item-label">100,000개</div><div class="item-price">2,000원</div></div>
+      <div class="menu-item"><div class="item-label">200,000개</div><div class="item-price">3,500원</div></div>
+      <div class="menu-item"><div class="item-label">400,000개</div><div class="item-price">6,000원</div></div>
+      <div class="menu-item"><div class="item-label">700,000개</div><div class="item-price">9,000원</div></div>
+      <div class="item-desc">※ 플스(PS) 유저 꼭 말씀해주세요. 대량 구매 시 나눠서 전달됩니다.</div>
+    </div>
 
-  <div class="category">
-    <h2>🐍 벨리알 보스 재료</h2>
-    <div class="item"><span>100묶음 (9900개)</span><span>3,000원</span></div>
-    <div class="item"><span>150묶음 (14850개)</span><span>4,000원</span></div>
-    <div class="item"><span>200묶음 (19800개)</span><span>5,000원</span></div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">🐍 벨리알 보스 재료</div>
+      <div class="menu-item"><div class="item-label">100묶음 (9900개)</div><div class="item-price">3,000원</div></div>
+      <div class="menu-item"><div class="item-label">150묶음 (14850개)</div><div class="item-price">4,000원</div></div>
+      <div class="menu-item"><div class="item-label">200묶음 (19800개)</div><div class="item-price">5,000원</div></div>
+    </div>
 
-  <div class="category">
-    <h2>⚡ 벼락불 파밍 대행</h2>
-    <div class="item"><span>환영의 재 10만 이상 (10개)</span><span>15,000원</span></div>
-    <div class="item"><span>환영의 재 10만 미만 (4개)</span><span>22,000원</span></div>
-    <div class="item"><span>10개 (최대)</span><span>~40,000원</span></div>
-    <div class="note">※ 8시즌 한정 부캐런 대행 가능, 재 보유량에 따라 가격 안내</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">⚡ 벼락불 파밍 대행</div>
+      <div class="menu-item"><div class="item-label">환영의 재 10만 이상 (10개)</div><div class="item-price">15,000원</div></div>
+      <div class="menu-item"><div class="item-label">환영의 재 10만 미만 (4개)</div><div class="item-price">22,000원</div></div>
+      <div class="menu-item"><div class="item-label">10개 (최대)</div><div class="item-price">~40,000원</div></div>
+      <div class="item-desc">※ 8시즌 한정 부캐런 대행 가능, 재 보유량에 따라 가격 안내</div>
+    </div>
 
-  <div class="category">
-    <h2>🔥 잊힌 영혼</h2>
-    <div class="item"><span>1,000개</span><span>6,000원</span></div>
-    <div class="note">👑 벨리알 파밍 - 나오는 템 전부 킵</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">🔥 잊힌 영혼</div>
+      <div class="menu-item"><div class="item-label">1,000개</div><div class="item-price">6,000원</div></div>
+      <div class="item-desc">👑 벨리알 파밍 - 나오는 템 전부 킵</div>
+    </div>
 
-  <div class="category">
-    <h2>💍 룬</h2>
-    <div class="item"><span>10개 미만</span><span>1,000원</span></div>
-    <div class="item"><span>10~30개</span><span>2,000원</span></div>
-    <div class="note">※ 빌드 굴리는데 필요한 룬 1~2개는 서비스 제공</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">💍 룬</div>
+      <div class="menu-item"><div class="item-label">10개 미만</div><div class="item-price">1,000원</div></div>
+      <div class="menu-item"><div class="item-label">10~30개</div><div class="item-price">2,000원</div></div>
+      <div class="item-desc">※ 빌드 굴리는데 필요한 룬 1~2개는 서비스 제공</div>
+    </div>
 
-  <div class="category">
-    <h2>☘️ 신화 고유 룬 세트</h2>
-    <div class="item"><span>1세트 (6/6/6개)</span><span>1,000원</span></div>
-    <div class="item"><span>16세트 (100/100/100개)</span><span>2,500원</span></div>
-    <div class="item"><span>50세트 (300/300/300개)</span><span>4,000원</span></div>
-    <div class="note">샤코, 별반, 수의, 영벌 등</div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">☘️ 신화 고유 룬 세트</div>
+      <div class="menu-item"><div class="item-label">1세트 (6/6/6개)</div><div class="item-price">1,000원</div></div>
+      <div class="menu-item"><div class="item-label">16세트 (100/100/100개)</div><div class="item-price">2,500원</div></div>
+      <div class="menu-item"><div class="item-label">50세트 (300/300/300개)</div><div class="item-price">4,000원</div></div>
+      <div class="item-desc">샤코, 별반, 수의, 영벌 등</div>
+    </div>
 
-  <div class="category">
-    <h2>💎 웅장한 보석</h2>
-    <div class="item"><span>7종 x 10개</span><span>2,500원</span></div>
-  </div>
+    <div class="menu-section">
+      <div class="section-title">💎 웅장한 보석</div>
+      <div class="menu-item"><div class="item-label">7종 x 10개</div><div class="item-price">2,500원</div></div>
+    </div>
 
-  <div class="category">
-    <h2>💀 시즌 하드코어</h2>
-    <div class="item"><span>골드 100억</span><span>15,000원</span></div>
-    <div class="item"><span>껍데기 99개</span><span>4,000원</span></div>
+    <div class="menu-section">
+      <div class="section-title">💀 시즌 하드코어</div>
+      <div class="menu-item"><div class="item-label">골드 100억</div><div class="item-price">15,000원</div></div>
+      <div class="menu-item"><div class="item-label">껍데기 99개</div><div class="item-price">4,000원</div></div>
+    </div>
+
   </div>
 </body>
 </html>
