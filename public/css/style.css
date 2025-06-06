@@ -140,49 +140,42 @@ header {
 }
 
 nav {
-  background: #202124;
+  background: #1a1a1a;
   display: flex;
   justify-content: center;
   gap: 10px;
-  padding: 20px 10px;
-  position: sticky;
+  padding: 10px 10px; /* 높이 줄임 */
+  position: relative; /* 기본값 */
   top: 0;
   z-index: 10;
   flex-wrap: wrap;
+  transition: all 0.3s ease;
+}
+
+nav.sticky {
+  position: sticky;
 }
 
 nav button {
   background: transparent;
   border: none;
-  padding: 12px 24px;
-  border-radius: 0;
+  padding: 6px 14px;
   font-weight: bold;
   cursor: pointer;
   color: #fff;
   font-size: 1rem;
-  text-shadow: none;
-  transition: all 0.2s ease;
-  position: relative;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-nav button::after {
-  content: '';
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 6px;
-  height: 2px;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
+nav button:hover {
+  border-bottom: 2px solid #888;
 }
 
-nav button:hover::after {
-  background-color: rgba(255, 255, 255, 0.3);
+nav button.active {
+  border-bottom: 2px solid white;
 }
 
-nav button.active::after {
-  background-color: #fff;
-}
 
 .tab {
   display: none;
