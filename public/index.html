@@ -41,31 +41,22 @@
   <div id="include-season8" class="tab"></div>
 
   <!-- ✅ nav 스크롤 고정 스크립트 -->
-  <script>
-    let lastScrollY = window.scrollY;
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.querySelector('nav');
+    const header = document.querySelector('header');
+    
+    const triggerY = header.offsetHeight; // nav가 고정되기 시작할 위치
 
-    window.addEventListener("load", () => {
-      const nav = document.querySelector("nav");
-
-      if (!nav) return;
-
-      window.addEventListener("scroll", () => {
-        const currentScrollY = window.scrollY;
-
-        if (currentScrollY > lastScrollY) {
-          // 아래로 스크롤 시 고정
-          nav.style.position = "fixed";
-          nav.style.top = "0";
-          nav.style.width = "100%";
-          nav.style.zIndex = "999";
-        } else {
-          // 위로 스크롤 시 고정 해제
-          nav.style.position = "relative";
-        }
-
-        lastScrollY = currentScrollY;
-      });
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= triggerY) {
+        nav.classList.add('sticky');
+      } else {
+        nav.classList.remove('sticky');
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
