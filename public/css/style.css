@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'GmarketSansBold';
   src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
 }
 
