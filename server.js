@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static('public'));
 app.use(bodyParser.json({ limit: '2mb' }));
 
-// ✅ 루트 요청 처리 추가
+// ✅ 루트 요청 처리
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -23,13 +23,13 @@ app.post('/api/save', (req, res) => {
     return res.status(400).json({ error: '허용되지 않은 파일입니다.' });
   }
 
-  const savePath = path.join(__dirname, filename);
+  const savePath = path.join(__dirname, 'public', filename);  // ✅ 수정됨
   fs.writeFile(savePath, content, 'utf8', (err) => {
     if (err) return res.status(500).json({ error: '파일 저장 실패' });
 
     const gitCommands = `
       cd "${__dirname}" && \
-      git add "${filename}" && \
+      git add "public/${filename}" && \
       git commit -m "🔧 ${path.basename(filename)} 수정됨" && \
       git push origin main
     `;
