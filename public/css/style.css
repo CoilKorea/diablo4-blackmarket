@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'GmarketSansTTFBold';
-  src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
+  src: url('.../assets/GmarketSansTTFBold.ttf') format('truetype');
 }
 
 html, body {
