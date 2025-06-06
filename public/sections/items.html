@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script defer>
     async function fetchGearList() {
-      const res = await fetch('gearlist.json'); // JSON 파일 불러오기
+      const res = await fetch('data/gearlist.json'); // JSON 파일 불러오기
       const gearList = await res.json();
       window.fullList = gearList;
       renderGearList(gearList);
