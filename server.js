@@ -24,19 +24,22 @@ app.post('/api/save', (req, res) => {
     }
 
     console.log(`✅ 저장 완료: ${filename}`);
-    gitCommitAndPush(filename);
+    gitCommitAndPush(filename); // Git 자동 커밋 및 푸시
     res.json({ success: true });
   });
 });
 
 // Git 자동 커밋 및 푸시
-function gitCommitAndPush(relativePath) {
+function gitCommitAndPush(filePath) {
   const githubToken = process.env.GITHUB_TOKEN;
   const repoURL = 'https://github.com/CoilKorea/diablo4-blackmarket.git';
   const remoteURL = repoURL.replace('https://', `https://${githubToken}@`);
-  const commitMessage = `자동 저장: ${relativePath} 업데이트`;
+  const commitMessage = `자동 저장: ${filePath} 업데이트`;
 
-  const fileFullPath = `public/${relativePath}`;
+  const ignorePath = path.join(__dirname, '.gitignore');
+  if (!fs.existsSync(ignorePath)) {
+    fs.writeFileSync(ignorePath, 'node_modules\nbuild\nCNAME\n*.log\n');
+  }
 
   const commands = `
     git init
@@ -44,11 +47,12 @@ function gitCommitAndPush(relativePath) {
     git config user.email "render@bot.com"
     git remote remove origin || true
     git remote add origin ${remoteURL}
-    git fetch origin main
-    git reset --hard origin/main
-    git add ${fileFullPath}
-    git commit -m "${commitMessage}" --allow-empty
-    git push origin main --force
+    git fetch origin
+    git checkout -B main || git checkout main
+    git pull origin main --allow-unrelated-histories --no-edit || true
+    git add public/${filePath}
+    git commit -m "${commitMessage}" || echo "스킵: 변경 없음"
+    git push origin main || echo "❌ 푸시 실패"
   `;
 
   exec(commands, { cwd: __dirname }, (err, stdout, stderr) => {
