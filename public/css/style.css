@@ -3,17 +3,15 @@
   src: url('../assets/Kenris.ttf') format('truetype');
 }
 
-html {
-  font-size: 16px;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   font-family: 'Pretendard Variable', sans-serif;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
+  font-size: 16px;
 }
 
 a {
@@ -58,23 +56,22 @@ header {
   margin-left: 0;
 }
 
-/* ✅ 수정된 버튼 스타일 */
 #order-button {
   padding: 0.75rem 1.25rem;
   background-color: #FFD700 !important;
   color: #111 !important;
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);  /* ✅ 반응형 폰트 크기 */
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   font-weight: bold;
   border: none;
   border-radius: 30px;
   cursor: pointer;
-  display: inline-flex;                     /* ✅ inline-flex로 크기 자연스럽게 */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  white-space: nowrap;                     /* ✅ 줄바꿈 방지 */
-  width: auto;                             
-  max-width: 95vw;                         /* ✅ 작은 화면에서 너비 제한 */
+  white-space: nowrap;
+  width: auto;
+  max-width: 95vw;
   box-sizing: border-box;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -109,6 +106,7 @@ header {
   margin-top: 0.3rem;
   transition: color 0.3s ease;
 }
+
 #main-entry-link:hover {
   color: #ffcc00;
 }
@@ -151,11 +149,12 @@ nav button.active {
   transform: scale(1.05);
 }
 
+/* ✅ 수정: 가로폭 제한 제거 */
 .tab {
   display: none;
   padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
+  width: 100%;
+  max-width: none;
 }
 
 .tab.active {
@@ -208,11 +207,10 @@ pre {
 }
 
 @media (max-width: 768px) {
-  /* ✅ 모바일에서 줄바꿈 방지 유지 */
   #order-button {
     font-size: clamp(0.85rem, 4vw, 1rem);
     padding: 0.75rem 1.1rem;
-    flex-direction: row;       /* ✅ column 대신 row 유지 (줄바꿈 방지 목적) */
+    flex-direction: row;
     gap: 0.5rem;
   }
 
@@ -261,8 +259,8 @@ pre {
 #admin-login-button {
   position: fixed;
   top: 12px;
-  right: 0px; /* ← 진짜로 가장 오른쪽 */
-  transform: translateX(-12px); /* 아이콘/텍스트를 살짝 안쪽으로 밀어줌 */
+  right: 0px;
+  transform: translateX(-12px);
   font-size: 0.75rem;
   color: #aaa;
   background: rgba(0, 0, 0, 0.3);
@@ -272,11 +270,11 @@ pre {
   z-index: 9999;
   transition: all 0.2s ease-in-out;
 }
+
 #admin-login-button:hover {
   color: orange;
   background: rgba(0, 0, 0, 0.8);
 }
-
 
 .login-container {
   display: flex;
@@ -341,4 +339,3 @@ pre {
   text-align: center;
   margin-top: 0.5rem;
 }
-</style>
