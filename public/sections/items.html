@@ -1,27 +1,54 @@
-<div class="tab" id="items">
-  <h2>🖐 개별장비</h2>
-  <p>장비 목록은 아래 구글 스프레드시트를 통해 실시간으로 관리됩니다.</p>
-  <p style="color: orange;">관리자는 아래 주소를 수정할 수 있습니다.</p>
-  <div id="gear-admin" style="display:none; margin-bottom: 1rem;">
-    <input id="gear-url" placeholder="구글 시트 주소 입력" style="width: 80%; padding: 0.5rem;" />
-    <button onclick="saveGearURL()">💾 저장</button>
-  </div>
-  <iframe id="gear-sheet" src="" width="100%" height="600" style="border:none;"></iframe>
-</div>
-
-<script>
-  function loadGearURL() {
-    const url = localStorage.getItem("gearURL") || "https://docs.google.com/spreadsheets/d/e/2PACX-DEFAULT/pubhtml?widget=true&headers=false";
-    document.getElementById("gear-sheet").src = url;
-    if (localStorage.getItem("isAdmin") === "true") {
-      document.getElementById("gear-admin").style.display = "block";
-      document.getElementById("gear-url").value = url;
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>개별장비 리스트</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer>
+    async function fetchGearList() {
+      const res = await fetch('gearlist.json'); // JSON 파일 불러오기
+      const gearList = await res.json();
+      window.fullList = gearList;
+      renderGearList(gearList);
     }
-  }
-  function saveGearURL() {
-    const newUrl = document.getElementById("gear-url").value;
-    localStorage.setItem("gearURL", newUrl);
-    document.getElementById("gear-sheet").src = newUrl;
-  }
-  loadGearURL();
-</script>
+
+    function renderGearList(list) {
+      const container = document.getElementById('gear-list');
+      container.innerHTML = '';
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bg-gray-800 text-white p-4 rounded-lg shadow-md';
+        div.innerHTML = `
+          <h3 class="font-bold text-lg mb-2">${item.name}</h3>
+          <p>종류: ${item.type}</p>
+          <p>가격: ${item.price}</p>
+          <p>설명: ${item.description}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function searchGear() {
+      const keyword = document.getElementById('search').value.trim().toLowerCase();
+      const filtered = window.fullList.filter(item =>
+        item.name.toLowerCase().includes(keyword) ||
+        item.type.toLowerCase().includes(keyword) ||
+        item.description.toLowerCase().includes(keyword)
+      );
+      renderGearList(filtered);
+    }
+
+    window.onload = fetchGearList;
+  </script>
+</head>
+<body class="bg-black text-white min-h-screen p-4">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold text-yellow-400 mb-4">🔍 개별장비 검색 및 목록</h1>
+    <input id="search" oninput="searchGear()" placeholder="아이템 이름 또는 설명으로 검색..."
+      class="w-full p-3 mb-6 text-black rounded-lg" />
+
+    <div id="gear-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </div>
+</body>
+</html>
