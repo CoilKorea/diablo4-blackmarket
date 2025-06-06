@@ -2,60 +2,34 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <title>가격표 수정</title>
   <meta name="viewport" content="width=device-width" />
-  <title>💰 가격표 수정</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <style>
-    body {
-      background: #111;
-      color: #eee;
-      font-family: 'Pretendard Variable', sans-serif;
-      padding: 2rem;
-    }
-    h2 {
-      color: #ffcc00;
-    }
-    textarea {
-      width: 100%;
-      height: 400px;
-      font-family: monospace;
-      font-size: 0.9rem;
-      border-radius: 10px;
-      padding: 1rem;
-      box-sizing: border-box;
-    }
-    button {
-      margin-top: 1rem;
-      background: orange;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-    }
+    body { background: #111; color: #eee; font-family: 'Pretendard Variable', sans-serif; padding: 2rem; }
+    h2 { color: #ffcc00; }
+    textarea { width: 100%; height: 500px; font-family: monospace; font-size: 0.9rem; border-radius: 10px; padding: 1rem; box-sizing: border-box; }
+    button { margin-top: 1rem; background: orange; color: #000; font-weight: bold; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h2>💰 가격표 수정</h2>
-  <textarea id="price-editor">{}</textarea>
-  <button onclick="savePrices()">💾 저장</button>
+  <h2>💰 가격표 수치 수정</h2>
+  <textarea id="editor"></textarea>
+  <button onclick="save()">💾 저장</button>
 
   <script>
-    fetch('/data/prices.json')
+    fetch('/data/price-values.json')
       .then(res => res.json())
       .then(data => {
-        document.getElementById('price-editor').value = JSON.stringify(data, null, 2);
+        document.getElementById('editor').value = JSON.stringify(data, null, 2);
       });
 
-    function savePrices() {
-      const jsonText = document.getElementById('price-editor').value;
-      let parsed;
-
+    function save() {
+      let content = document.getElementById('editor').value;
       try {
-        parsed = JSON.parse(jsonText);
+        JSON.parse(content);
       } catch (e) {
-        alert("❌ JSON 형식 오류\n" + e.message);
+        alert("❌ JSON 형식 오류: " + e.message);
         return;
       }
 
@@ -63,12 +37,12 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          path: 'data/prices.json',
-          content: JSON.stringify(parsed, null, 2),
-          message: '💰 가격표 업데이트'
+          path: 'data/price-values.json',
+          content: content,
+          message: '💰 가격 수치 업데이트'
         })
       }).then(res => {
-        if (res.ok) alert("✅ 저장 성공!");
+        if (res.ok) alert("✅ 저장 성공");
         else alert("❌ 저장 실패");
       });
     }
