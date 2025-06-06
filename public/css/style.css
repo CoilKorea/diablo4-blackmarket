@@ -145,19 +145,21 @@ nav {
   justify-content: center;
   gap: 10px;
   padding: 12px 10px;
-  position: absolute;
+  position: relative;
   width: 100%;
-  top: 0;
+  top: unset;
   z-index: 10;
   flex-wrap: wrap;
   transition: all 0.3s ease;
 }
 
-nav.sticky {
+nav.fixed {
   position: fixed;
   top: 0;
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  z-index: 9999;
+  background-color: #111;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
 
