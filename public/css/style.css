@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Kenris';
-  src: url('/assets/Kenris.ttf') format('truetype');
+  src: url('Kenris.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'GmarketSans';
-  src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
+  src: url('GmarketSansTTFBold.ttf') format('truetype');
 }
 
 html, body {
