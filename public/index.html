@@ -41,23 +41,28 @@
   <div id="include-season8" class="tab"></div>
 
   <!-- ✅ 스크롤 방향에 따라 sticky 적용 -->
-  <script>
-    let lastScrollY = window.scrollY;
+ <script>
+  let lastScrollY = window.scrollY;
+  const nav = document.querySelector("nav");
 
-    window.addEventListener("scroll", () => {
-      const nav = document.querySelector("nav");
-      const currentScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
 
-      if (!nav) return;
+    if (!nav) return;
 
-      if (currentScrollY > lastScrollY) {
-        nav.classList.add("sticky");
-      } else {
-        nav.classList.remove("sticky");
-      }
+    if (currentScrollY > lastScrollY) {
+      // 스크롤 내릴 때: 고정
+      nav.style.position = "fixed";
+      nav.style.top = "0";
+      nav.style.width = "100%";
+    } else {
+      // 스크롤 올릴 때: 일반 위치로
+      nav.style.position = "relative";
+    }
 
-      lastScrollY = currentScrollY;
-    });
-  </script>
+    lastScrollY = currentScrollY;
+  });
+</script>
+
 </body>
 </html>
