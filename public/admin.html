@@ -1,51 +1,78 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>가격표 수정</title>
+  <title>가격표 시각 편집기</title>
   <meta name="viewport" content="width=device-width" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <style>
     body { background: #111; color: #eee; font-family: 'Pretendard Variable', sans-serif; padding: 2rem; }
     h2 { color: #ffcc00; }
-    textarea { width: 100%; height: 500px; font-family: monospace; font-size: 0.9rem; border-radius: 10px; padding: 1rem; box-sizing: border-box; }
-    button { margin-top: 1rem; background: orange; color: #000; font-weight: bold; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    th, td { border: 1px solid #444; padding: 0.6rem; }
+    th { background: #222; }
+    input { width: 100%; padding: 0.3rem; background: #222; color: #fff; border: 1px solid #555; border-radius: 4px; }
+    button { background: orange; color: #000; font-weight: bold; padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; margin-top: 1rem; }
+    button:hover { background: #ffb300; }
   </style>
 </head>
 <body>
-  <h2>💰 가격표 수치 수정</h2>
-  <textarea id="editor"></textarea>
-  <button onclick="save()">💾 저장</button>
+  <h2>💰 가격표 시각 편집기</h2>
+  <form id="price-form">
+    <table>
+      <thead>
+        <tr><th>항목</th><th>가격</th></tr>
+      </thead>
+      <tbody id="price-table"></tbody>
+    </table>
+    <button type="button" onclick="addRow()">➕ 항목 추가</button>
+    <button type="submit">💾 저장</button>
+  </form>
 
   <script>
+    const tableBody = document.getElementById('price-table');
+
     fetch('/data/price-values.json')
       .then(res => res.json())
       .then(data => {
-        document.getElementById('editor').value = JSON.stringify(data, null, 2);
+        for (const [key, val] of Object.entries(data)) {
+          addRow(key, val);
+        }
       });
 
-    function save() {
-      let content = document.getElementById('editor').value;
-      try {
-        JSON.parse(content);
-      } catch (e) {
-        alert("❌ JSON 형식 오류: " + e.message);
-        return;
-      }
+    function addRow(label = '', price = '') {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><input type="text" value="\${label}" /></td>
+        <td><input type="text" value="\${price}" /></td>
+      `;
+      tableBody.appendChild(row);
+    }
+
+    document.getElementById('price-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {};
+      const rows = tableBody.querySelectorAll('tr');
+      rows.forEach(row => {
+        const inputs = row.querySelectorAll('input');
+        const key = inputs[0].value.trim();
+        const val = inputs[1].value.trim();
+        if (key && val) data[key] = val;
+      });
 
       fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          path: 'data/price-values.json',
-          content: content,
-          message: '💰 가격 수치 업데이트'
+          filename: 'data/price-values.json',
+          content: JSON.stringify(data, null, 2)
         })
       }).then(res => {
-        if (res.ok) alert("✅ 저장 성공");
-        else alert("❌ 저장 실패");
+        if (res.ok) alert('✅ 저장 성공');
+        else alert('❌ 저장 실패');
       });
-    }
+    });
   </script>
 </body>
 </html>
