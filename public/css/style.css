@@ -1,3 +1,4 @@
+
     @font-face {
       font-family: 'Kenris';
       src: url('Kenris.ttf') format('truetype');
@@ -5,8 +6,6 @@
 
     html {
       font-size: 16px;
-          overscroll-behavior: none;
-  touch-action: manipulation;
     }
 
     body {
@@ -16,8 +15,6 @@
       background-color: #111;
       color: #eee;
       line-height: 1.6;
-          overscroll-behavior: none;
-  touch-action: manipulation;
     }
 
     a {
@@ -204,3 +201,4 @@
         font-size: 1.4rem;
       }
     }
+  
