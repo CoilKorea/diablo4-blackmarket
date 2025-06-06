@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
+const applyPrice = require('./applyPrice');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -24,24 +25,7 @@ app.post('/api/save', (req, res) => {
     }
 
     console.log(`✅ 저장 완료: ${filename}`);
-
-    // 💡 치환 적용 (price-values.json 기반)
-    try {
-      const valuesPath = path.join(__dirname, 'data', 'price-values.json');
-      const values = JSON.parse(fs.readFileSync(valuesPath, 'utf8'));
-      let html = fs.readFileSync(filePath, 'utf8');
-
-      for (const [key, val] of Object.entries(values)) {
-        const regex = new RegExp(key.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
-        html = html.replace(regex, val);
-      }
-
-      fs.writeFileSync(filePath, html, 'utf8');
-      console.log('✔ 치환 완료');
-    } catch (e) {
-      console.error('❌ 치환 실패:', e);
-    }
-
+    applyPrice();  // ✅ HTML 재생성
     gitCommitAndPush(filename); // Git 자동 커밋 및 푸시
     res.json({ success: true });
   });
@@ -56,7 +40,11 @@ function gitCommitAndPush(filePath) {
 
   const ignorePath = path.join(__dirname, '.gitignore');
   if (!fs.existsSync(ignorePath)) {
-    fs.writeFileSync(ignorePath, 'node_modules\nbuild\nCNAME\n*.log\n');
+    fs.writeFileSync(ignorePath, 'node_modules
+build
+CNAME
+*.log
+');
   }
 
   const commands = `
@@ -69,6 +57,7 @@ function gitCommitAndPush(filePath) {
     git checkout -B main || git checkout main
     git pull origin main --allow-unrelated-histories --no-edit || true
     git add public/${filePath}
+    git add public/price.html
     git commit -m "${commitMessage}" || echo "스킵: 변경 없음"
     git push origin main || echo "❌ 푸시 실패"
   `;
