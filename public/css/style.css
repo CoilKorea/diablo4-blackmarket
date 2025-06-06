@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Kenris';
-  src: url('../assets/Kenris.ttf') format('truetype');
+  font-family: 'GmarketSansTTFBold';
+  src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
 }
 
 html, body {
