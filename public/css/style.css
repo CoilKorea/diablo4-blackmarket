@@ -6,12 +6,19 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
   font-family: 'Pretendard Variable', sans-serif;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
   font-size: 16px;
+}
+
+body {
+  font-family: 'GmarketSansTTFBold', sans-serif;
+  background: none; /* 배너 외곽 검정 제거 */
 }
 
 a {
@@ -26,8 +33,12 @@ a:visited, a:focus, a:hover {
 
 header {
   position: relative;
+  width: 100vw;
   height: 100vh;
-  background: url('https://i.imgur.com/bwyltCl.jpeg') center/cover no-repeat;
+  background: url('https://i.imgur.com/bwyltCl.jpeg') no-repeat center center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
