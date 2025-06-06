@@ -23,21 +23,19 @@ app.post('/api/save', (req, res) => {
     return res.status(400).json({ error: '허용되지 않은 파일입니다.' });
   }
 
-  const savePath = path.join(__dirname, 'public', filename);  // ✅ 수정됨
-  fs.writeFile(savePath, content, 'utf8', (err) => {
-    if (err) return res.status(500).json({ error: '파일 저장 실패' });
+  const savePath = path.join(__dirname, 'public', filename); // ✅ 수정됨
 
-    const gitCommands = `
-      cd "${__dirname}" && \
-      git add "public/${filename}" && \
-      git commit -m "🔧 ${path.basename(filename)} 수정됨" && \
-      git push origin main
-    `;
-    exec(gitCommands, (gitErr) => {
-      if (gitErr) return res.status(500).json({ error: 'Git 푸시 실패' });
-      res.json({ success: true, message: '저장 및 푸시 완료' });
-    });
+  fs.writeFile(savePath, content, 'utf8', (err) => {
+    if (err) {
+      console.error('파일 저장 실패:', err.message);
+      return res.status(500).json({ error: '파일 저장 실패' });
+    }
+
+    console.log(`✅ 저장됨: ${savePath}`);
+    res.json({ success: true, message: '파일 저장 성공' });
   });
+});
+
 });
 
 app.listen(PORT, () => {
