@@ -3,12 +3,16 @@
   src: url('../assets/Kenris.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('../assets/GmarketSansTTFBold.ttf') format('truetype');
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   font-family: 'GmarketSans', sans-serif;
-  src: url('../assets/GmarketSansTTFBold.ttf') format('truetype');
   background-color: #111;
   color: #eee;
   line-height: 1.6;
