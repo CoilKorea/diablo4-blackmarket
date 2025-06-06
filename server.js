@@ -2,14 +2,13 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));  // HTML 본문이 클 수 있으므로 제한 증가
 app.use(express.static('public'));
 
-// 📁 HTML 저장 API
+// ✅ 저장 API: 입력한 HTML을 price.html에 그대로 저장
 app.post('/api/save', (req, res) => {
   const { filename, content } = req.body;
 
@@ -18,27 +17,24 @@ app.post('/api/save', (req, res) => {
   }
 
   const filePath = path.join(__dirname, 'public', filename);
-
   fs.writeFile(filePath, content, 'utf8', (err) => {
     if (err) {
-      console.error('❌ 파일 저장 실패:', err);
-      return res.status(500).json({ success: false, error: '파일 저장 실패' });
+      console.error('❌ 저장 실패:', err);
+      return res.status(500).json({ success: false, error: '파일 저장 중 오류 발생' });
     }
 
     console.log(`✅ 저장 완료: ${filename}`);
-    gitCommitAndPush(filename); // 🔁 Git 자동 커밋/푸시
-    res.json({ success: true });
+    gitCommitAndPush(filename);  // GitHub로 자동 푸시
+    return res.json({ success: true });
   });
 });
 
-// 🔁 Git 자동 커밋 & 푸시
+// GitHub에 자동 푸시
 function gitCommitAndPush(filePath) {
   const githubToken = process.env.GITHUB_TOKEN;
   const repoURL = 'https://github.com/CoilKorea/diablo4-blackmarket.git';
   const remoteURL = repoURL.replace('https://', `https://${githubToken}@`);
   const commitMessage = `자동 저장: ${filePath} 업데이트`;
-
-  const fullFilePath = path.join('public', filePath);
 
   const commands = `
     git init
@@ -49,7 +45,7 @@ function gitCommitAndPush(filePath) {
     git fetch origin
     git checkout -B main || git checkout main
     git pull origin main --allow-unrelated-histories --no-edit || true
-    git add ${fullFilePath}
+    git add public/${filePath}
     git commit -m "${commitMessage}" || echo "스킵: 변경 없음"
     git push origin main || echo "❌ 푸시 실패"
   `;
@@ -64,5 +60,5 @@ function gitCommitAndPush(filePath) {
 }
 
 app.listen(PORT, () => {
-  console.log(`🚀 서버 실행 중: http://localhost:${PORT}`);
+  console.log(`서버 실행 중: http://localhost:${PORT}`);
 });
