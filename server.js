@@ -24,6 +24,24 @@ app.post('/api/save', (req, res) => {
     }
 
     console.log(`✅ 저장 완료: ${filename}`);
+
+    // 💡 치환 적용 (price-values.json 기반)
+    try {
+      const valuesPath = path.join(__dirname, 'data', 'price-values.json');
+      const values = JSON.parse(fs.readFileSync(valuesPath, 'utf8'));
+      let html = fs.readFileSync(filePath, 'utf8');
+
+      for (const [key, val] of Object.entries(values)) {
+        const regex = new RegExp(key.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+        html = html.replace(regex, val);
+      }
+
+      fs.writeFileSync(filePath, html, 'utf8');
+      console.log('✔ 치환 완료');
+    } catch (e) {
+      console.error('❌ 치환 실패:', e);
+    }
+
     gitCommitAndPush(filename); // Git 자동 커밋 및 푸시
     res.json({ success: true });
   });
