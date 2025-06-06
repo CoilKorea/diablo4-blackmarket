@@ -14,6 +14,8 @@ html, body {
   color: #eee;
   line-height: 1.6;
   font-size: 16px;
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 a {
