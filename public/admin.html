@@ -2,161 +2,76 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🔧 관리자 페이지 - 실시간 수정</title>
-  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+  <meta name="viewport" content="width=device-width" />
+  <title>💰 가격표 수정</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <style>
     body {
       background: #111;
       color: #eee;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
+      font-family: 'Pretendard Variable', sans-serif;
       padding: 2rem;
     }
-
     h2 {
-      color: gold;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      color: #ffcc00;
     }
-
-    .editor-wrapper {
-      background: #1e1e1e;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+    textarea {
+      width: 100%;
+      height: 400px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      padding: 1rem;
+      box-sizing: border-box;
     }
-
-    .save-btn {
-      background: orange;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
+    button {
       margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .save-btn:hover {
-      background: #ff9900;
-    }
-
-    .back-btn {
-      position: fixed;
-      top: 16px;
-      left: 16px;
       background: orange;
-      color: black;
-      padding: 6px 12px;
-      border-radius: 6px;
+      color: #000;
       font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
       cursor: pointer;
-    }
-
-    #google_translate_element {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 999;
-    }
-
-    .toastui-editor-contents pre {
-      background: none !important;
     }
   </style>
 </head>
 <body>
-  <div id="google_translate_element"></div>
-  <button class="back-btn" onclick="location.href='/'">← 메인으로</button>
+  <h2>💰 가격표 수정</h2>
+  <textarea id="price-editor">{}</textarea>
+  <button onclick="savePrices()">💾 저장</button>
 
-  <div class="editor-wrapper">
-    <h2>💰 가격표 수정</h2>
-    <div id="editor-price"></div>
-    <button class="save-btn" onclick="saveContent('sections/price.html', priceEditor)">📂 저장</button>
-  </div>
-
-  <div class="editor-wrapper">
-    <h2>📄 개별장비 수정</h2>
-    <div id="editor-items"></div>
-    <button class="save-btn" onclick="saveContent('sections/items.html', itemsEditor)">📂 저장</button>
-  </div>
-
-  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
   <script>
-    const { Editor } = toastui;
-
-    const priceEditor = new Editor({
-      el: document.querySelector('#editor-price'),
-      height: '400px',
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: false,
-      hideModeSwitch: true,
-      customHTMLSanitizer: html => html
-    });
-
-    const itemsEditor = new Editor({
-      el: document.querySelector('#editor-items'),
-      height: '400px',
-      initialEditType: 'wysiwyg',
-      previewStyle: 'vertical',
-      usageStatistics: false,
-      hideModeSwitch: true,
-      customHTMLSanitizer: html => html
-    });
-
-    async function saveContent(filename, editorInstance) {
-      const html = editorInstance.getHTML();
-      const res = await fetch('/api/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename, content: html })
+    fetch('/data/prices.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('price-editor').value = JSON.stringify(data, null, 2);
       });
 
-      const result = await res.json();
-      if (result.success) {
-        alert("✅ 저장 완료");
-        await loadEditor(filename, editorInstance);
-      } else {
-        alert("❌ 저장 실패");
-        console.error(result.error);
+    function savePrices() {
+      const jsonText = document.getElementById('price-editor').value;
+      let parsed;
+
+      try {
+        parsed = JSON.parse(jsonText);
+      } catch (e) {
+        alert("❌ JSON 형식 오류\n" + e.message);
+        return;
       }
-    }
 
-    async function loadInitialContent() {
-      const loadEditor = async (filename, editorInstance) => {
-        try {
-          const res = await fetch(filename);
-          const html = await res.text();
-          editorInstance.setHTML(html);
-        } catch (e) {
-          console.error(`${filename} 로딩 실패`, e);
-        }
-      };
-
-      await loadEditor('sections/price.html', priceEditor);
-      await loadEditor('sections/items.html', itemsEditor);
-    }
-
-    loadInitialContent();
-  </script>
-
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'ko',
-        includedLanguages: 'ko,zh-CN',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: 'data/prices.json',
+          content: JSON.stringify(parsed, null, 2),
+          message: '💰 가격표 업데이트'
+        })
+      }).then(res => {
+        if (res.ok) alert("✅ 저장 성공!");
+        else alert("❌ 저장 실패");
+      });
     }
   </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
