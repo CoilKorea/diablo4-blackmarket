@@ -30,7 +30,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: 'GmarketSansBold', sans-serif;
+  font-family: 'GmarketSansBold', sans-serif; !important;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
