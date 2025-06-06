@@ -3,11 +3,16 @@
   src: url('../assets/Kenris.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'GmarketSansTTFBold';
+  src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: 'GmarketSansTTFLight', sans-serif;
+  font-family: 'GmarketSansTTFBold', sans-serif;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
@@ -150,7 +155,6 @@ nav button.active {
   transform: scale(1.05);
 }
 
-/* ✅ 수정: 가로폭 제한 제거 */
 .tab {
   display: none;
   padding: 40px 20px;
