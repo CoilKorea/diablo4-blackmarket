@@ -8,6 +8,16 @@
   src: url('GmarketSansTTFBold.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'G마켓 산스 TTF Medium';
+  src: url('/assets/GmarketSansTTFMedium.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'G마켓 산스 TTF Light';
+  src: url('/assets/GmarketSansTTFLight.ttf') format('truetype');
+  font-weight: 300;
+}
 html, body {
   margin: 0;
   padding: 0;
