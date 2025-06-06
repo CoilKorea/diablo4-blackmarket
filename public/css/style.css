@@ -1,19 +1,19 @@
 @font-face {
-  font-family: 'G마켓 산스 TTF Bold';
+  font-family: 'GmarketSansBold';
   src: url('/assets/GmarketSansTTFBold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'G마켓 산스 TTF Medium';
+  font-family: 'GmarketSansBold';
   src: url('/assets/GmarketSansTTFMedium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'G마켓 산스 TTF Light';
+  font-family: 'GmarketSansBold';
   src: url('/assets/GmarketSansTTFLight.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
@@ -30,7 +30,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: 'G마켓 산스 TTF Bold', sans-serif;
+  font-family: 'GmarketSansBold', sans-serif;
   background-color: #111;
   color: #eee;
   line-height: 1.6;
