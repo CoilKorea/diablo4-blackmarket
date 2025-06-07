@@ -74,7 +74,6 @@ window.addEventListener('scroll', () => {
   }
 
   // ✅ nav 고정 클래스 추가
-  /*
   const nav = document.querySelector("nav");
   if (nav) {
     if (scrollY > 100) {
@@ -84,4 +83,3 @@ window.addEventListener('scroll', () => {
     }
   }
 });
-*/
