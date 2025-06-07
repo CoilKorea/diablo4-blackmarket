@@ -154,16 +154,18 @@
 
 function searchGear() {
   const keyword = document.getElementById("search").value.trim().toLowerCase();
-  const keywords = keyword.split(/\s+/); // 공백으로 나눔
+  const keywords = keyword.split(/\s+/); // 공백으로 나눈 키워드 배열
 
-  const filtered = gearData.filter(item =>
-    keywords.some(kw =>
-      (item.name && item.name.toLowerCase().includes(kw)) ||
-      (item.type && item.type.toLowerCase().includes(kw)) ||
-      (item.description && item.description.toLowerCase().includes(kw)) ||
-      (item.abbr && item.abbr.toLowerCase().includes(kw))
-    )
-  );
+  const filtered = gearData.filter(item => {
+    const haystack = [
+      item.name?.toLowerCase() || "",
+      item.type?.toLowerCase() || "",
+      item.description?.toLowerCase() || "",
+      item.abbr?.toLowerCase() || ""
+    ].join(" ");
+
+    return keywords.some(kw => haystack.includes(kw));
+  });
 
   renderGearList(filtered);
 }
