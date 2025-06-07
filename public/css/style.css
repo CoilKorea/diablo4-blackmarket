@@ -374,14 +374,24 @@ pre {
   margin-top: 0.5rem;
 }
 
+/* 
 #tab-notice {
   text-align: left !important;
 }
 
 #tab-price {
+/* 무시  text-align: center !important; 
+}
+  
+#tab-items {
   text-align: center !important;
 }
 
 #tab-items {
-  text-align: left !important;
+  text-align: center !important;
+}
+*/
+
+.tab {
+  text-align: initial;
 }
