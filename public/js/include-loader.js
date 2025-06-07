@@ -48,3 +48,6 @@ function onIncludesLoaded() {
     lastScrollY = currentScrollY;
   });
 }
+
+window.dispatchEvent(new Event('includes-loaded'));
+}
