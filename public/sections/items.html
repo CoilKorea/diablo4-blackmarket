@@ -1,16 +1,17 @@
+<div style="text-align: center;">
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🔍 개별장비 검색</title>
+  <title>🎯 Gear List Test (Local)</title>
   <style>
     body {
       background-color: #000;
       color: #fff;
       font-family: 'Malgun Gothic', sans-serif;
       margin: 0;
-      padding: 0rem;
+      padding: 0;
       text-align: center;
     }
     input#search {
@@ -19,7 +20,10 @@
       width: 90%;
       max-width: 400px;
       border-radius: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #666;
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
     }
     #gear-list {
       margin-top: 2rem;
@@ -34,13 +38,20 @@
       border: 1px solid #444;
       border-radius: 10px;
       padding: 1rem;
+      max-width: 360px;
+      margin: auto;
     }
     .gear-card img {
       width: 100%;
-      max-height: 200px;
+      max-width: 320px;
+      max-height: 400px;
+      height: auto;
       object-fit: contain;
       border-radius: 6px;
       margin-bottom: 0.5rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     .gear-card h3 {
       color: #ffc107;
@@ -51,6 +62,26 @@
       font-size: 0.9rem;
       color: #ccc;
     }
+    .gear-card .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      margin-top: 1rem;
+      position: relative;
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gear-card .price::after {
+      content: "";
+      display: block;
+      margin: 4px auto 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+    }
     #gear-names {
       margin-top: 2rem;
       text-align: center;
@@ -59,37 +90,57 @@
       line-height: 1.8;
       padding: 0 1rem;
     }
+    .description-text {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+    @media (max-width: 768px) {
+      #gear-list {
+        grid-template-columns: 1fr;
+      }
+      .gear-card img {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>🔍 개별장비 검색 및 목록</h2>
+  <h2>🎯 Gear List Test (Local)</h2>
   <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
 
-  <div id="gear-list"></div>
+  <p class="description-text">바로 판매가 가능한 아이템 목록입니다. 리스트에 없는 것은 요청해주세요.</p>
+
   <div id="gear-names"></div>
+  <div id="gear-list"></div>
 
   <script>
     let gearData = [];
 
     async function fetchGearList() {
-      const res = await fetch('/data/gearlist.json');
-      gearData = await res.json();
-      renderGearList(gearData);
-      renderGearNames(gearData);
+      try {
+        const res = await fetch("gearlist.json");
+        gearData = await res.json();
+        renderGearList(gearData);
+        renderGearNames(gearData);
+      } catch (e) {
+        document.getElementById("gear-list").innerHTML = '<p style="color:red">❌ 오류: ' + e.message + '</p>';
+      }
     }
 
     function renderGearList(list) {
-      const container = document.getElementById('gear-list');
-      container.innerHTML = '';
+      const container = document.getElementById("gear-list");
+      container.innerHTML = "";
       list.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'gear-card';
+        const div = document.createElement("div");
+        div.className = "gear-card";
+        const formattedOptions = item.description ? item.description.replace(/\\/g, " ").replace(/\s{2,}/g, ' ') : '';
         div.innerHTML = `
-          <img src="/data/images/${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
+          <img src="${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
           <h3>${item.name}</h3>
           <p><strong>종류:</strong> ${item.type}</p>
-          <p><strong>옵션:</strong> ${item.description}</p>
-          <p><strong>줄임말:</strong> ${item.abbr}</p>
+          <p><strong>옵션:</strong> ${formattedOptions}</p>
+          ${item.price ? `<p class="price">${item.price}원</p>` : ''}
         `;
         container.appendChild(div);
       });
@@ -97,12 +148,12 @@
 
     function renderGearNames(list) {
       const names = [...new Set(list.map(item => item.name))].sort((a, b) => a.localeCompare(b));
-      const container = document.getElementById('gear-names');
+      const container = document.getElementById("gear-names");
       container.innerHTML = `<h3>📦 보유 장비 목록 (이름 기준 정렬)</h3><p>${names.join(' · ')}</p>`;
     }
 
     function searchGear() {
-      const keyword = document.getElementById('search').value.trim().toLowerCase();
+      const keyword = document.getElementById("search").value.trim().toLowerCase();
       const filtered = gearData.filter(item =>
         (item.name && item.name.toLowerCase().includes(keyword)) ||
         (item.type && item.type.toLowerCase().includes(keyword)) ||
