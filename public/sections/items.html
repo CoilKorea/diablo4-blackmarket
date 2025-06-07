@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔍 개별장비 검색</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Malgun Gothic', sans-serif;
+      margin: 0;
+      padding: 0rem;
+    }
+    input#search {
+      padding: 0.8rem;
+      font-size: 1rem;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    #gear-list {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      padding: 0 1rem;
+    }
+    .gear-card {
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: left;
+    }
+    .gear-card img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .gear-card h3 {
+      color: #ffc107;
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+    .gear-card p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔍 개별장비 검색 및 목록</h2>
+  <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
 
+  <div id="gear-list"></div>
+
+  <script>
+    let gearData = [];
+
+    async function fetchGearList() {
+      const res = await fetch('/data/gearlist.json');
+      gearData = await res.json();
+      renderGearList(gearData);
+    }
+
+    function renderGearList(list) {
+      const container = document.getElementById('gear-list');
+      container.innerHTML = '';
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gear-card';
+        div.innerHTML = `
+          <img src="/data/images/${item.filename}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p><strong>종류:</strong> ${item.type}</p>
+          <p><strong>옵션:</strong> ${item.description}</p>
+          <p><strong>줄임말:</strong> ${item.abbr}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function searchGear() {
+      const keyword = document.getElementById('search').value.trim().toLowerCase();
+      const filtered = gearData.filter(item =>
+        (item.name && item.name.toLowerCase().includes(keyword)) ||
+        (item.type && item.type.toLowerCase().includes(keyword)) ||
+        (item.description && item.description.toLowerCase().includes(keyword)) ||
+        (item.abbr && item.abbr.toLowerCase().includes(keyword))
+      );
+      renderGearList(filtered);
+    }
+
+    window.onload = fetchGearList;
+  </script>
+</body>
+</html>
