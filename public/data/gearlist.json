@@ -486,6 +486,14 @@
     "description": "행적제외 맥스25%",
     "abbr": "탈반 / 탈라샤 / 탈라 / 탈랴샤 /탈랴사",
     "filename": "no1.png"
+  },
+   {
+    "name": "신 살해자 왕관",
+    "type": "고유",
+    "price": "5,000",
+    "description": "4어픽 맥스25%",
+    "abbr": "신살/신 살해자",
+    "filename": "no1.png"
   }
 
 
