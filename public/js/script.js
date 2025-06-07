@@ -1,3 +1,4 @@
+// ✅ 탭 전환 및 버튼 스타일 처리
 function showTab(id) {
   // 모든 탭 숨기기
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
@@ -16,20 +17,32 @@ function showTab(id) {
   if (id === 'items') {
     reloadGearSheetIframe();
   }
+
+  // 스크롤 애니메이션
+  const targetEl = document.getElementById('include-' + id);
+  if (targetEl) {
+    window.scrollTo({
+      top: targetEl.offsetTop - 80,
+      behavior: "smooth"
+    });
+  }
 }
 
+// ✅ 개별장비 탭에서 iframe 새로고침
 function reloadGearSheetIframe() {
   const iframe = document.getElementById('gear-sheet');
   if (iframe) {
     const currentSrc = iframe.src;
-    iframe.src = ''; // 먼저 비워 언로드 유도
+    iframe.src = '';
     setTimeout(() => {
-      iframe.src = currentSrc; // 다시 로드
-    }, 50); // 살짝 딜레이 줘야 완전히 초기화됨
+      iframe.src = currentSrc;
+    }, 50);
   }
 }
 
+// ✅ DOM 로딩 시 초기화
 document.addEventListener("DOMContentLoaded", () => {
+  // 탭 버튼 클릭 이벤트 등록
   const buttons = document.querySelectorAll("nav button");
 
   buttons.forEach(button => {
@@ -51,18 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 });
 
-// 스크롤 시 오버레이 어둡게
-window.addEventListener('scroll', function () {
-  const nav = document.querySelector('nav');
-  const header = document.querySelector('header');
+// ✅ 스크롤 시 배경 어둡게 처리
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const overlay = document.getElementById('overlay');
+  if (overlay) {
+    const opacity = Math.min(scrollY / 300, 0.6);
+    overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
+  }
 
-  if (!nav || !header) return;
-
-  const scrollY = window.scrollY || window.pageYOffset;
-
-  // ✅ 최초에만 nav가 header 아래에 있어야 함
-  // ✅ 스크롤 한 번이라도 내리면 고정 유지
-  if (scrollY > 100) {
-    nav.classList.add('fixed');
+  // ✅ nav 고정 클래스 추가
+  const nav = document.querySelector("nav");
+  if (nav) {
+    if (scrollY > 100) {
+      nav.classList.add("fixed");
+    } else {
+      nav.classList.remove("fixed");
+    }
   }
 });
