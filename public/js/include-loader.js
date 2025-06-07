@@ -16,17 +16,30 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch(url)
       .then(res => res.text())
       .then(data => {
-        document.getElementById(id).innerHTML = data;
+        const container = document.getElementById(id);
+        if (container) {
+          container.innerHTML = data;
+        }
         loadCount++;
 
-        // 모든 include가 끝났을 때 실행
+        // ✅ 모든 include가 끝났을 때 후처리
         if (loadCount === totalIncludes) {
-          onIncludesLoaded(); // ✅ 후처리 콜백 실행
+          try {
+            onIncludesLoaded(); // 안전하게 후처리
+          } catch (e) {
+            console.error('onIncludesLoaded() 실패:', e);
+          } finally {
+            window.dispatchEvent(new Event('includes-loaded'));
+          }
         }
+      })
+      .catch(err => {
+        console.error(`Failed to load ${url}`, err);
       });
   });
 });
 
+// ✅ 후처리: 스크롤 시 nav 고정
 function onIncludesLoaded() {
   const nav = document.querySelector("nav");
   if (!nav) return;
@@ -47,7 +60,4 @@ function onIncludesLoaded() {
 
     lastScrollY = currentScrollY;
   });
-}
-
-window.dispatchEvent(new Event('includes-loaded'));
 }
