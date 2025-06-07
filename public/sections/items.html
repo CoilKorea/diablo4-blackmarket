@@ -154,16 +154,23 @@
 
 function searchGear() {
   const keyword = document.getElementById("search").value.trim().toLowerCase();
-  const keywords = keyword.split(/\s+/); // 공백으로 나눈 키워드 배열
+  if (!keyword) {
+    renderGearList(gearData);
+    return;
+  }
+
+  const keywords = keyword.split(/\s+/); // '분노 지능' → ['분노', '지능']
 
   const filtered = gearData.filter(item => {
+    // 모든 검색대상 텍스트를 공백 제거 + 소문자로 변환 후 하나로 합침
     const haystack = [
-      item.name?.toLowerCase() || "",
-      item.type?.toLowerCase() || "",
-      item.description?.toLowerCase() || "",
-      item.abbr?.toLowerCase() || ""
-    ].join(" ");
+      item.name || "",
+      item.type || "",
+      item.description || "",
+      item.abbr || ""
+    ].join(" ").replace(/\s+/g, " ").toLowerCase();
 
+    // 하나라도 포함되면 통과 (OR 조건)
     return keywords.some(kw => haystack.includes(kw));
   });
 
