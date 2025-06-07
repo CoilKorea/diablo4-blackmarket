@@ -1,657 +1,490 @@
 [
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "최대 생명력 +431",
-      "독 저항 +41.0%",
-      "★역공+3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "최대 생명력 +431 / 독 저항 +41.0% / ★역공+3",
+    "abbr": "최생 / 역공",
     "filename": "image1.jpeg"
   },
   {
     "name": "중심점",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★처치 시 +3 마나",
-      "★극대화 확률 +12.0%"
-    ],
+    "type": "중심점",
+    "price": null,
+    "description": "★지능 +182 / ★처치 시 +3 마나 / ★극대화 확률 +12.0%",
+    "abbr": "지능 / 마나 / 극확",
     "filename": "image115.jpeg"
   },
   {
     "name": "미늘창",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "★처치 시 +6 분노"
-    ],
+    "type": "미늘창",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / ★처치 시 +6 분노",
+    "abbr": "힘 / 최생",
     "filename": "image122.png"
   },
   {
     "name": "활",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★민첩 +363",
-      "★최대 생명력 +1,370",
-      "★제압 피해 +210.0%"
-    ],
+    "type": "활",
+    "price": null,
+    "description": "★민첩 +363 / ★최대 생명력 +1,370 / ★제압 피해 +210.0%",
+    "abbr": "민첩 / 최생 / 피해",
     "filename": "image123.png"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★민첩 +182",
-      "★최대 생명력 +685",
-      "★극대화 피해 +75.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★민첩 +182 / ★최대 생명력 +685 / ★극대화 피해 +75.0%",
+    "abbr": "민첩 / 최생 / 극피",
     "filename": "image124.png"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "초당 분노 +3",
-      "★전장의 함성 +4",
-      "피하기 사용 시 1.5초 동안 이동 속도 +125%"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "★힘 +182 / 초당 분노 +3 / ★전장의 함성 +4 / 피하기 사용 시 1.5초 동안 이동 속도 +125%",
+    "abbr": "힘 / 이속",
     "filename": "image125.png"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "최대 생명력 +450",
-      "★전장의 함성 +4",
-      "피하기 사용 시 1.5초 동안 이동 속도 +125%"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "★힘 +182 / 최대 생명력 +450 / ★전장의 함성 +4 / 피하기 사용 시 1.5초 동안 이동 속도 +125%",
+    "abbr": "힘 / 최생 / 이속",
     "filename": "image126.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "★최대 생명력 +685",
-      "묵직한 손 +2"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / ★최대 생명력 +685 / 묵직한 손 +2",
+    "abbr": "힘 / 최생",
     "filename": "image127.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "극대화 확률 +7.0%",
-      "묵직한 손 +2"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / 극대화 확률 +7.0% / 묵직한 손 +2",
+    "abbr": "힘 / 극확",
     "filename": "image128.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "최대 생명력 +424",
-      "역공 +2"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / 최대 생명력 +424 / 역공 +2",
+    "abbr": "힘 / 최생 / 역공",
     "filename": "image129.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "이동 속도 +19.0%",
-      "★뼈 가르기 +3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / 이동 속도 +19.0% / ★뼈 가르기 +3",
+    "abbr": "힘 / 이속",
     "filename": "image130.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "최대 생명력 +444",
-      "★뼈 가르기 +3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / 최대 생명력 +444 / ★뼈 가르기 +3",
+    "abbr": "힘 / 최생",
     "filename": "image131.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "암흑 저항 +49.0%",
-      "★역공 +3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / 암흑 저항 +49.0% / ★역공 +3",
+    "abbr": "힘 / 역공",
     "filename": "image132.png"
   },
   {
     "name": "양손 철퇴",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "행운의 적중: 최대 15% 확률로 생명력 +83 회복"
-    ],
+    "type": "양손 철퇴",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / 행운의 적중: 최대 15% 확률로 생명력 +83 회복",
+    "abbr": "힘 / 최생 / 운",
     "filename": "image133.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +23.6%",
-      "최대 생명력 +444",
-      "내면의 불꽃 +2"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★지능 +23.6% / 최대 생명력 +444 / 내면의 불꽃 +2",
+    "abbr": "지능 / 최생",
     "filename": "image134.png"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★제압 피해 +105.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★제압 피해 +105.0%",
+    "abbr": "지능 / 최생 / 피해",
     "filename": "image135.png"
   },
   {
     "name": "양손 철퇴",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "★처치 시 +6 분노"
-    ],
+    "type": "양손 철퇴",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / ★처치 시 +6 분노",
+    "abbr": "힘 / 최생",
     "filename": "image136.png"
   },
   {
     "name": "양손 철퇴",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "공격력 +68.0%"
-    ],
+    "type": "양손 철퇴",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / 공격력 +68.0%",
+    "abbr": "힘 / 최생",
     "filename": "image137.png"
   },
   {
     "name": "양손 철퇴",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "처치 시 +4 분노"
-    ],
+    "type": "양손 철퇴",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / 처치 시 +4 분노",
+    "abbr": "힘 / 최생",
     "filename": "image138.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +23.6%",
-      "★냉기 저항 +75.0%",
-      "★내면의 불꽃 +3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★지능 +23.6% / ★냉기 저항 +75.0% / ★내면의 불꽃 +3",
+    "abbr": "지능",
     "filename": "image139.png"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "공격 속도 +9.3%",
-      "★극대화 피해 +75.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★힘 +182 / 공격 속도 +9.3% / ★극대화 피해 +75.0%",
+    "abbr": "힘 / 공속 / 극피",
     "filename": "image147.png"
   },
   {
     "name": "양손 철퇴",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +363",
-      "★최대 생명력 +1,370",
-      "★처치 시 +6 분노"
-    ],
+    "type": "양손 철퇴",
+    "price": null,
+    "description": "★힘 +363 / ★최대 생명력 +1,370 / ★처치 시 +6 분노",
+    "abbr": "힘 / 최생",
     "filename": "image149.png"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "★공격 속도 +15.0%",
-      "★극대화 확률 +9.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★힘 +182 / ★공격 속도 +15.0% / ★극대화 확률 +9.0%",
+    "abbr": "힘 / 공속 / 극확",
     "filename": "image150.png"
   },
   {
     "name": "쇠뇌",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★민첩 +363",
-      "★최대 생명력 +1,370",
-      "★제압 피해 +210.0%"
-    ],
+    "type": "쇠뇌",
+    "price": null,
+    "description": "★민첩 +363 / ★최대 생명력 +1,370 / ★제압 피해 +210.0%",
+    "abbr": "민첩 / 최생 / 피해",
     "filename": "image151.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +23.6%",
-      "★최대 생명력 +685",
-      "역공 +2"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "★힘 +23.6% / ★최대 생명력 +685 / 역공 +2",
+    "abbr": "힘 / 최생 / 역공",
     "filename": "image152.png"
   },
   {
     "name": "목걸이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "지능 +15.1%",
-      "★최대 자원 +24",
-      "★태고의 속박 +3"
-    ],
+    "type": "목걸이",
+    "price": null,
+    "description": "지능 +15.1% / ★최대 자원 +24 / ★태고의 속박 +3",
+    "abbr": "지능",
     "filename": "image24.jpeg"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★회피 확률 9.0%",
-      "피하기 사용 시 1.5초 동안 이동 속도 +125%"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★회피 확률 9.0% / 피하기 사용 시 1.5초 동안 이동 속도 +125%",
+    "abbr": "지능 / 최생 / 회확 / 이속",
     "filename": "image32.jpeg"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★방어도 +352",
-      "★번개 저항 +75%",
-      "공격 시 피하기의 재사용 대기시간 1.5초 감소"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "★지능 +182 / ★방어도 +352 / ★번개 저항 +75% / 공격 시 피하기의 재사용 대기시간 1.5초 감소",
+    "abbr": "지능 / 방어",
     "filename": "image34.jpeg"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "힘 +121",
-      "★최대 생명력 +685",
-      "★이동 속도 +34.5%",
-      "공격 시 피하기의 재사용 대기시간 1.5초 감소"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "힘 +121 / ★최대 생명력 +685 / ★이동 속도 +34.5% / 공격 시 피하기의 재사용 대기시간 1.5초 감소",
+    "abbr": "힘 / 최생 / 이속",
     "filename": "image36.jpeg"
   },
   {
     "name": "장화",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "힘 +121",
-      "최대 생명력 +457",
-      "★이동 속도 +34.5%",
-      "공격 시 피하기의 재사용 대기시간 1.5초 감소"
-    ],
+    "type": "장화",
+    "price": null,
+    "description": "힘 +121 / 최대 생명력 +457 / ★이동 속도 +34.5% / 공격 시 피하기의 재사용 대기시간 1.5초 감소",
+    "abbr": "힘 / 최생 / 이속",
     "filename": "image45.jpeg"
   },
   {
     "name": "장갑",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "★최대 생명력 +685",
-      "★공격 속도 +15.0%"
-    ],
+    "type": "장갑",
+    "price": null,
+    "description": "★힘 +182 / ★최대 생명력 +685 / ★공격 속도 +15.0%",
+    "abbr": "힘 / 최생 / 공속",
     "filename": "image51.jpeg"
   },
   {
     "name": "장갑",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★극대화 확률 +12.0%",
-      "★암흑 저항 +75.0%"
-    ],
+    "type": "장갑",
+    "price": null,
+    "description": "★지능 +182 / ★극대화 확률 +12.0% / ★암흑 저항 +75.0%",
+    "abbr": "지능 / 극확",
     "filename": "image52.jpeg"
   },
   {
     "name": "바지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★받는 치유량 +19.5%"
-    ],
+    "type": "바지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★받는 치유량 +19.5%",
+    "abbr": "지능 / 최생",
     "filename": "image68.jpeg"
   },
   {
     "name": "바지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★독 저항 +75.0%"
-    ],
+    "type": "바지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★독 저항 +75.0%",
+    "abbr": "지능 / 최생",
     "filename": "image70.jpeg"
   },
   {
     "name": "바지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★번개 저항 +75.0%"
-    ],
+    "type": "바지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★번개 저항 +75.0%",
+    "abbr": "지능 / 최생",
     "filename": "image71.jpeg"
   },
   {
     "name": "바지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★암흑 저항 +75.0%"
-    ],
+    "type": "바지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★암흑 저항 +75.0%",
+    "abbr": "지능 / 최생",
     "filename": "image73.jpeg"
   },
   {
     "name": "바지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "모든 원소 저항 +11.5%"
-    ],
+    "type": "바지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / 모든 원소 저항 +11.5%",
+    "abbr": "지능 / 최생 / 원저",
     "filename": "image74.jpeg"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "자원 소모량 감소 6.8%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / 자원 소모량 감소 6.8%",
+    "abbr": "지능 / 최생",
     "filename": "image77.jpeg"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★힘 +182",
-      "★최대 생명력 +685",
-      "취약 피해 +43.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★힘 +182 / ★최대 생명력 +685 / 취약 피해 +43.0%",
+    "abbr": "힘 / 최생 / 피해",
     "filename": "image79.jpeg"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "번개 저항 +50.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / 번개 저항 +50.0%",
+    "abbr": "지능 / 최생",
     "filename": "image80.jpeg"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★최대 생명력 +685",
-      "공격 속도 +8.8%",
-      "★극대화 확률 +9.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★최대 생명력 +685 / 공격 속도 +8.8% / ★극대화 확률 +9.0%",
+    "abbr": "최생 / 공속 / 극확",
     "filename": "image86.jpeg"
   },
   {
     "name": "반지",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "암흑 저항 +42.0%"
-    ],
+    "type": "반지",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / 암흑 저항 +42.0%",
+    "abbr": "지능 / 최생",
     "filename": "image87.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★최대 생명력 +1,370",
-      "★행운의 적중: 최대 15% 확률로 생명력 +147 회복"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★최대 생명력 +1,370 / ★행운의 적중: 최대 15% 확률로 생명력 +147 회복",
+    "abbr": "지능 / 최생 / 운",
     "filename": "image89.jpeg"
   },
   {
     "name": "마법봉",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +182",
-      "★최대 생명력 +685",
-      "★지속 피해 +105.0%"
-    ],
+    "type": "마법봉",
+    "price": null,
+    "description": "★지능 +182 / ★최대 생명력 +685 / ★지속 피해 +105.0%",
+    "abbr": "지능 / 최생 / 피해",
     "filename": "image90.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★최대 생명력 +1,370",
-      "극대화 피해 +84.0%"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★최대 생명력 +1,370 / 극대화 피해 +84.0%",
+    "abbr": "지능 / 최생 / 극피",
     "filename": "image91.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★최대 생명력 +1,370",
-      "행운의 적중: 최대 15% 확률로 생명력 +61 회복"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★최대 생명력 +1,370 / 행운의 적중: 최대 15% 확률로 생명력 +61 회복",
+    "abbr": "지능 / 최생 / 운",
     "filename": "image93.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★최대 생명력 +1,370",
-      "취약 피해 +86.0%"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★최대 생명력 +1,370 / 취약 피해 +86.0%",
+    "abbr": "지능 / 최생 / 피해",
     "filename": "image94.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "최대 생명력 +900",
-      "★극대화 피해 +150.0%"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / 최대 생명력 +900 / ★극대화 피해 +150.0%",
+    "abbr": "지능 / 최생 / 극피",
     "filename": "image95.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★최대 생명력 +1,370",
-      "극대화 피해 +96.0%"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★최대 생명력 +1,370 / 극대화 피해 +96.0%",
+    "abbr": "지능 / 최생 / 극피",
     "filename": "image96.jpeg"
   },
   {
     "name": "지팡이",
-    "type": "전설",
-    "price": NaN,
-    "description": [
-      "★지능 +363",
-      "★극대화 피해 +150.0%",
-      "행운의 적중: 최대 15% 확률로 생명력 +57 회복"
-    ],
+    "type": "지팡이",
+    "price": null,
+    "description": "★지능 +363 / ★극대화 피해 +150.0% / 행운의 적중: 최대 15% 확률로 생명력 +57 회복",
+    "abbr": "지능 / 극피 / 운",
     "filename": "image97.jpeg"
   },
   {
     "name": NaN,
     "type": NaN,
-    "price": NaN,
-    "description": [],
+    "price": null,
+    "description": "",
+    "abbr": "",
     "filename": NaN
   },
   {
     "name": "건달의 가죽옷",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★30%"
-    ],
+    "type": "건달의 가죽옷",
+    "price": null,
+    "description": "★30%",
+    "abbr": "",
     "filename": "image120.jpeg"
   },
   {
     "name": "어둠속의 눈",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★150%"
-    ],
+    "type": "어둠속의 눈",
+    "price": null,
+    "description": "★150%",
+    "abbr": "",
     "filename": "image121.jpeg"
   },
   {
     "name": "하로가스의 분노",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★60%"
-    ],
+    "type": "하로가스의 분노",
+    "price": null,
+    "description": "★60%",
+    "abbr": "",
     "filename": "image140.jpeg"
   },
   {
     "name": "운명의 주먹",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★300%"
-    ],
+    "type": "운명의 주먹",
+    "price": null,
+    "description": "★300%",
+    "abbr": "",
     "filename": "image141.jpeg"
   },
   {
     "name": "운명의 주먹",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★300%",
-      "행적제외 맥스"
-    ],
+    "type": "운명의 주먹",
+    "price": null,
+    "description": "★300% / ★행적제외 맥스",
+    "abbr": "",
     "filename": "image142.jpeg"
   },
   {
     "name": "야수내림 장화",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★0.75%"
-    ],
+    "type": "야수내림 장화",
+    "price": null,
+    "description": "★0.75%",
+    "abbr": "",
     "filename": "image143.jpeg"
   },
   {
     "name": "산의 분노의 어깨걸이",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "75%",
-      "방어도 제외 어픽"
-    ],
+    "type": "산의 분노의 어깨걸이",
+    "price": null,
+    "description": "75% / ★방어도 제외 어픽",
+    "abbr": "",
     "filename": "image144.jpeg"
   },
   {
     "name": "추방된 군주의 영물",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★60%"
-    ],
+    "type": "추방된 군주의 영물",
+    "price": null,
+    "description": "★60%",
+    "abbr": "",
     "filename": "image145.jpeg"
   },
   {
     "name": "탈 라샤의 오색찬란한 고리4",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "★25%"
-    ],
+    "type": "탈 라샤의 오색찬란한 고리4",
+    "price": null,
+    "description": "★25%",
+    "abbr": "",
     "filename": "image146.jpeg"
   },
   {
     "name": "어둠속의 눈",
-    "type": "고유",
-    "price": NaN,
-    "description": [
-      "140%"
-    ],
+    "type": "어둠속의 눈",
+    "price": null,
+    "description": "140%",
+    "abbr": "",
     "filename": "image148.jpeg"
   }
 ]
