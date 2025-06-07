@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>개별장비 리스트</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <script defer>
+    let gearList = [];
+
     async function fetchGearList() {
-      const res = await fetch('/data/gearlist_final_with_abbr_v4.json');
-      const gearList = await res.json();
-      window.fullList = gearList;
+      const res = await fetch('/data/gearlist_final.json');
+      gearList = await res.json();
       renderGearList(gearList);
     }
 
@@ -20,13 +21,12 @@
       list.forEach(item => {
         const div = document.createElement('div');
         div.className = 'bg-gray-900 border border-gray-700 rounded-xl p-4 shadow hover:shadow-lg transition';
-
         div.innerHTML = `
-          <img src="/data/images/${item.filename}" alt="${item.name}" class="mb-3 rounded w-full max-w-xs mx-auto" />
+          <img src="/data/images/${item.filename}" alt="${item.name}" class="w-full rounded mb-3 border border-gray-600">
           <h3 class="text-yellow-400 font-semibold text-xl mb-1">${item.name}</h3>
-          <p class="text-sm text-gray-300 mb-1">🧩 종류: <span class="text-white">${item.type}</span></p>
-          <p class="text-sm text-gray-300 mb-1">💰 가격: <span class="text-white">${item.price ?? '-'}</span></p>
-          <p class="text-sm text-gray-400 whitespace-pre-line">📝 ${item.description}</p>
+          <p class="text-sm text-gray-300 mb-1">📂 종류: <span class="text-white">${item.type}</span></p>
+          <p class="text-sm text-gray-300 mb-1">📜 설명: <span class="text-white">${item.description}</span></p>
+          <p class="text-sm text-gray-400">🔍 줄임말: ${item.abbr || '-'}</p>
         `;
         container.appendChild(div);
       });
@@ -34,12 +34,20 @@
 
     function searchGear() {
       const keyword = document.getElementById('search').value.trim().toLowerCase();
-      const filtered = window.fullList.filter(item =>
-        (item.name?.toLowerCase().includes(keyword)) ||
-        (item.type?.toLowerCase().includes(keyword)) ||
-        (item.description?.toLowerCase().includes(keyword)) ||
-        (item.abbr?.toLowerCase().includes(keyword))
-      );
+      if (!keyword) {
+        renderGearList(gearList);
+        return;
+      }
+
+      const filtered = gearList.filter(item => {
+        const haystack = [
+          item.name || '',
+          item.description || '',
+          item.abbr || ''
+        ].join(' ').toLowerCase();
+        return keyword.split('').every(k => haystack.includes(k));
+      });
+
       renderGearList(filtered);
     }
 
@@ -49,9 +57,8 @@
 <body class="bg-black text-white font-pretendard min-h-screen py-10 px-4">
   <div class="max-w-5xl mx-auto">
     <h1 class="text-3xl font-bold text-yellow-400 mb-6">🔍 개별장비 검색 및 목록</h1>
-    <input id="search" oninput="searchGear()" placeholder="이름, 종류, 설명, 줄임말 검색..."
-      class="w-full max-w-md p-3 mb-8 text-black rounded-lg border border-gray-400" />
-
+    <input id="search" oninput="searchGear()" placeholder="아이템 이름, 설명, 줄임말로 검색..."
+      class="w-full md:w-1/2 p-3 mb-8 text-black rounded-lg border border-gray-400" />
     <div id="gear-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
   </div>
 </body>
