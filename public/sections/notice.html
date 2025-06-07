@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>💰 디아블로4 블랙마켓</title>
-  <style>
+ <style>
     @font-face {
       font-family: 'Pretendard Variable';
       font-weight: 45 920;
@@ -13,114 +13,132 @@
       src: url('/assets/woff2/PretendardVariable.woff2') format('woff2-variations');
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Pretendard Variable', sans-serif;
-      background-color: #000;
+      background-color: #0d1117;
       color: #c9d1d9;
     }
 
-    body {
-      padding: 2rem 1rem;
-    }
-
-    .wrapper {
-      max-width: 860px;
+    .container {
+      max-width: 960px;
       margin: 0 auto;
+      padding: 2rem 1.5rem;
     }
 
-    h2 {
-      color: #fff;
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      background-color: #161b22;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px #30363d;
+    }
+
+    section h2 {
       font-size: 1.2rem;
-      margin-top: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #58a6ff;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.7;
       margin-bottom: 1rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.4rem;
+      color: #8b949e;
+    }
+
+    .site-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 1rem;
+      background-color: #21262d;
+      color: #c9d1d9;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+      margin-bottom: 0.5rem;
+    }
+
+    .site-link:hover {
+      background-color: #30363d;
+    }
+
+    .site-link img {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
     }
 
     .video-thumb {
-      margin-top: 1rem;
-      max-width: 300px;
       width: 100%;
-      border: 1px solid #444;
-      border-radius: 6px;
+      max-width: 480px;
+      border-radius: 10px;
+      border: 1px solid #30363d;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="container">
+    <h1>Notice</h1>
 
-    <h2>📢 공지사항</h2>
+    <section>
+      <p><strong>최신 시세</strong> 주기적으로 업데이트 합니다.</p>
+      <p>대행작업은 100%  수작업입니다.</p>
+      <p>유저 간 아이템 거래, 빌드 아이디어 공유 자유롭게 가능</p>
+      <p>골드, 재료, 룬은 관리자를 통해 구매 부탁드립니다. </p>
+      
+    </section>
 
-    <br><br>
+    <section>
+      <h2>유용한 사이트</h2>
 
-    <p><strong>최신 시세</strong> 업데이트는 주기적으로 이루어집니다.</p>
+      <a class="site-link" href="https://diablo4.inven.co.kr/" target="_blank">
+        <img src="https://play-lh.googleusercontent.com/8qSbt3gFUDvulAXJNuNQ6aJMLjMOzvhwLJ80BibJBWW69yC_tS_ayAlbXm8niq3wKJY" alt="인벤">
+        <strong>디아블로4 인벤</strong>거래게시판, 공략
+      </a>
 
-    <br><br>
+      <a class="site-link" href="https://maxroll.gg/d4" target="_blank">
+        <img src="https://pbs.twimg.com/profile_images/1659572958854037505/ydGGQ5gS_400x400.jpg" alt="Maxroll">
+        <strong>D4 Maxroll</strong>영문 가이드 
+      </a>
 
-    <p>대행작업은 전부 수작업입니다.</p>
+      <a class="site-link" href="https://mobalytics.gg/diablo-4" target="_blank">
+        <img src="/assets/mobalytics.png" alt="Mobalytics">
+        <strong>mobalytics</strong>티어빌드, 간단한 가이드
+      </a>
 
-    <br><br>
+      <a class="site-link" href="https://helltides.com/" target="_blank">
+        <img src="https://helltides.com/apple-touch-icon.png" alt="Helltides">
+        <strong>helltides</strong>리더보드, 월드보스 타이머
+      </a>
 
-    <p>유저들 간 아이템 거래(💸 가능), 빌드 세팅, 아이디어 공유 자유롭게, 방장이 파는 품목만 삼가주세요.</p>
+      <a class="site-link" href="https://diablo.trade/" target="_blank">
+        <img src="/assets/diablo.trade.png" alt="Diablo Trade">
+        <strong>diablo.trade</strong>외국 거래소 사이트
+      </a>
 
-    <br><br>
+     
+      <a href="https://youtu.be/6ULW9I4UXjY?si=l4p-THlS_39Wbhi3" target="_blank">
+        <img src="https://img.youtube.com/vi/6ULW9I4UXjY/hqdefault.jpg" alt="유튜브 써머내일" class="video-thumb">
+      </a>
+    </section>
 
-    <h2>유용한 사이트</h2>
-
-    <br><br>
-
-    <p>🔹 <span style="vertical-align: middle;"><img src="https://play-lh.googleusercontent.com/8qSbt3gFUDvulAXJNuNQ6aJMLjMOzvhwLJ80BibJBWW69yC_tS_ayAlbXm8niq3wKJY" alt="인벤" width="24" height="24" style="vertical-align: middle;"></span>
-      <a href="https://diablo4.inven.co.kr/" target="_blank" rel="noopener">디아블로4 인벤</a>
-    </p>
-
-    <br>
-
-    <p>🔹 <span style="vertical-align: middle;"><img src="https://pbs.twimg.com/profile_images/1659572958854037505/ydGGQ5gS_400x400.jpg" alt="Maxroll" width="24" height="24" style="vertical-align: middle;"></span>
-      <a href="https://maxroll.gg/d4" target="_blank" rel="noopener">D4 Maxroll</a>
-    </p>
-
-    <br>
-
-    <p>🔹 <span style="vertical-align: middle;"><img src="/assets/mobalytics.png" alt="Mobalytics" width="24" height="24" style="vertical-align: middle;"></span>
-      <a href="https://mobalytics.gg/diablo-4" target="_blank" rel="noopener">티어 빌드 리스트, 가이드</a>
-    </p>
-
-    <br>
-
-    <p>🔹 <span style="vertical-align: middle;"><img src="https://helltides.com/apple-touch-icon.png" alt="Helltides" width="24" height="24" style="vertical-align: middle;"></span>
-      <a href="https://helltides.com/" target="_blank" rel="noopener">리더보드, 월드보스 타이머</a>
-    </p>
-
-    <br>
-
-    <p>🔹 <span style="vertical-align: middle;"><img src="/assets/diablo.trade.png" alt="Diablo Trade" width="24" height="24" style="vertical-align: middle;"></span>
-      <a href="https://diablo.trade/" target="_blank" rel="noopener">외국 거래소 사이트</a>
-    </p>
-
-    <br>
-
-    <p>🔹 거래소 이용 방법:</p>
-
-    <br>
-
-    <a href="https://youtu.be/6ULW9I4UXjY?si=l4p-THlS_39Wbhi3" target="_blank">
-      <img src="https://img.youtube.com/vi/6ULW9I4UXjY/hqdefault.jpg" alt="유튜브 썸네일" class="video-thumb" loading="lazy" style="max-width: 100%; aspect-ratio: 480 / 360;">
-    </a>
-
-    <br><br>
-
-    <h2>D4 보조 프로그램</h2>
-
-    <br>
-
-    <p>🔹 <a href="https://blog.naver.com/numseal/223200933869" target="_blank" rel="noopener">스킬매크로 (헬퍼)</a></p>
-
-    <br>
-
-    <p>🔹 <a href="https://d4armory.io/DpsMeter" target="_blank" rel="noopener">DPS 측정기</a></p>
-
+    <section>
+      <h2>보조 프로그램</h2>
+      <p><a class="site-link" href="https://blog.naver.com/numseal/223200933869" target="_blank">스킬 매크로(헬퍼)</a></p>
+      <p><a class="site-link" href="https://d4armory.io/DpsMeter" target="_blank">실시간 DPS 측정기</a></p>
+    </section>
   </div>
 </body>
 </html>
