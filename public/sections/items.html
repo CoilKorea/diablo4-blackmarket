@@ -1,10 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <h2>🔍 개별장비 검색</h2>
   <style>
     body {
       background-color: #000;
@@ -13,7 +11,18 @@
       margin: 0;
       padding: 0rem;
     }
-    input#search {
+
+    .centered-header {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .centered-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #search {
       padding: 0.8rem;
       font-size: 1rem;
       width: 90%;
@@ -21,6 +30,13 @@
       border-radius: 10px;
       border: 1px solid #ccc;
     }
+
+    .search-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
     #gear-list {
       margin-top: 2rem;
       display: grid;
@@ -28,6 +44,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       padding: 0 1rem;
     }
+
     .gear-card {
       background-color: #1a1a1a;
       border: 1px solid #444;
@@ -35,6 +52,7 @@
       padding: 1rem;
       text-align: left;
     }
+
     .gear-card img {
       width: 100%;
       max-height: 200px;
@@ -42,11 +60,13 @@
       border-radius: 6px;
       margin-bottom: 0.5rem;
     }
+
     .gear-card h3 {
       color: #ffc107;
       font-size: 1.1rem;
       margin: 0.5rem 0;
     }
+
     .gear-card p {
       font-size: 0.9rem;
       color: #ccc;
@@ -54,8 +74,12 @@
   </style>
 </head>
 <body>
-  <h2>🔍 개별장비 검색 및 목록</h2>
-  <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
+  <div class="centered-header">
+    <h2>🔍 개별장비 검색 및 목록</h2>
+    <div class="search-wrapper">
+      <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
+    </div>
+  </div>
 
   <div id="gear-list"></div>
 
