@@ -12,22 +12,13 @@
       margin: 0;
       padding: 0rem;
     }
-    .centered-header {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    #search {
+    input#search {
       padding: 0.8rem;
       font-size: 1rem;
       width: 90%;
       max-width: 400px;
       border-radius: 10px;
       border: 1px solid #ccc;
-    }
-    .search-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem;
     }
     #gear-list {
       margin-top: 2rem;
@@ -59,31 +50,13 @@
       font-size: 0.9rem;
       color: #ccc;
     }
-    #gear-description-list {
-      text-align: left;
-      padding: 1rem 2rem;
-      font-size: 0.95rem;
-    }
-    #gear-description-list strong {
-      color: #ffb6c1;
-    }
-    #gear-description-list ul {
-      margin-bottom: 1.5rem;
-    }
   </style>
 </head>
 <body>
-  <div class="centered-header">
-    <h2>🔍 개별장비 검색 및 목록</h2>
-    <div class="search-wrapper">
-      <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
-    </div>
-  </div>
+  <h2>🔍 개별장비 검색 및 목록</h2>
+  <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
 
   <div id="gear-list"></div>
-
-  <h3 style="margin-top: 2rem; padding-left: 1.5rem;">📋 장비별 상세 현황 (가나다 순)</h3>
-  <div id="gear-description-list"></div>
 
   <script>
     let gearData = [];
@@ -92,7 +65,6 @@
       const res = await fetch('/data/gearlist.json');
       gearData = await res.json();
       renderGearList(gearData);
-      renderGearDescriptions();
     }
 
     function renderGearList(list) {
@@ -121,28 +93,6 @@
         (item.abbr && item.abbr.toLowerCase().includes(keyword))
       );
       renderGearList(filtered);
-    }
-
-    function renderGearDescriptions() {
-      const container = document.getElementById('gear-description-list');
-      if (!container) return;
-
-      const grouped = {};
-      gearData.forEach(item => {
-        const name = item.name || '이름없음';
-        const desc = item.description?.replace(/\\/g, '/').trim() || '설명 없음';
-        if (!grouped[name]) grouped[name] = [];
-        grouped[name].push(desc);
-      });
-
-      const sortedNames = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'ko'));
-
-      const html = sortedNames.map(name => {
-        const descList = grouped[name].map(desc => `<li style="margin-left: 1em;">- ${desc}</li>`).join('');
-        return `<div><strong>♥ ${name}</strong><ul>${descList}</ul></div>`;
-      }).join('');
-
-      container.innerHTML = html;
     }
 
     window.onload = fetchGearList;
