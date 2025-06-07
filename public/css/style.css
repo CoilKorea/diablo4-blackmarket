@@ -360,6 +360,10 @@ pre {
   background-color: #ff9900;
 }
 
+h2 {
+  text-align: left !important;
+}
+
 .error {
   color: red;
   font-size: 0.9rem;
