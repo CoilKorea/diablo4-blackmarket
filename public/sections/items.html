@@ -109,10 +109,11 @@
 </head>
 <body>
   <h2>🎯 Gear List</h2>
-  <input id="search" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
+  <input id="search" oninput="searchGear()" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
   <p class="description-text">바로 판매가 가능한 아이템 목록입니다. 리스트에 없는 것은 요청해주세요.</p>
   <div id="gear-names"></div>
   <div id="gear-list"></div>
+
   <script>
     let gearData = [];
 
