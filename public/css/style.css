@@ -373,3 +373,15 @@ pre {
   text-align: center;
   margin-top: 0.5rem;
 }
+
+#tab-notice {
+  text-align: left !important;
+}
+
+#tab-price {
+  text-align: center !important;
+}
+
+#tab-items {
+  text-align: left !important;
+}
