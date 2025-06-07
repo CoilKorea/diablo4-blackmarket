@@ -153,7 +153,6 @@ nav {
   transition: all 0.3s ease;
 }
 
-nav.fixed {
 .sticky-nav {
   position: fixed;
   top: 0;
