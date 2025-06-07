@@ -39,25 +39,3 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ✅ 후처리: 스크롤 시 nav 고정
-function onIncludesLoaded() {
-  const nav = document.querySelector("nav");
-  if (!nav) return;
-
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > lastScrollY) {
-      nav.style.position = "fixed";
-      nav.style.top = "0";
-      nav.style.width = "100%";
-      nav.style.zIndex = "999";
-    } else {
-      nav.style.position = "relative";
-    }
-
-    lastScrollY = currentScrollY;
-  });
-}
