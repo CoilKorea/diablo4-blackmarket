@@ -69,6 +69,11 @@ header {
   z-index: 1;
 }
 
+.wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+}
+
 .hero-wrapper {
   position: absolute;
   top: 83%;
