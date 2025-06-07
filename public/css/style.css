@@ -40,7 +40,7 @@ html, body {
   background-color: #000;
   color: #c9d1d9;
   line-height: 1.6;
-}f
+}
 
 a {
   color: inherit;
@@ -154,10 +154,12 @@ nav {
 }
 
 nav.fixed {
+.sticky-nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  z-index: 9999;
+  z-index: 1000;
   background-color: #111;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
@@ -373,4 +375,3 @@ pre {
   text-align: center;
   margin-top: 0.5rem;
 }
-
