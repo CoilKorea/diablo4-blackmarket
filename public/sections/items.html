@@ -1,17 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>개별장비 리스트</title>
+  <title>실보유 아이템 검색</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-  <script defer>
-    let gearList = [];
+  <style>
+    body { font-family: 'Pretendard Variable', sans-serif; background-color: #000; color: white; }
+    .search-box { max-width: 400px; margin: 0 auto; }
+    .item-card img { max-height: 220px; object-fit: contain; }
+  </style>
+</head>
+<body class="min-h-screen py-10 px-4">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-yellow-400 mb-6 text-center">🔍 개별장비 검색 및 목록</h1>
+    <div class="search-box">
+      <input id="search" oninput="searchGear()" placeholder="아이템 이름, 속성, 줄임말 등으로 검색..."
+        class="w-full p-3 mb-8 text-black rounded-lg border border-gray-400" />
+    </div>
+    <div id="gear-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </div>
 
+  <script>
     async function fetchGearList() {
-      const res = await fetch('/data/gearlist_final.json');
-      gearList = await res.json();
+      const res = await fetch('/data/gearlist.json');
+      const gearList = await res.json();
+      window.fullList = gearList;
       renderGearList(gearList);
     }
 
@@ -20,13 +36,16 @@
       container.innerHTML = '';
       list.forEach(item => {
         const div = document.createElement('div');
-        div.className = 'bg-gray-900 border border-gray-700 rounded-xl p-4 shadow hover:shadow-lg transition';
+        div.className = 'item-card bg-gray-900 border border-gray-700 rounded-xl p-4 shadow hover:shadow-lg transition';
+
+        const imagePath = `/data/images/${item.filename}`;
+
         div.innerHTML = `
-          <img src="/data/images/${item.filename}" alt="${item.name}" class="w-full rounded mb-3 border border-gray-600">
+          <img src="${imagePath}" alt="${item.name}" class="w-full rounded mb-3" />
           <h3 class="text-yellow-400 font-semibold text-xl mb-1">${item.name}</h3>
-          <p class="text-sm text-gray-300 mb-1">📂 종류: <span class="text-white">${item.type}</span></p>
-          <p class="text-sm text-gray-300 mb-1">📜 설명: <span class="text-white">${item.description}</span></p>
-          <p class="text-sm text-gray-400">🔍 줄임말: ${item.abbr || '-'}</p>
+          <p class="text-sm text-gray-300 mb-1">🧩 종류: <span class="text-white">${item.type}</span></p>
+          <p class="text-sm text-gray-300 mb-1">💰 가격: <span class="text-white">${item.price || '-'}</span></p>
+          <p class="text-sm text-gray-400">📝 ${Array.isArray(item.description) ? item.description.join(' / ') : item.description}</p>
         `;
         container.appendChild(div);
       });
@@ -34,18 +53,18 @@
 
     function searchGear() {
       const keyword = document.getElementById('search').value.trim().toLowerCase();
-      if (!keyword) {
-        renderGearList(gearList);
-        return;
-      }
+      const keywords = keyword.split(/[\s,]+/); // 공백, 쉼표로 분리
 
-      const filtered = gearList.filter(item => {
-        const haystack = [
-          item.name || '',
-          item.description || '',
-          item.abbr || ''
-        ].join(' ').toLowerCase();
-        return keyword.split('').every(k => haystack.includes(k));
+      const filtered = window.fullList.filter(item => {
+        const name = item.name?.toLowerCase() || '';
+        const type = item.type?.toLowerCase() || '';
+        const abbr = item.abbr?.toLowerCase() || '';
+        const descArray = Array.isArray(item.description) ? item.description : [item.description];
+        const desc = descArray.join(' ').toLowerCase();
+
+        return keywords.some(k =>
+          name.includes(k) || abbr.includes(k) || desc.includes(k)
+        );
       });
 
       renderGearList(filtered);
@@ -53,13 +72,5 @@
 
     window.onload = fetchGearList;
   </script>
-</head>
-<body class="bg-black text-white font-pretendard min-h-screen py-10 px-4">
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-3xl font-bold text-yellow-400 mb-6">🔍 개별장비 검색 및 목록</h1>
-    <input id="search" oninput="searchGear()" placeholder="아이템 이름, 설명, 줄임말로 검색..."
-      class="w-full md:w-1/2 p-3 mb-8 text-black rounded-lg border border-gray-400" />
-    <div id="gear-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-  </div>
 </body>
 </html>
