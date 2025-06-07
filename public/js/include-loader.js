@@ -22,15 +22,9 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         loadCount++;
 
-        // ✅ 모든 include가 끝났을 때 후처리
+        // ✅ 후처리: 모든 include 완료 후 이벤트 디스패치만 수행
         if (loadCount === totalIncludes) {
-          try {
-            onIncludesLoaded(); // 안전하게 후처리
-          } catch (e) {
-            console.error('onIncludesLoaded() 실패:', e);
-          } finally {
-            window.dispatchEvent(new Event('includes-loaded'));
-          }
+          window.dispatchEvent(new Event('includes-loaded'));
         }
       })
       .catch(err => {
@@ -38,4 +32,3 @@ window.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
-
