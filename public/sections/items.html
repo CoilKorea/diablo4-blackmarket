@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔍 개별장비 검색</title>
   <style>
     body {
       background-color: #000;
@@ -11,17 +12,10 @@
       margin: 0;
       padding: 0rem;
     }
-
     .centered-header {
       text-align: center;
       margin-top: 2rem;
     }
-
-    .centered-header h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
     #search {
       padding: 0.8rem;
       font-size: 1rem;
@@ -30,13 +24,11 @@
       border-radius: 10px;
       border: 1px solid #ccc;
     }
-
     .search-wrapper {
       display: flex;
       justify-content: center;
       margin-bottom: 2rem;
     }
-
     #gear-list {
       margin-top: 2rem;
       display: grid;
@@ -44,7 +36,6 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       padding: 0 1rem;
     }
-
     .gear-card {
       background-color: #1a1a1a;
       border: 1px solid #444;
@@ -52,7 +43,6 @@
       padding: 1rem;
       text-align: left;
     }
-
     .gear-card img {
       width: 100%;
       max-height: 200px;
@@ -60,16 +50,25 @@
       border-radius: 6px;
       margin-bottom: 0.5rem;
     }
-
     .gear-card h3 {
       color: #ffc107;
       font-size: 1.1rem;
       margin: 0.5rem 0;
     }
-
     .gear-card p {
       font-size: 0.9rem;
       color: #ccc;
+    }
+    #gear-description-list {
+      text-align: left;
+      padding: 1rem 2rem;
+      font-size: 0.95rem;
+    }
+    #gear-description-list strong {
+      color: #ffb6c1;
+    }
+    #gear-description-list ul {
+      margin-bottom: 1.5rem;
     }
   </style>
 </head>
@@ -83,6 +82,9 @@
 
   <div id="gear-list"></div>
 
+  <h3 style="margin-top: 2rem; padding-left: 1.5rem;">📋 장비별 상세 현황 (가나다 순)</h3>
+  <div id="gear-description-list"></div>
+
   <script>
     let gearData = [];
 
@@ -90,6 +92,7 @@
       const res = await fetch('/data/gearlist.json');
       gearData = await res.json();
       renderGearList(gearData);
+      renderGearDescriptions();
     }
 
     function renderGearList(list) {
@@ -118,6 +121,28 @@
         (item.abbr && item.abbr.toLowerCase().includes(keyword))
       );
       renderGearList(filtered);
+    }
+
+    function renderGearDescriptions() {
+      const container = document.getElementById('gear-description-list');
+      if (!container) return;
+
+      const grouped = {};
+      gearData.forEach(item => {
+        const name = item.name || '이름없음';
+        const desc = item.description?.replace(/\\/g, '/').trim() || '설명 없음';
+        if (!grouped[name]) grouped[name] = [];
+        grouped[name].push(desc);
+      });
+
+      const sortedNames = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'ko'));
+
+      const html = sortedNames.map(name => {
+        const descList = grouped[name].map(desc => `<li style="margin-left: 1em;">- ${desc}</li>`).join('');
+        return `<div><strong>♥ ${name}</strong><ul>${descList}</ul></div>`;
+      }).join('');
+
+      container.innerHTML = html;
     }
 
     window.onload = fetchGearList;
