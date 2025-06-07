@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎯 Gear List Test (Local)</title>
+  <title>🎯 Gear List</title>
   <style>
     body {
       background-color: #000;
@@ -108,20 +108,17 @@
   </style>
 </head>
 <body>
-  <h2>🎯 Gear List Test (Local)</h2>
+  <h2>🎯 Gear List</h2>
   <input id="search" placeholder="아이템 이름, 옵션, 줄임말 등으로 검색..." />
-
   <p class="description-text">바로 판매가 가능한 아이템 목록입니다. 리스트에 없는 것은 요청해주세요.</p>
-
   <div id="gear-names"></div>
   <div id="gear-list"></div>
-
   <script>
     let gearData = [];
 
     async function fetchGearList() {
       try {
-        const res = await fetch("../../data/gearlist.json");
+        const res = await fetch("/data/gearlist.json");
         gearData = await res.json();
         renderGearList(gearData);
         renderGearNames(gearData);
@@ -138,7 +135,7 @@
         div.className = "gear-card";
         const formattedOptions = item.description ? item.description.replace(/\\/g, " ").replace(/\s{2,}/g, ' ') : '';
         div.innerHTML = `
-          <img src="../../data/images/${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
+          <img src="/data/images/${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
           <h3>${item.name}</h3>
           <p><strong>종류:</strong> ${item.type}</p>
           <p><strong>옵션:</strong> ${formattedOptions}</p>
@@ -151,7 +148,7 @@
     function renderGearNames(list) {
       const names = [...new Set(list.map(item => item.name))].sort((a, b) => a.localeCompare(b));
       const container = document.getElementById("gear-names");
-      container.innerHTML = `<h3>📦 보유 장비 목록 (이름 기준 정렬)</h3><p>${names.join(' ·)</h3><p>${names.join(' \xb7 ')}</p>`;
+      container.innerHTML = `<h3>📦 보유 장비 목록 (이름 기준 정렬)</h3><p>${names.join(' · ')}</p>`;
     }
 
     function searchGear() {
