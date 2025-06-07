@@ -73,13 +73,5 @@ window.addEventListener('scroll', () => {
     overlay.style.background = `rgba(0, 0, 0, ${opacity})`;
   }
 
-  // ✅ nav 고정 클래스 추가
-  const nav = document.querySelector("nav");
-  if (nav) {
-    if (scrollY > 100) {
-      nav.classList.add("fixed");
-    } else {
-      nav.classList.remove("fixed");
-    }
-  }
+
 });
