@@ -152,16 +152,21 @@
       container.innerHTML = `<h3>📦 보유 장비 목록 (이름 기준 정렬)</h3><p>${names.join(' · ')}</p>`;
     }
 
-    function searchGear() {
-      const keyword = document.getElementById("search").value.trim().toLowerCase();
-      const filtered = gearData.filter(item =>
-        (item.name && item.name.toLowerCase().includes(keyword)) ||
-        (item.type && item.type.toLowerCase().includes(keyword)) ||
-        (item.description && item.description.toLowerCase().includes(keyword)) ||
-        (item.abbr && item.abbr.toLowerCase().includes(keyword))
-      );
-      renderGearList(filtered);
-    }
+function searchGear() {
+  const keyword = document.getElementById("search").value.trim().toLowerCase();
+  const keywords = keyword.split(/\s+/); // 공백으로 나눔
+
+  const filtered = gearData.filter(item =>
+    keywords.some(kw =>
+      (item.name && item.name.toLowerCase().includes(kw)) ||
+      (item.type && item.type.toLowerCase().includes(kw)) ||
+      (item.description && item.description.toLowerCase().includes(kw)) ||
+      (item.abbr && item.abbr.toLowerCase().includes(kw))
+    )
+  );
+
+  renderGearList(filtered);
+}
 
     window.onload = fetchGearList;
     window.searchGear = searchGear;
