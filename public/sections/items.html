@@ -119,7 +119,7 @@
 
     async function fetchGearList() {
       try {
-        const res = await fetch("gearlist.json");
+        const res = await fetch("data/gearlist.json");
         gearData = await res.json();
         renderGearList(gearData);
         renderGearNames(gearData);
@@ -136,7 +136,7 @@
         div.className = "gear-card";
         const formattedOptions = item.description ? item.description.replace(/\\/g, " ").replace(/\s{2,}/g, ' ') : '';
         div.innerHTML = `
-          <img src="${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
+          <img src="data/images/${item.filename}" alt="${item.name}" onerror="this.style.display='none'">
           <h3>${item.name}</h3>
           <p><strong>종류:</strong> ${item.type}</p>
           <p><strong>옵션:</strong> ${formattedOptions}</p>
