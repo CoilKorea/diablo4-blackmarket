@@ -43,6 +43,11 @@ header {
   overflow: hidden;
 }
 
+strong {
+  color: #E3D095;       /* 또는 #ffd700, #58a6ff 등 */
+  font-weight: bold;
+}
+
 #overlay {
   position: absolute;
   width: 100%;
