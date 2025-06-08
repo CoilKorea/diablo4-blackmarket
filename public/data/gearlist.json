@@ -492,8 +492,24 @@
     "type": "고유",
     "price": "5,000",
     "description": "4어픽 맥스25%",
-    "abbr": "신살/신 살해자",
+    "abbr": "신살 / 신 살해자",
     "filename": "no1.png"
+  },
+     {
+    "name": "아리앗의 자세",
+    "type": "고유",
+    "price": "5,000",
+    "description": "4어픽 고유 중상",
+    "abbr": "아리앗",
+    "filename": "10.png"
+  },
+     {
+    "name": "건달의 가죽옷",
+    "type": "고유",
+    "price": "5,000",
+    "description": "4어픽 고유 25%",
+    "abbr": "건달 / 가죽",
+    "filename": "9.png"
   }
 
 
