@@ -18,7 +18,7 @@
 html, body {
   margin: 0;
   padding: 0;
-font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif !important;
+  font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif 
   font-weight: 400;
   background-color: #000;
   color: #c9d1d9;
@@ -377,6 +377,6 @@ h2 {
   margin-top: 0.5rem;
 }
 
-html, body, * {
-  font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif !important;
+html, body, {
+  font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif
 }
