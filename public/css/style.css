@@ -26,6 +26,11 @@ font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif !important;
   overflow-x: hidden;
 }
 
+.fas {
+  font-family: 'Font Awesome 5 Free' !important;
+  font-weight: 900; /* 굵은 아이콘은 필요 */
+}
+
 a {
   color: inherit;
   text-decoration: none;
