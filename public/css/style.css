@@ -73,6 +73,14 @@ strong {
   align-items: center;
 }
 
+img.guide-img, img.youtube-thumb {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #30363d;
+  margin: 1rem auto 0 auto;
+  display: block;
+}
+
 .program-list {
   padding-left: 1.2em;
   margin-left: 0;
