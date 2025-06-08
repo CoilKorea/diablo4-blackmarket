@@ -7,91 +7,73 @@
       font-family: 'Pretendard Variable', sans-serif;
       color: #c9d1d9;
     }
-    .class-box {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .class-icon {
-      width: 80px;
-      height: 80px;
-      background-color: #121212;
-      border-radius: 12px;
-      padding: 0.5rem;
-      box-shadow: 0 0 0 1px #1f1f1f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .class-icon img {
-      width: 100%;
-      height: auto;
-    }
     h2 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 0;
-  padding-bottom: 1rem;
-  color: #FFD700;
-}
-    .build-box {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0;
+      padding-bottom: 1rem;
+      color: #FFD700;
+    }
+    section {
+      margin-bottom: 2rem;
       background-color: #121212;
-      border-radius: 12px;
       padding: 1.5rem;
-      margin-bottom: 1.5rem;
+      border-radius: 12px;
       box-shadow: 0 0 0 1px #1f1f1f;
     }
-    .build-box h3 {
-      margin-top: 0;
-      color: #58a6ff;
-      font-size: 1.2rem;
+    ul, p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #a3a3a3;
     }
-    .build-box p {
-      margin: 0.5rem 0;
-      line-height: 1.6;
-      color: #c9d1d9;
-    }
-    .tier-image {
+    img.guide-img, img.youtube-thumb {
       width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 1rem auto;
       border-radius: 10px;
-      border: 1px solid #2a2a2a;
+      border: 1px solid #30363d;
+      margin-top: 1rem;
+    }
+    .tooltip {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 1rem;
+      text-align: right;
     }
   </style>
 
-  <div class="class-box">
-    <div class="class-icon"><img src="/assets/barbarian.png" alt="야만용사"></div>
-    <div class="class-icon"><img src="/assets/druid.png" alt="드루이드"></div>
-    <div class="class-icon"><img src="/assets/necromancer.png" alt="강령술사"></div>
-    <div class="class-icon"><img src="/assets/rogue.png" alt="도적"></div>
-    <div class="class-icon"><img src="/assets/sorcerer.png" alt="원소술사"></div>
-    <div class="class-icon"><img src="/assets/spiritborn.png" alt="혼령사"></div>
-  </div>
+  <div class="tooltip">사진 클릭 시 확대가능</div>
 
-  <div class="build-box">
-    <h2>🥇시즌8 티어 빌드</h2>
-    <img src="/assets/season8-tierlist.png" alt="시즌8 티어빌드" class="tier-image">
-<p style="font-size: 80%; text-align: center;">created by Rob2628 from d4build.gg</p>
-  </div>
+  <section>
+    <h2>🗓️시즌일정</h2>
+    <ul>
+      <li>벨리알의 귀화(Belial's Return): 2025년 4월 30일 ~ 2025년 7월 2일 (63일)</li>
+      <li>호라드림의 죽(Sins of the Horadrim): 2025년<strong>7월 2일</strong>~ 2025년 9월 ?일</li>
+    </ul>
+  </section>
 
-  <div class="build-box">
-    <h3>고행4 스타터</h3>
-    <p>➥ 정복자 레벨 130 <br>➥ 5개 문양 45단계까지 업그레이드<br>➥ 모든 장비부위 1~2어픽<br>➥ 명품화 최소 2저격</p>
-    <p></p>
- 
-  </div>
+  <section>
+    <h2>신화고유 제작</h2>
+    <a href="runes.png" target="_blank">
+      <img src="assets/runes.png" alt="시즌 가이드" class="guide-img">
+    </a>
+  </section>
 
-  <div class="build-box">
-    <h3>엔드게임 빌드</h3>
-    <p>➥ 정복자 레벨 230<br>➥ 문양작 80단계까지 업그레이드<br>➥ 기술 등급 목걸이 1~2어픽<br>➥ 그외 모든 장비 3~4어픽 고유 맥스수치 <br>➥ 명품화 12강 필요할 경우 3저격</p>
-    <p></p>
-  </div>
+  <section>
+    <h2>보스 드랍 테이블</h2>
+    <a href="Season8boss.png" target="_blank">
+      <img src="assets/Season8boss.png" alt="보스 드래프" class="guide-img">
+    </a>
+  </section>
 
-  <div class="build-box">
-    <p>비용과 상세구성은 1:1 문의해주세요</p>
-  </div>
+  <section>
+    <h2>💡재료 파밍 팁</h2>
+    <a href="oath.png" target="_blank">
+      <img src="assets/oath.png" alt="재료 파밍 핀" class="guide-img">
+    </a>
+    <p>
+      환영의 재를 NPC에게 스크롤로 바꾸어 소모하면 반복 보상상자를 얻습니다. 여기서 <strong>미지의 수정</strong>, <strong>잊힌 영혼</strong>대량 수급 가능<br>
+    </p>
+    <a href="https://www.youtube.com/watch?v=PunChRemp-k" target="_blank">
+      <img src="https://img.youtube.com/vi/PunChRemp-k/hqdefault.jpg" alt="유튜브 써머냐일" class="youtube-thumb">
+    </a>
+  </section>
 </div>
