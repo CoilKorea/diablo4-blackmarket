@@ -1,106 +1,97 @@
 <div class="wrapper">
   <style>
     .wrapper {
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1rem;
       font-family: 'Pretendard Variable', sans-serif;
       color: #c9d1d9;
     }
-    .tooltip {
-      font-size: 0.85rem;
-      color: #999;
-      margin-bottom: 1rem;
-    }
-    .guide-img {
-      max-width: 100%;
-      border-radius: 12px;
-      margin-top: 1rem;
-      border: 1px solid #2a2a2a;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    .youtube-thumb {
-      max-width: 100%;
-      border-radius: 12px;
-      display: block;
-      margin: 1.5rem 0;
-      border: 1px solid #2a2a2a;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    .spacer {
-      height: 2rem;
-    }
-    h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #58a6ff;
-    }
-    .content-box {
-      background-color: #121212;
-      border-radius: 12px;
-      box-shadow: 0 0 0 1px #1f1f1f;
-      padding: 1.5rem;
+    .class-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
       margin-bottom: 2rem;
     }
-    ul {
-      padding-left: 1.2rem;
+    .class-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #121212;
+      border-radius: 12px;
+      padding: 0.5rem;
+      box-shadow: 0 0 0 1px #1f1f1f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .class-icon img {
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 1rem;
+  color: #FFD700;
+}
+    .build-box {
+      background-color: #121212;
+      border-radius: 12px;
+      padding: 1.5rem;
       margin-bottom: 1.5rem;
+      box-shadow: 0 0 0 1px #1f1f1f;
     }
-    ul li {
-      margin-bottom: 0.5rem;
+    .build-box h3 {
+      margin-top: 0;
+      color: #58a6ff;
+      font-size: 1.2rem;
+    }
+    .build-box p {
+      margin: 0.5rem 0;
       line-height: 1.6;
+      color: #c9d1d9;
     }
-    p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin: 1rem 0;
-    }
-    strong {
-      color: #f0c674;
-    }
-    a {
-      text-decoration: none;
+    .tier-image {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 1rem auto;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
     }
   </style>
 
-  <div class="tooltip">사진 클릭 시 확대가능</div>
-
-  <div class="content-box">
-    <h2>🗓️ 시즌일정</h2>
-    <ul>
-      <li>베리알의 귀환(Belial's Return): 2025년 4월 30일 ~ 2025년 7월 2일 (63일)</li>
-      <li>호라드림의 죄(Sins of the Horadrim): 2025년<strong>7월 2일</strong>~ 2025년 9월 ?일</li>
-    </ul>
+  <div class="class-box">
+    <div class="class-icon"><img src="/assets/barbarian.png" alt="야만용사"></div>
+    <div class="class-icon"><img src="/assets/druid.png" alt="드루이드"></div>
+    <div class="class-icon"><img src="/assets/necromancer.png" alt="강령술사"></div>
+    <div class="class-icon"><img src="/assets/rogue.png" alt="도적"></div>
+    <div class="class-icon"><img src="/assets/sorcerer.png" alt="원소술사"></div>
+    <div class="class-icon"><img src="/assets/spiritborn.png" alt="혼령사"></div>
   </div>
 
-  <div class="content-box">
-    <h2>신화 고유 제작 재료</h2>
-    <p>보석상에게 가서 제작하려는 아이템에 마우스 우클릭 시 확인가능</p>
-    <a href="runes.png" target="_blank">
-      <img src="assets/runes.png" alt="시즌 가이드" class="guide-img">
-    </a>
+  <div class="build-box">
+    <h2>🥇시즌8 티어 빌드</h2>
+    <img src="/assets/season8-tierlist.png" alt="시즌8 티어빌드" class="tier-image">
+<p style="font-size: 80%; text-align: center;">created by Rob2628 from d4build.gg</p>
   </div>
 
-  <div class="content-box">
-    <h2>보스 드랍 테이블</h2>
-    <a href="Season8boss.png" target="_blank">
-      <img src="assets/Season8boss.png" alt="보스 드래프" class="guide-img">
-    </a>
+  <div class="build-box">
+    <h3>고행4 스타터</h3>
+    <p>➥ 정복자 레벨 130 <br>➥ 5개 문양 45단계까지 업그레이드<br>➥ 모든 장비부위 1~2어픽<br>➥ 명품화 최소 2저격</p>
+    <p></p>
+ 
   </div>
 
-  <div class="content-box">
-    <h2>💡 재료 파밍 팁</h2>
-    <a href="oath.png" target="_blank">
-      <img src="assets/oath.png" alt="재료 파밍 틱" class="guide-img">
-    </a>
-    <p>
-      벨리알 잡고 나온 환영의 재 ➜ 두루마리로 교환해서 상자 열면 <strong>미지의 수정</strong>, <strong>잊힌 영혼</strong>빠르게 획득 가능<br>
-    </p>
-    <a href="https://www.youtube.com/watch?v=PunChRemp-k" target="_blank">
-      <img src="https://img.youtube.com/vi/PunChRemp-k/hqdefault.jpg" alt="유튜브 써머내일" class="youtube-thumb">
-    </a>
+  <div class="build-box">
+    <h3>엔드게임 빌드</h3>
+    <p>➥ 정복자 레벨 230<br>➥ 문양작 80단계까지 업그레이드<br>➥ 기술 등급 목걸이 1~2어픽<br>➥ 그외 모든 장비 3~4어픽 고유 맥스수치 <br>➥ 명품화 12강 필요할 경우 3저격</p>
+    <p></p>
   </div>
 
-  <div class="spacer"></div>
+  <div class="build-box">
+    <p>비용과 상세구성은 1:1 문의해주세요</p>
+  </div>
 </div>
