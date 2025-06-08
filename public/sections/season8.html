@@ -26,12 +26,14 @@
       line-height: 1.7;
       color: #a3a3a3;
     }
-    img.guide-img, img.youtube-thumb {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid #30363d;
-      margin-top: 1rem;
-    }
+ img.guide-img, img.youtube-thumb {
+  display: block;
+  margin: 1rem auto;          /* 가운데 정렬 */
+  width: 100%;                /* wrapper 기준 너비 */
+  max-width: 860px;           /* wrapper 최대 너비 */
+  border-radius: 10px;
+  border: 1px solid #30363d;
+}
     .tooltip {
       font-size: 0.85rem;
       color: #888;
