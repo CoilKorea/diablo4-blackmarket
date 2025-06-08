@@ -118,7 +118,7 @@ img.guide-img, img.youtube-thumb {
 }
 
 #korean-title {
-  font-family: 'Kenris', sans-serif;
+  font-family: 'Kenris', sans-serif; !important;
   font-size: 2rem;
   color: #fff;
   text-shadow: 0 0 5px #000;
