@@ -510,6 +510,30 @@
     "description": "4어픽 고유 25%",
     "abbr": "건달 / 가죽",
     "filename": "9.png"
+  },
+       {
+    "name": "끝없는 분노의 지팡이",
+    "type": "고유",
+    "price": "5,000",
+    "description": "3어픽 고유 맥스, 투사체 두번 확률 59%",
+    "abbr": "지팡이 / 끝없는 / 분노",
+    "filename": "a1.png"
+  },
+       {
+    "name": "목걸이",
+    "type": "전설",
+    "price": "7,000",
+    "description": "★지능 +23.6% \\/ 최대 생명력 +437 \\/ 끝없는 장작 +2",
+    "abbr": "장작 / 끝없는",
+    "filename": "a2.png"
+  },
+       {
+    "name": "목걸이",
+    "type": "전설",
+    "price": "3,000",
+    "description": "지능 +13.6% \\/ 최대 생명력 +457 \\/ ★태고의 속박 +3",
+    "abbr": "태고 / 속박",
+    "filename": "a3.png"
   }
 
 
