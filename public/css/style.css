@@ -31,6 +31,38 @@ html, body {
   font-weight: 900; /* 굵은 아이콘은 필요 */
 }
 
+.poe1-title {
+  background-color: #3a0ca3;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  color: #f4f1ff;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.poe1-table th.price,
+.poe1-table td.price {
+  color: #d6bcfa;
+}
+
+/* POE2 전용 강조 스타일 */
+.poe2-title {
+  background-color: #003f5c;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  color: #7dd3fc;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.poe2-table th.price,
+.poe2-table td.price {
+  color: #7dd3fc;
+}
+
+
 a {
   color: inherit;
   text-decoration: none;
