@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ['include-price', 'sections/price.html'],
     ['include-items', 'sections/items.html'],
     ['include-fullbuild', 'sections/fullbuild.html'],
-    ['include-season8', 'sections/season8.html']
+    ['include-season8', 'sections/season8.html'],
     ['include-season8', 'sections/PoE.html']
   ];
 
