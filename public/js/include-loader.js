@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ['include-items', 'sections/items.html'],
     ['include-fullbuild', 'sections/fullbuild.html'],
     ['include-season8', 'sections/season8.html'],
-    ['include-season8', 'sections/PoE.html']
+    ['include-season8', 'sections/poe.html']
   ];
 
   let loadCount = 0;
